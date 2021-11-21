@@ -1,0 +1,33 @@
+@import '../../shared-styles/colors.scss';
+
+.home-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .login-card{
+    width: 500px;
+    height: 350px;
+    border-radius: 4px;
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0px 100px;
+
+    .form-title{
+      color: white;
+      font-size: 35px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .submit{
+      width: 100px;
+    }
+  }
+}
