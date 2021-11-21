@@ -2,6 +2,7 @@ import { TableAndCommandManagement } from './private/table-and-command-managemen
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './public/home/home.component';
+import { WorkerFunction } from './private/worker-function/worker-function.component';
 
 
 const appRoutes: Routes = [
@@ -11,7 +12,10 @@ const appRoutes: Routes = [
     [
       { path: 'management',  component: TableAndCommandManagement }
     ]
-  }
+  },
+  // { path: '**', component: HomeComponent},
+  { path: 'worker-function', component: WorkerFunction},
+  { path: '**', component: WorkerFunction},
 ];
 // { path: '**', component: HomeComponent},
 // { path: '**', redirectTo: ''},

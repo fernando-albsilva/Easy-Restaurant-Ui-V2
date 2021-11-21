@@ -1,0 +1,38 @@
+.snack-bar-container{
+      position: absolute;
+      bottom: 30px;
+      left: 0px;
+      right: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;    
+
+      .message{
+            font-size: 1rem;
+            font-weight: 400;
+            padding: 15px 20px;
+            border-radius: 4px;
+            height: 100%;
+            max-width: 100%;
+            letter-spacing: 1px;
+      }
+
+      .valid{
+            background-color: #00062b;
+            border: 2px solid #26B373;
+            color:#26B373;
+      }
+
+      .error{
+            background-color: #00062b;
+            border: 2px solid #D7436E;
+            color:#D7436E;
+      }
+
+      .warning{
+            background-color: #00062b;
+            border: 2px solid #C959E1;;
+            color:#C959E1;;
+      }
+}

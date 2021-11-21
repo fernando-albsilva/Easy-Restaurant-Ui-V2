@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TableAndCommandManagement } from './table-and-command-management.component';
-import { tableAndCommandManagementRoutingModule } from './table-and-command-management.routing.module';
-
 
 
 
@@ -12,8 +10,7 @@ import { tableAndCommandManagementRoutingModule } from './table-and-command-mana
     TableAndCommandManagement
   ],
   imports: [
-    CommonModule,
-    tableAndCommandManagementRoutingModule
+    CommonModule
   ],
 })
 export class TableAndAccountManagementModule { }

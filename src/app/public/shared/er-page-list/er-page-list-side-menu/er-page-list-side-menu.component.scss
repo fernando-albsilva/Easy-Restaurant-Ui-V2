@@ -1,0 +1,21 @@
+@import '../../../../shared-styles/colors.scss';
+
+.side-menu-container{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: $card-background;
+  border-radius: $card-radius;
+  box-shadow: $shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  button:hover{
+    background-color: $purple;
+    color: $white;
+  }
+
+
+}

@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import './app/shared-styles/colors.scss';
 
 html, body {
   height: 100%;
+  width: 100%;
   background-color: #121212;
-  color:#ffffffad;
+  color: $gray;
  }
 
  body {
@@ -12,18 +14,31 @@ html, body {
  }
 
 .txt-gray {
-  color : #ffffffad;
+  color : $gray;
 }
 
 .txt-white {
-  color : #FFFFFF;
+  color : $white;
+}
+
+.txt-green {
+  color : $green;
+
+}
+
+.txt-purple{
+  color : $purple;
 }
 
 .shadow-m{
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.199);
+  box-shadow: $shadow;
 }
 
+.page{
+  height: 100vh;
+  width: 100vw;
+}
 
-$gray: #ffffffad;
-
-$white: #FFFFFF;
+er-top-menu {
+  width: 100%;
+}

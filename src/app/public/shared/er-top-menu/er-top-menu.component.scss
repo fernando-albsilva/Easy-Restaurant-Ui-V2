@@ -1,0 +1,160 @@
+@import '../../../shared-styles/colors.scss';
+
+.header-menu-container{
+    width: 100%;
+    height: 90px;
+
+    .top-row-container{
+        height: 50px;
+        width: 100%;
+        // background-color: $card-background;
+        background-color: $black;
+        box-sizing: border-box;
+        padding: 0px 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+
+        .company-logo{
+
+            .logo-text{
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+        }
+
+        .icon{
+            transition: color 1s ease-in-out;
+            color: $green;
+            transform: scale(1);
+            padding: 1px;
+        }
+        .icon:hover{
+            cursor: pointer;
+            transition: color 0.4s ease-in-out;
+            color:$purple ;
+
+        }
+    }
+
+    .bottom-row-container{
+        height: 40px;
+        width: 100%;
+        // background-color: $black;
+        background-color: $card-background;
+        box-sizing: border-box;
+        padding: 0px 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: $shadow;
+        position: fixed;
+        top: 50px;
+
+        .bottom-row-left-chield-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 40px;
+
+            .left-chield{
+
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap:5px;
+                padding: 0px 5px;
+
+                .icon{
+                    transition: color 0.4s ease-in-out;
+                    color: $green;
+                    transform: scale(0.8);
+                }
+
+                .chield-text{
+                    transition: color 0.4s ease-in-out;
+                    // color: $gray ;
+                    color: $green ;
+                    font-size: 1.0rem;
+                    position: relative;
+                    top: 3px;
+                    font-weight: 600;
+                }
+            }
+
+            .left-chield:hover{
+                cursor: pointer;
+                .icon{
+                    transition: color 0.4s ease-in-out;
+                    color: $purple;
+
+                }
+
+                .chield-text{
+                    transition: color 0.4s ease-in-out;
+                    color: $purple;
+                    position: relative;
+                    top: 3px;
+                }
+            }
+        }
+
+        .bottom-row-right-chield-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 40px;
+
+            .right-chield{
+
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap:5px;
+                padding: 0px 5px;
+                border-radius: 5px;
+
+                .icon{
+                    transition: color 0.4s ease-in-out;
+                    color: $purple;
+                    transform: scale(0.8);
+                }
+
+                .chield-text{
+                    transition: color 0.4s ease-in-out;
+                    color: $purple;
+                    font-size: 1.0rem;
+                    font-weight: 500;
+                }
+            }
+            .right-chield:hover{
+                cursor: pointer;
+                .icon{
+                    transition: color 0.4s ease-in-out;
+                    color: $purple;
+
+                }
+
+                .chield-text{
+                    transition: color 0.4s ease-in-out;
+                    color: $purple;
+                }
+
+            }
+        }
+    }
+
+    button{
+      background-color: transparent;
+      outline-style: none;
+      border: none;
+    }
+}
+

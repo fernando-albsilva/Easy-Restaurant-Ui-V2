@@ -1,0 +1,5 @@
+<div class="snack-bar-container" *ngIf="visable">
+      <span *ngIf="messagetype==='valid'" class="message valid">{{message}}</span>
+      <span *ngIf="messagetype==='error'" class="message error">{{message}}</span>
+      <span *ngIf="messagetype==='warning'" class="message warning">{{message}}</span>
+</div>

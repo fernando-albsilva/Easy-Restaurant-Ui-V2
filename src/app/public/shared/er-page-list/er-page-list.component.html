@@ -1,0 +1,38 @@
+<div class="page">
+
+  <er-top-menu></er-top-menu>
+
+  <div class="page-content">
+
+    <div class="letf-side-menu-container">
+
+      <er-page-list-side-menu
+        [buttonsPermited]="buttonsPermited"
+        (actionEvent)="handleSideMenuAction($event)"
+      >
+      </er-page-list-side-menu>
+
+    </div>
+
+    <div class="main-content-container">
+
+      <div class="filter-container">
+        <mat-icon color="accent">search</mat-icon>
+
+      </div>
+
+
+      <div class="items-cards-container">
+
+        <!-- <ng-container cardRender></ng-container> -->
+        <!-- TODO continuar a implementar a renderizacao de cards dinamicamente -->
+        <ng-container #cardRender *ngFor="let item of items">
+
+        </ng-container>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

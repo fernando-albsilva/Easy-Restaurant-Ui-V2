@@ -1,0 +1,44 @@
+@import '../../../shared-styles/colors.scss';
+
+$leftMenuWidth:200px;
+$filterCardHeight:40px;
+
+.page-content{
+  height: calc(100% - 90px);
+  width: 100%;
+  display: flex;
+
+  .letf-side-menu-container{
+    height: 100%;
+    width: $leftMenuWidth;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  .main-content-container{
+    height: 100%;
+    width: calc(100% - #{$leftMenuWidth});
+    box-sizing: border-box;
+    padding: 20px;
+
+    .filter-container{
+      width: 100%;
+      height: $filterCardHeight;
+      border-radius: $card-radius;
+      background-color: $card-background;
+      box-shadow: $shadow;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0px 20px;
+    }
+
+    .items-cards-container{
+      height: calc(100% - #{$filterCardHeight});
+      width: 100%;
+      box-sizing: border-box;
+      padding-top: 20px;
+      overflow-y: auto;
+    }
+  }
+}

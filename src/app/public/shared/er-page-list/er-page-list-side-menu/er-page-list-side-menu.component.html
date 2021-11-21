@@ -1,0 +1,7 @@
+<div class="side-menu-container">
+
+  <button *ngIf="isThisButtonPermited('add')" mat-raised-button color="accent" (click)="emitAddEvent()">Adicionar</button>
+  <button *ngIf="isThisButtonPermited('edit')" mat-raised-button color="accent" (click)="emitEditEvent()">Editar</button>
+  <button *ngIf="isThisButtonPermited('delete')" mat-raised-button color="accent" (click)="emitDeleteEvent()">Excluir</button>
+
+</div>
