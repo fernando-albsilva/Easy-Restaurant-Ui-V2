@@ -10,6 +10,7 @@ import { ErPageList } from './er-page-list/er-page-list.component';
 import { ErSnackBar } from './er-snack-bar/er-snack-bar.component';
 import { ErTopMenu } from './er-top-menu/er-top-menu.component';
 import { ErPageListSideMenu } from './er-page-list/er-page-list-side-menu/er-page-list-side-menu.component';
+import { ErBadge } from './er-badge/er-badge.component';
 
 
 
@@ -17,6 +18,7 @@ import { ErPageListSideMenu } from './er-page-list/er-page-list-side-menu/er-pag
   declarations: [
     ErTopMenu,
     ErSnackBar,
+    ErBadge,
     ErPageList,
     ErPageListSideMenu,
     FunctionCardComponent
@@ -35,6 +37,7 @@ import { ErPageListSideMenu } from './er-page-list/er-page-list-side-menu/er-pag
     MatIconModule,
     ErTopMenu,
     ErSnackBar,
+    ErBadge,
     ErPageList,
     ErPageListSideMenu,
     FunctionCardComponent
