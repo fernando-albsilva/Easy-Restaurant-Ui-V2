@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from './../../public/shared/shared.module';
 import { WorkerFunction } from './worker-function.component';
+import { FunctionApi } from './api/function-api';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,11 +15,15 @@ import { WorkerFunction } from './worker-function.component';
     WorkerFunction
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     SharedModule
   ],
   exports:[
-    WorkerFunction
-  ]
+
+  ],
+  providers: [
+    FunctionApi
+  ],
 })
 export class WorkerFunctionModule { }

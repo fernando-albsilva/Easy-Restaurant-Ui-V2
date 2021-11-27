@@ -5,7 +5,6 @@ import { TableAndAccountManagementModule } from './table-and-command-management/
 import { WorkerFunctionModule } from './worker-function/worker-function.module';
 
 
-
 @NgModule({
   declarations: [
 
@@ -16,6 +15,9 @@ import { WorkerFunctionModule } from './worker-function/worker-function.module';
    TableAndAccountManagementModule
   ],
   exports:[
+
+  ],
+  providers:[
 
   ]
 })

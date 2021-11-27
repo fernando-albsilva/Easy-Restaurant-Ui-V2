@@ -1,0 +1,12 @@
+@import '../../../../../shared-styles/colors.scss';
+
+.card-container{
+  width: 100%;
+  height: 60px;
+  border-radius: $card-radius;
+  background-color: $card-background;
+  box-shadow: $shadow;
+  box-sizing: border-box;
+  padding: 10px 20px;
+
+}

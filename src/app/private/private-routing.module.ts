@@ -5,9 +5,10 @@ import { TableAndCommandManagement } from './table-and-command-management/table-
 import { WorkerFunction } from './worker-function/worker-function.component';
 
 
+
 const routes: Routes = [
+      { path: 'worker-function', component: WorkerFunction },
       { path: 'management',  component: TableAndCommandManagement },
-      { path: 'worker-function', component: WorkerFunction }
 ];
 
 @NgModule({

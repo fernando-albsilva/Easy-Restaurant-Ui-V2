@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { FunctionModel } from './../Model/FunctionModel';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 

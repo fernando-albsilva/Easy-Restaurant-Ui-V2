@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, Input, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 import { FunctionCardComponent } from './cards/function-card/function-card.component';
 
 @Component({
@@ -8,26 +8,25 @@ import { FunctionCardComponent } from './cards/function-card/function-card.compo
 })
 export class ErPageList implements OnDestroy, AfterViewInit{
 
-  @Input() items: Array<any> = ["a","a","a"];
+  @Input() items:Array<any> = [];
+
   @Input() context: string = "";
   @Input() buttonsPermited: Array<string> = ["add","edit","delete"];
 
-  @ViewChild("cardRender", { read: ViewContainerRef }) container:any;
-
-  private cardComponents: Array<any> = [
-    {context:"function", component: FunctionCardComponent}
-  ];
 
   // public welcomeComponent :any = CardContentWelcomeComponent;
 
-  constructor (private resolver: ComponentFactoryResolver) {}
+  constructor (
+    private resolver: ComponentFactoryResolver,
+    private cd: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
-    this.createComponent(this.cardComponents[0].component);
+    // this.createComponent(this.cardComponents[0].component);
+
   }
 
   ngOnDestroy(): void {
-    this.container.destroy();
+
   }
 
   public handleSideMenuAction(type:string){
@@ -49,6 +48,10 @@ export class ErPageList implements OnDestroy, AfterViewInit{
     }
   }
 
+  public isContext = (type:string) => {
+    return type === this.context;
+  }
+
   private handleAddEvent = ():void => {
     //TODO tratar evento de adicionar item
   }
@@ -59,15 +62,5 @@ export class ErPageList implements OnDestroy, AfterViewInit{
 
   private handleDeleteEvent = ():void => {
      //TODO tratar evento de deletar item
-  }
-
-  private createComponent = (component:any) => {
-    this.container?.clear();
-    const factory = this.resolver.resolveComponentFactory(component);
-    this.container?.createComponent(factory);
-
-    // To acess the element
-    //const componentRef =this.container?.createComponent(factory);
-    // componentRef.instance.message = message;
   }
 }

@@ -24,11 +24,43 @@
 
       <div class="items-cards-container">
 
-        <!-- <ng-container cardRender></ng-container> -->
-        <!-- TODO continuar a implementar a renderizacao de cards dinamicamente -->
-        <ng-container #cardRender *ngFor="let item of items">
+        <!-- Function card  -->
+        <ng-container *ngIf="isContext('function')">
+
+          <ng-container *ngFor="let item of items">
+
+            <function-card class="er-card"
+              [item]="item">
+            </function-card>
+
+          </ng-container>
+          <ng-container *ngFor="let item of items">
+
+            <function-card class="er-card"
+              [item]="item">
+            </function-card>
+
+          </ng-container>
+          <ng-container *ngFor="let item of items">
+
+            <function-card class="er-card"
+              [item]="item">
+            </function-card>
+
+          </ng-container>
+          <ng-container *ngFor="let item of items">
+
+            <function-card class="er-card"
+              [item]="item">
+            </function-card>
+
+          </ng-container>
 
         </ng-container>
+        <!-- /Function card -->
+
+        <!-- ????? Card -->
+        <!-- /????? Card -->
 
       </div>
 

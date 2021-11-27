@@ -1,7 +1,15 @@
 @import '../../../shared-styles/colors.scss';
 
+// largura menu lateral
 $leftMenuWidth:200px;
+
+// altura do container da div de filtro
 $filterCardHeight:40px;
+
+//distancia da div de filtro para o comeco do container de cards
+$marginTopItemCardsContainer: 20px;
+
+$paddingRightFilterAnditems: 10px;
 
 .page-content{
   height: calc(100% - 90px);
@@ -22,7 +30,7 @@ $filterCardHeight:40px;
     padding: 20px;
 
     .filter-container{
-      width: 100%;
+      width: calc(100% - #{$paddingRightFilterAnditems});
       height: $filterCardHeight;
       border-radius: $card-radius;
       background-color: $card-background;
@@ -34,11 +42,20 @@ $filterCardHeight:40px;
     }
 
     .items-cards-container{
-      height: calc(100% - #{$filterCardHeight});
+      height: calc(100% - #{$filterCardHeight} - #{$marginTopItemCardsContainer});
       width: 100%;
       box-sizing: border-box;
-      padding-top: 20px;
+      margin-top: $marginTopItemCardsContainer;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-right: $paddingRightFilterAnditems;
+
+      .er-card{
+        height: 60px;
+        width: 100%;
+      }
     }
   }
 }
