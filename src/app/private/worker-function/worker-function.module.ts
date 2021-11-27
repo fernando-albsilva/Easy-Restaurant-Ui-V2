@@ -16,6 +16,8 @@ import { WorkerFunction } from './worker-function.component';
     CommonModule,
     SharedModule
   ],
-  exports:[]
+  exports:[
+    WorkerFunction
+  ]
 })
 export class WorkerFunctionModule { }

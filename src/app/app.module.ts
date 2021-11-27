@@ -1,14 +1,13 @@
-import { HomeModule } from './public/home/home-module.module';
-import { WorkerFunctionModule } from './private/worker-function/worker-function.module';
-import { SharedModule } from './public/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PublicModule } from './public/public.module';
+import { SharedModule } from './public/shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { PrivateModule } from './private/private.module';
 
 
 @NgModule({
@@ -17,12 +16,12 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    HomeModule,
-    WorkerFunctionModule
+    PublicModule,
+    PrivateModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

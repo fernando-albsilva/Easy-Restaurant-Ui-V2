@@ -19,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule
   ],
   exports:[
-
+    HomeComponent
   ]
 })
 export class HomeModule { }

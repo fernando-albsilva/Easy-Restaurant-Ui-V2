@@ -6,19 +6,9 @@ import { WorkerFunction } from './private/worker-function/worker-function.compon
 
 
 const appRoutes: Routes = [
-  { path: 'public', component: HomeComponent},
-  { path: 'private',
-    children:
-    [
-      { path: 'management',  component: TableAndCommandManagement }
-    ]
-  },
-  // { path: '**', component: HomeComponent},
-  { path: 'worker-function', component: WorkerFunction},
-  { path: '**', component: WorkerFunction},
+  { path: '**', component: WorkerFunction}
 ];
-// { path: '**', component: HomeComponent},
-// { path: '**', redirectTo: ''},
+
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes)
