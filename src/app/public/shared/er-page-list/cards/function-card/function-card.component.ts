@@ -15,6 +15,4 @@ export class FunctionCardComponent {
   public workerFunction: FunctionModel = new FunctionModel();
 
   constructor () {}
-
-
 }

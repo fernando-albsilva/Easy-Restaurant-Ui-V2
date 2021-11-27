@@ -8,5 +8,27 @@
   box-shadow: $shadow;
   box-sizing: border-box;
   padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+
+  .item-property-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .property-title{
+      color: $green;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .property-text{
+      color: $white;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
 
 }
