@@ -4,10 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { PublicModule } from './public/public.module';
 import { SharedModule } from './public/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { PrivateModule } from './private/private.module';
 
 
 @NgModule({
@@ -19,8 +17,6 @@ import { PrivateModule } from './private/private.module';
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    PublicModule,
-    PrivateModule,
     AppRoutingModule
   ],
   providers: [],

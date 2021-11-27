@@ -6,18 +6,12 @@ import { WorkerFunction } from './worker-function/worker-function.component';
 
 
 const routes: Routes = [
-  { path: 'private',
-    children:
-    [
       { path: 'management',  component: TableAndCommandManagement },
-      { path: 'worker-function', component: WorkerFunction}
-    ]
-  }
-]; // sets up routes constant where you define your routes
+      { path: 'worker-function', component: WorkerFunction }
+];
 
-// configures NgModule imports and exports
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class PrivateRoutingModule { }
