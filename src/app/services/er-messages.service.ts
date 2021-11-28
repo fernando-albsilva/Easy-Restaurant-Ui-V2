@@ -12,7 +12,6 @@ export class ErMessages {
   public openSnackBar(messageReceived:string,type:string = "") {
     this._snackBar.openFromComponent(MessageComponent, {
       duration: this.durationInSeconds * 1000,
-      panelClass: ['container'],
       data: {message:messageReceived, type:type}
     });
   }
