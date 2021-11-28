@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
-
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+import { ErMessages } from 'src/app/services/er-messages.service';
 
 @Component({
   selector: 'er-page-list',
@@ -21,8 +21,8 @@ export class ErPageList implements OnDestroy, AfterViewInit{
   // public welcomeComponent :any = CardContentWelcomeComponent;
 
   constructor (
-    private resolver: ComponentFactoryResolver,
-    private cd: ChangeDetectorRef) {}
+    private erMessages: ErMessages
+    ) {}
 
   ngAfterViewInit(): void {
     // this.createComponent(this.cardComponents[0].component);
@@ -77,6 +77,7 @@ export class ErPageList implements OnDestroy, AfterViewInit{
 
   private handleAddEvent = ():void => {
     //TODO tratar evento de adicionar item
+    this.erMessages.openSnackBar("mensagem teste  ","danger");
     this.addEvent.emit();
   }
 
