@@ -77,7 +77,6 @@ export class ErPageList implements OnDestroy, AfterViewInit{
 
   private handleAddEvent = ():void => {
     //TODO tratar evento de adicionar item
-    this.erMessages.openSnackBar("mensagem teste  ","danger");
     this.addEvent.emit();
   }
 

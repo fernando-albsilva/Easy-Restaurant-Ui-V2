@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateFunctionDialog } from './components/create-function-dialog/create-function-dialog.component';
 import { FunctionApi } from './api/function-api';
 import { FunctionModel } from './Model/FunctionModel';
+import { ErMessages } from 'src/app/services/er-messages.service';
+import { Messages } from 'src/app/services/messages.service';
 
 @Component({
   selector: 'worker-function',
@@ -19,7 +21,9 @@ export class WorkerFunction implements OnInit {
 
   constructor (
     private functionApi: FunctionApi,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private erMessagesSnackbar: ErMessages,
+    private messages: Messages) {
 
   }
 
@@ -75,7 +79,7 @@ export class WorkerFunction implements OnInit {
 
   private handleFunctionCreation = (workerfunction: FunctionModel) => {
     this.functionApi.createFunction(workerfunction).subscribe(
-      result => {this.getFunctions();},
+      result => {this.getFunctions(); this.erMessagesSnackbar.openSnackBar(this.messages.createSucess,"sucess");},
       erro => {console.log(erro);}
     );
   }
