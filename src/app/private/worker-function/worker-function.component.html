@@ -1,5 +1,6 @@
   <er-page-list
     [items]="functions"
     [context]="erPageListContext"
-    [buttonsPermited]="erPageListOperationsPermited">
+    [buttonsPermited]="erPageListOperationsPermited"
+    (addEvent)="addFunction()">
   </er-page-list>

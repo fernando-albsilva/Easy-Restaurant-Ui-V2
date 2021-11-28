@@ -34,7 +34,7 @@
         .icon:hover{
             cursor: pointer;
             transition: color 0.4s ease-in-out;
-            color:$purple ;
+            color:$white ;
 
         }
     }
@@ -91,13 +91,13 @@
                 cursor: pointer;
                 .icon{
                     transition: color 0.4s ease-in-out;
-                    color: $purple;
+                    color: $white;
 
                 }
 
                 .chield-text{
                     transition: color 0.4s ease-in-out;
-                    color: $purple;
+                    color: $white;
                     position: relative;
                     top: 3px;
                 }
@@ -123,13 +123,13 @@
 
                 .icon{
                     transition: color 0.4s ease-in-out;
-                    color: $purple;
+                    color: $white;
                     transform: scale(0.8);
                 }
 
                 .chield-text{
                     transition: color 0.4s ease-in-out;
-                    color: $purple;
+                    color: $white;
                     font-size: 1.0rem;
                     font-weight: 500;
                 }
@@ -138,13 +138,13 @@
                 cursor: pointer;
                 .icon{
                     transition: color 0.4s ease-in-out;
-                    color: $purple;
+                    color: $white;
 
                 }
 
                 .chield-text{
                     transition: color 0.4s ease-in-out;
-                    color: $purple;
+                    color: $white;
                 }
 
             }

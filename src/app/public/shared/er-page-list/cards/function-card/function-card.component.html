@@ -1,4 +1,5 @@
-<div class= "card-container">
+<div class="card-container" [ngClass]="{'card-selected': selected}">
+
   <er-badge
   [inputData]="workerFunction.id.toString()"
   [width]="'60px'"

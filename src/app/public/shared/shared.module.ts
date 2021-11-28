@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule }   from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { FunctionCardComponent } from './er-page-list/cards/function-card/function-card.component';
 import { ErPageList } from './er-page-list/er-page-list.component';
@@ -28,13 +29,15 @@ import { ErBadge } from './er-badge/er-badge.component';
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   exports: [
     MatInputModule,
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
     ErTopMenu,
     ErSnackBar,
     ErBadge,

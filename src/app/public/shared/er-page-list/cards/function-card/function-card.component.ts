@@ -12,6 +12,8 @@ export class FunctionCardComponent {
     this.workerFunction = workerFunction;
   }
 
+  @Input() selected = false;
+
   public workerFunction: FunctionModel = new FunctionModel();
 
   constructor () {}

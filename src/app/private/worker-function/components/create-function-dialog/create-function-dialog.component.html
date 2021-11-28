@@ -1,0 +1,24 @@
+
+<div class="dialog-container">
+
+  <form class="form">
+
+    <span *ngIf="isNew" class="dialog-title">Criar Função</span>
+    <span *ngIf="!isNew" class="dialog-title">Editar Função</span>
+
+    <mat-form-field class="input" color="accent" appearance="standard">
+      <mat-label>Type</mat-label>
+      <input matInput type="text" [(ngModel)]="function.type" name="functionType"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+      <button *ngIf="function.type" matSuffix mat-icon-button aria-label="Clear" (click)="function.type=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+  </form>
+
+  <footer class="footer-container">
+    <button mat-raised-button  class="btn" (click)="onCancel()">Voltar</button>
+    <button mat-raised-button color="accent" class="btn" (click)="onSave()">Adicionar</button>
+  </footer>
+
+</div>

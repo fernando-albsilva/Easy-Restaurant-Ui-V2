@@ -1,5 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, Input, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
-import { FunctionCardComponent } from './cards/function-card/function-card.component';
+import { AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
+
 
 @Component({
   selector: 'er-page-list',
@@ -13,6 +13,9 @@ export class ErPageList implements OnDestroy, AfterViewInit{
   @Input() context: string = "";
   @Input() buttonsPermited: Array<string> = ["add","edit","delete"];
 
+  @Output() addEvent = new EventEmitter<string>();
+
+  public selectedItemsIds: Array<string> = [];
 
   // public welcomeComponent :any = CardContentWelcomeComponent;
 
@@ -52,8 +55,28 @@ export class ErPageList implements OnDestroy, AfterViewInit{
     return type === this.context;
   }
 
+  public selectOrRemoveCardSelection = (id:string) => {
+    const amISelected = this.amISelected(id);
+    if(amISelected) {this.removeFromSelectedItemsIds(id)}
+    else {this.addIdInSelecedItemsIds(id)}
+    console.log("lista de itens selecionados")
+    console.log(this.selectedItemsIds);
+  }
+
+  public amISelected = (id:string) => {return this.selectedItemsIds.includes(id);}
+
+  private removeFromSelectedItemsIds = (id:string) => {
+    this.selectedItemsIds = this.selectedItemsIds.filter( selectedId => {
+      if(selectedId === id) { return false;}
+      else {return true;}
+    });
+  }
+
+  private addIdInSelecedItemsIds = (id:string) => {this.selectedItemsIds.push(id);}
+
   private handleAddEvent = ():void => {
     //TODO tratar evento de adicionar item
+    this.addEvent.emit();
   }
 
   private handleEditEvent = ():void => {

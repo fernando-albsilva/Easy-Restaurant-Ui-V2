@@ -30,5 +30,20 @@
       font-weight: 500;
     }
   }
+}
 
+.card-container:hover{
+  cursor: pointer;
+}
+
+.card-selected{
+  background-color: $green;
+
+  .property-title{
+    color: $btn_black !important;
+  }
+
+  .property-text{
+    color: $btn_black !important;
+  }
 }
