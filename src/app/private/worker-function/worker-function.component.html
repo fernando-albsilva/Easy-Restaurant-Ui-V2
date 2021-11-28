@@ -2,5 +2,7 @@
     [items]="functions"
     [context]="erPageListContext"
     [buttonsPermited]="erPageListOperationsPermited"
-    (addEvent)="addFunction()">
+    (addEvent)="addFunction()"
+    (updateEvent)="updateFunction($event)"
+    >
   </er-page-list>

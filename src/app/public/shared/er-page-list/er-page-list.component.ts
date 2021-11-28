@@ -14,6 +14,7 @@ export class ErPageList implements OnDestroy, AfterViewInit{
   @Input() buttonsPermited: Array<string> = ["add","edit","delete"];
 
   @Output() addEvent = new EventEmitter<string>();
+  @Output() updateEvent = new EventEmitter<string>();
 
   public selectedItemsIds: Array<string> = [];
 
@@ -39,7 +40,7 @@ export class ErPageList implements OnDestroy, AfterViewInit{
         break;
 
       case "edit":
-        this.handleEditEvent();
+        this.handleUpdateEvent();
         break;
 
       case "remove":
@@ -79,11 +80,18 @@ export class ErPageList implements OnDestroy, AfterViewInit{
     this.addEvent.emit();
   }
 
-  private handleEditEvent = ():void => {
+  private handleUpdateEvent = ():void => {
      //TODO tratar evento de editar item
+     const selectedItem = this.findSelectedItem();
+     this.updateEvent.emit(selectedItem);
   }
 
   private handleDeleteEvent = ():void => {
      //TODO tratar evento de deletar item
+  }
+
+  private findSelectedItem = () => {
+    const index = this.items.findIndex(item => {return (this.selectedItemsIds.toString() === item.id.toString())});
+    return this.items[index];
   }
 }

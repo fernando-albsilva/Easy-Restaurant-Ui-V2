@@ -17,7 +17,8 @@ export class CreateFunctionDialog implements OnInit{
 
   constructor(
     public dialogRef: MatDialogRef<CreateFunctionDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: FunctionModel) {}
+    @Inject(MAT_DIALOG_DATA) public data: FunctionModel
+    ) {}
 
 
   ngOnInit(): void {
@@ -25,7 +26,6 @@ export class CreateFunctionDialog implements OnInit{
       this.isNew = false;
       this.function = this.data;
     }
-
   }
 
   public onCancel = (): void => {
@@ -33,26 +33,14 @@ export class CreateFunctionDialog implements OnInit{
   }
 
   public onSave = (): void => {
-    if(this.isNew)
-    {
-        // if(this.function.type)
-        // {
-        //   this.dialogRef.close({response:this.function,responseType:"save"});
-        // }else{
-        //  this.messageSent.next({type:"error", messageSent : `${PageListMessages.allFieldsMustBeFill}`});
-        // }
+    const isEmpty = this.verifyIfInputValueIsEmpty();
+    if(this.isNew && !isEmpty){
+      this.dialogRef.close({data:this.function,type:"save"});
     }
-    else
-    {
-      // if(this.function.type)
-      // {
-      //   this.dialogRef.close({response:this.function,responseType:"update"});
-      // }
-      // else
-      // {
-      //  this.messageSent.next({type:"error", messageSent : `${PageListMessages.allFieldsMustBeFill}`});
-      // }
+    else if(!isEmpty){
+      this.dialogRef.close({data:this.function,type:"update"});
     }
   }
 
+  private verifyIfInputValueIsEmpty = () => {return this.function.type === '';}
 }
