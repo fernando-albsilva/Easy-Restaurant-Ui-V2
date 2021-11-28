@@ -6,7 +6,8 @@ import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 })
 export class ErMessages {
 
-  durationInSeconds = 500000;
+  public durationInSeconds = 5;
+
   constructor(private _snackBar: MatSnackBar) {}
 
   public openSnackBar(messageReceived:string,type:string = "") {
@@ -16,7 +17,6 @@ export class ErMessages {
     });
   }
 }
-
 
 @Component({
   selector: 'snack-bar-component-example-snack',
