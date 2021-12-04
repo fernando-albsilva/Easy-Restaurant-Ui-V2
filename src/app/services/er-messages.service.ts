@@ -23,10 +23,7 @@ export class ErMessages {
   template: `
    <div clas="container" [style.text-align]="'center'" [style.font-weight]="'font-weight: 500'" [style.font-size]="'1.1rem'" [style.color]="textColor">{{data.message}}</div>
   `,
-  styles: [
-  `
-  `,
-  ],
+  styles: [],
 })
 export class MessageComponent {
 

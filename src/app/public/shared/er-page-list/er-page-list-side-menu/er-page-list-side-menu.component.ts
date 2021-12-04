@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ErPageListSideMenu {
 
  @Output() actionEvent = new EventEmitter<string>();
 
- constructor () {}
+ constructor (public messages: MessagesKeys) {}
 
  public emitAddEvent() {this.actionEvent.emit('add')}
  public emitEditEvent(){this.actionEvent.emit('edit')}

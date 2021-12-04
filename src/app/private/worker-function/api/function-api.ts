@@ -35,15 +35,15 @@ export class FunctionApi {
     }
 
 
-    public deleteFunction = (id:string):Observable<any> => {
+    // public deleteFunction = (id:string):Observable<any> => {
 
-      let params = new HttpParams();
-      params = params.append('Id',id);
+    //   let params = new HttpParams();
+    //   params = params.append('Id',id);
 
-      return this.http.delete<any>(`${ this.apiUrl }/Delete`, { params : params});
-    }
+    //   return this.http.delete<any>(`${ this.apiUrl }/Delete`, { params : params});
+    // }
 
-    public deleteMultiplesFunctions = (idList:Array<string>):Observable<any> => {
+    public deleteFunctionsByIds = (idList:Array<string>):Observable<any> => {
 
       return this.http.post<any>(`${ this.apiUrl }/DeleteByList`, idList);
 

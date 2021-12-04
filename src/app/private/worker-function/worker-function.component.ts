@@ -5,7 +5,9 @@ import { CreateFunctionDialog } from './components/create-function-dialog/create
 import { FunctionApi } from './api/function-api';
 import { FunctionModel } from './Model/FunctionModel';
 import { ErMessages } from 'src/app/services/er-messages.service';
-import { Messages } from 'src/app/services/messages.service';
+import { MessagesKeys } from 'src/app/services/messages-keys.service';
+
+
 
 @Component({
   selector: 'worker-function',
@@ -23,7 +25,7 @@ export class WorkerFunction implements OnInit {
     private functionApi: FunctionApi,
     public dialog: MatDialog,
     private erMessagesSnackbar: ErMessages,
-    private messages: Messages) {
+    private messages: MessagesKeys) {
 
   }
 
@@ -42,6 +44,8 @@ export class WorkerFunction implements OnInit {
       }
     });
   }
+
+  public deleteFunction = (selectedItems:any) => {this.handleFunctionDelete(selectedItems);}
 
   public updateFunction = (selectedItem:any) => {
 
@@ -79,14 +83,30 @@ export class WorkerFunction implements OnInit {
 
   private handleFunctionCreation = (workerfunction: FunctionModel) => {
     this.functionApi.createFunction(workerfunction).subscribe(
-      result => {this.getFunctions(); this.erMessagesSnackbar.openSnackBar(this.messages.createSucess,"sucess");},
+      result => {
+        this.getFunctions();
+        this.erMessagesSnackbar.openSnackBar(this.messages.successfullyCreated,"sucess");
+      },
       erro => {console.log(erro);}
     );
   }
 
   private handleFunctionUpdate = (workerfunction: FunctionModel) => {
     this.functionApi.updateFunction(workerfunction).subscribe(
-      result => {this.getFunctions();},
+      result => {
+        this.getFunctions();
+        this.erMessagesSnackbar.openSnackBar(this.messages.successfullyUpdated,"sucess");
+      },
+      erro => {console.log(erro);}
+    );
+
+  }
+  private handleFunctionDelete = (functionIds: Array<string>) => {
+    this.functionApi.deleteFunctionsByIds(functionIds).subscribe(
+      result => {
+        this.getFunctions();
+        this.erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted,"sucess");
+      },
       erro => {console.log(erro);}
     );
   }

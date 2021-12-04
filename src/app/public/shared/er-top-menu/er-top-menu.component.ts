@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
 @Component({
   selector: 'er-top-menu',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ErTopMenu {
 
-  constructor () {}
+  constructor (public messages: MessagesKeys) {}
 
-  
+
 }

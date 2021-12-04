@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MessagesKeys } from "src/app/services/messages-keys.service";
 
 import { FunctionModel } from "../../Model/FunctionModel";
 
@@ -16,6 +17,7 @@ export class CreateFunctionDialog implements OnInit{
   public isNew: boolean = true;
 
   constructor(
+    public messages: MessagesKeys,
     public dialogRef: MatDialogRef<CreateFunctionDialog>,
     @Inject(MAT_DIALOG_DATA) public data: FunctionModel
     ) {}
