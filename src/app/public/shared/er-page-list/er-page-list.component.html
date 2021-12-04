@@ -39,6 +39,22 @@
         </ng-container>
         <!-- /Function card -->
 
+          <!-- Worker card  -->
+          <ng-container *ngIf="isContext('worker')">
+
+            <ng-container *ngFor="let item of items">
+
+              <worker-card class="er-card"
+                [item]="item"
+                [selected]="amISelected(item.id)"
+                (click)="selectOrRemoveCardSelection(item.id)">
+              </worker-card>
+
+            </ng-container>
+
+          </ng-container>
+          <!-- /Worker card -->
+
         <!-- ????? Card -->
         <!-- /????? Card -->
 

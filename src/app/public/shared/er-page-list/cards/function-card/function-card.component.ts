@@ -1,5 +1,7 @@
-import { FunctionModel } from './../../../../../private/worker-function/Model/FunctionModel';
 import { Component, Input } from '@angular/core';
+
+import { FunctionModel } from './../../../../../private/worker-function/Model/FunctionModel';
+import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
 @Component({
   selector: 'function-card',
@@ -16,5 +18,5 @@ export class FunctionCardComponent {
 
   public workerFunction: FunctionModel = new FunctionModel();
 
-  constructor () {}
+  constructor (public messages: MessagesKeys) {}
 }

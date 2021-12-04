@@ -10,12 +10,16 @@
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 20px;
 
   .item-property-container{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     .property-title{
       color: $green;
@@ -30,6 +34,8 @@
       font-weight: 500;
     }
   }
+
+
 }
 
 .card-container:hover{

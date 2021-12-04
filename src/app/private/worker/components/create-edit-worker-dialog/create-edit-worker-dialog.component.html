@@ -1,18 +1,37 @@
-<!--
+
 <div class="dialog-container">
 
   <form class="form">
 
-    <span *ngIf="isNew" class="dialog-title">{{messages.createFunction}}</span>
-    <span *ngIf="!isNew" class="dialog-title">{{messages.editFunction}}</span>
+    <span *ngIf="isNew" class="dialog-title">{{messages.createWorker}}</span>
+    <span *ngIf="!isNew" class="dialog-title">{{messages.editWorker}}</span>
 
+    <!-- Input worker name -->
     <mat-form-field class="input" color="accent" appearance="standard">
-      <mat-label>Type</mat-label>
-      <input matInput type="text" [(ngModel)]="function.type" name="functionType"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
-      <button *ngIf="function.type" matSuffix mat-icon-button aria-label="Clear" (click)="function.type=''">
+      <mat-label>{{messages.name}}</mat-label>
+      <input matInput type="text" [(ngModel)]="worker.name" name="workerName"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+      <button *ngIf="worker.name" matSuffix mat-icon-button aria-label="Clear" (click)="worker.name=''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
+
+      <!-- Input worker cpf -->
+      <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-label>{{messages.cpf}}</mat-label>
+        <input matInput type="text" [(ngModel)]="worker.cpf" name="workerCpf"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+        <button *ngIf="worker.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="worker.cpf=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Input worker phone number -->
+      <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-label>{{messages.phone}}</mat-label>
+        <input matInput type="text" [(ngModel)]="worker.phoneNumber" name="workerPhoneNumber"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+        <button *ngIf="worker.phoneNumber" matSuffix mat-icon-button aria-label="Clear" (click)="worker.phoneNumber=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
   </form>
 
@@ -22,4 +41,4 @@
     <button *ngIf="!isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">{{messages.edit}}</button>
   </footer>
 
-</div> -->
+</div>

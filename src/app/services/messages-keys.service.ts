@@ -9,12 +9,14 @@ export class MessagesKeys {
   public create = "Criar"
   public successfullyCreated = "Criado com sucesso";
   public createFunction = "Criar função";
+  public createWorker = "Criar funcionário";
 
   //Related to edit/updates
   public edit = "Editar";
   public successfullyUpdated = "Editado com sucesso";
   public oneItemHasToBeSelected = "É preciso ter um item selecionado para editar";
   public editFunction = "Editar função";
+  public editWorker = "Editar funcionário";
 
   //Related to delete/remove
   public remove = "Remover";
@@ -42,5 +44,20 @@ export class MessagesKeys {
 
   //Related to home
   public home = "Home";
+
+  //Related to name
+  public name = "Nome";
+
+  //Related to name
+  public type = "Tipo";
+
+  //Related to name
+  public email = "Email";
+
+  //Related to name
+  public cpf = "Cpf";
+
+  //Related to phone
+  public phone = "Telefone";
 
 }

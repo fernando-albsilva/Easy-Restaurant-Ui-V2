@@ -12,6 +12,7 @@ import { ErPageList } from './er-page-list/er-page-list.component';
 import { ErTopMenu } from './er-top-menu/er-top-menu.component';
 import { ErPageListSideMenu } from './er-page-list/er-page-list-side-menu/er-page-list-side-menu.component';
 import { ErBadge } from './er-badge/er-badge.component';
+import { WorkerCardComponent } from './er-page-list/cards/workers-card/worker-card.component';
 
 
 
@@ -21,7 +22,8 @@ import { ErBadge } from './er-badge/er-badge.component';
     ErBadge,
     ErPageList,
     ErPageListSideMenu,
-    FunctionCardComponent
+    FunctionCardComponent,
+    WorkerCardComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { ErBadge } from './er-badge/er-badge.component';
     ErBadge,
     ErPageList,
     ErPageListSideMenu,
-    FunctionCardComponent
+    FunctionCardComponent,
+    WorkerCardComponent
   ]
 })
 export class SharedModule { }
