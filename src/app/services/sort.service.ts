@@ -11,8 +11,8 @@ export class SortService {
 
   public sortList = (listToSort:Array<any>):Array<any> =>{
     return listToSort.sort((element,elementToCompare)=>{
-      if (element > element) {return 1}
-      if (element < element) {return -1}
+      if (element > elementToCompare) {return 1}
+      if (element < elementToCompare) {return -1}
       return 0;
     });
   }
