@@ -64,7 +64,7 @@ export class WorkerComponent implements OnInit {
 
     if(dialogData){
       const dialogRef = this.dialog.open(CreateEditWorkerDialog, {
-        height: '700px',
+        height: '680px',
         width: '600px',
         data: {
           id: dialogData.id,
@@ -75,7 +75,7 @@ export class WorkerComponent implements OnInit {
     }
     else {
       const dialogRef = this.dialog.open(CreateEditWorkerDialog, {
-        height: '700px',
+        height: '680px',
         width: '600px'
       });
       return dialogRef;

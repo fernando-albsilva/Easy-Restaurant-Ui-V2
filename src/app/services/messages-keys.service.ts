@@ -60,4 +60,7 @@ export class MessagesKeys {
   //Related to phone
   public phone = "Telefone";
 
+  //Related to address
+  public address = "Endereço";
+
 }

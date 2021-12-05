@@ -9,7 +9,7 @@
     <!-- Input worker name -->
     <mat-form-field class="input" color="accent" appearance="standard">
       <mat-label>{{messages.name}}</mat-label>
-      <input matInput type="text" [(ngModel)]="worker.name" name="workerName"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+      <input acceptOnlyLetters matInput type="text" [(ngModel)]="worker.name" name="workerName"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
       <button *ngIf="worker.name" matSuffix mat-icon-button aria-label="Clear" (click)="worker.name=''">
         <mat-icon>close</mat-icon>
       </button>
@@ -29,6 +29,24 @@
         <mat-label>{{messages.phone}}</mat-label>
         <input matInput type="text" [(ngModel)]="worker.phoneNumber" name="workerPhoneNumber"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
         <button *ngIf="worker.phoneNumber" matSuffix mat-icon-button aria-label="Clear" (click)="worker.phoneNumber=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Input worker phone email -->
+      <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-label>{{messages.email}}</mat-label>
+        <input matInput type="text" [(ngModel)]="worker.email" name="workerEmail"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+        <button *ngIf="worker.email" matSuffix mat-icon-button aria-label="Clear" (click)="worker.email=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Input worker phone adress -->
+      <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-label>{{messages.address}}</mat-label>
+        <input matInput type="text" [(ngModel)]="worker.address" name="workerAdress"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" >
+        <button *ngIf="worker.address" matSuffix mat-icon-button aria-label="Clear" (click)="worker.address=''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>

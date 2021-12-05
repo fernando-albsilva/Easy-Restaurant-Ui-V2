@@ -6,6 +6,7 @@ import { WorkerApi } from './api/worker-api';
 import { SharedModule } from '../../public/shared/shared.module';
 import { CreateEditWorkerDialog } from './components/create-edit-worker-dialog/create-edit-worker-dialog.component';
 import { WorkerComponent } from './worker.component';
+import { DirectivesModule } from 'src/app/Directives/directives.module';
 
 
 
@@ -19,7 +20,8 @@ import { WorkerComponent } from './worker.component';
   imports: [
     HttpClientModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    DirectivesModule
   ],
   exports:[
 

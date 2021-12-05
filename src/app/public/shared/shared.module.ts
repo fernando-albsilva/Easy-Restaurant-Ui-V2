@@ -13,6 +13,8 @@ import { ErTopMenu } from './er-top-menu/er-top-menu.component';
 import { ErPageListSideMenu } from './er-page-list/er-page-list-side-menu/er-page-list-side-menu.component';
 import { ErBadge } from './er-badge/er-badge.component';
 import { WorkerCardComponent } from './er-page-list/cards/workers-card/worker-card.component';
+import { DirectivesModule } from 'src/app/Directives/directives.module';
+
 
 
 
@@ -32,7 +34,8 @@ import { WorkerCardComponent } from './er-page-list/cards/workers-card/worker-ca
     FormsModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    DirectivesModule
   ],
   exports: [
     MatInputModule,
