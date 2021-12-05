@@ -23,7 +23,7 @@ export class WorkerFunction implements OnInit {
 
   public functions: Array<FunctionModel> = [];
 
-  private _sortByTypePropoerty: string = "type";
+  private _byTypeProperty: string = "type";
 
   constructor (
     private functionApi: FunctionApi,
@@ -37,7 +37,7 @@ export class WorkerFunction implements OnInit {
 
   ngOnInit(): void {
     this.functionApi.getFunctions().subscribe ( requestResult => {
-      this.functions = this.sortService.sortListByObjectProperty(requestResult,this._sortByTypePropoerty);
+      this.functions = this.sortService.sortListByObjectProperty(requestResult,this._byTypeProperty);
     });
   }
 
@@ -45,9 +45,8 @@ export class WorkerFunction implements OnInit {
     const dialogRef = this.createDialog();
 
     dialogRef.afterClosed().subscribe( (response:any) => {
-      if(response && response.type === 'save'){
-        this.handleFunctionCreation(response.data);
-      }
+      const canSave = response && response.type === 'save';
+      if(canSave) {this.handleFunctionCreation(response.data)}
     });
   }
 
@@ -59,9 +58,8 @@ export class WorkerFunction implements OnInit {
     const dialogRef = this.createDialog(dialogData);
 
     dialogRef.afterClosed().subscribe( (response:any) => {
-      if(response && response.type === 'update'){
-        this.handleFunctionUpdate(response.data);
-      }
+      const canUpdate = response && response.type === 'update';
+      if(canUpdate) {this.handleFunctionUpdate(response.data)}
     });
   }
 
@@ -112,7 +110,7 @@ export class WorkerFunction implements OnInit {
 
   public getFunctions = () => {
       this.functionApi.getFunctions().subscribe((response:Array<FunctionModel>) =>{
-      this.functions = this.sortService.sortListByObjectProperty(response,this._sortByTypePropoerty);
+      this.functions = this.sortService.sortListByObjectProperty(response,this._byTypeProperty);
    });
   }
 }
