@@ -6,6 +6,7 @@ import { FunctionApi } from './api/function-api';
 import { FunctionModel } from './Model/FunctionModel';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
+import { SortService } from 'src/app/services/sort.service';
 
 
 
@@ -21,17 +22,20 @@ export class WorkerFunction implements OnInit {
 
   public functions: Array<FunctionModel> = [];
 
+  private _sortByTypePropoerty: string = "type";
+
   constructor (
     private functionApi: FunctionApi,
     public dialog: MatDialog,
     private erMessagesSnackbar: ErMessages,
-    private messages: MessagesKeys) {
+    private messages: MessagesKeys,
+    private sortService: SortService) {
 
   }
 
   ngOnInit(): void {
     this.functionApi.getFunctions().subscribe ( requestResult => {
-      this.functions = this.sortListByType(requestResult);
+      this.functions = this.sortService.sortListByObjectProperty(requestResult,this._sortByTypePropoerty);
     });
   }
 
@@ -113,15 +117,7 @@ export class WorkerFunction implements OnInit {
 
   public getFunctions = () => {
       this.functionApi.getFunctions().subscribe((response:Array<FunctionModel>) =>{
-      this.functions = this.sortListByType(response);
+      this.functions = this.sortService.sortListByObjectProperty(response,this._sortByTypePropoerty);
    });
-  }
-
-  private sortListByType = (list:Array<FunctionModel>):Array<FunctionModel> =>{
-    return list.sort((a,b)=>{
-      if (a.type > b.type) {return 1;}
-      if (a.type < b.type) {return -1;}
-      return 0;
-    });
   }
 }
