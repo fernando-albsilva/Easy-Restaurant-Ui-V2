@@ -6,6 +6,7 @@ import { WorkerFunction } from './worker-function.component';
 import { FunctionApi } from './api/function-api';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateFunctionDialog } from './components/create-function-dialog/create-function-dialog.component';
+import { DirectivesModule } from 'src/app/Directives/directives.module';
 
 
 
@@ -19,7 +20,8 @@ import { CreateFunctionDialog } from './components/create-function-dialog/create
   imports: [
     HttpClientModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    DirectivesModule
   ],
   exports:[
 
