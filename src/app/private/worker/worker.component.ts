@@ -24,6 +24,8 @@ export class WorkerComponent implements OnInit {
 
   public workers: Array<WorkerFlatModel> = [];
 
+  private _byTypeName: string = 'name';
+
   constructor (
     private workerApi: WorkerApi,
     public dialog: MatDialog,
@@ -36,7 +38,7 @@ export class WorkerComponent implements OnInit {
 
   ngOnInit(): void {
     this.workerApi.getWorkers().subscribe ( requestResult => {
-      this.workers = this.sortService.sortListByObjectProperty(requestResult,'name');
+      this.workers = this.sortService.sortListByObjectProperty(requestResult,this._byTypeName);
     });
   }
 
@@ -44,9 +46,8 @@ export class WorkerComponent implements OnInit {
     const dialogRef = this.createDialog();
 
     dialogRef.afterClosed().subscribe( (response:any) => {
-      if(response && response.type === 'save'){
-        this.handleFunctionCreation(response.data);
-      }
+      const canSave = response && response.type === 'save';
+      if(canSave) {this.handleFunctionCreation(response.data);}
     });
   }
 
@@ -58,9 +59,8 @@ export class WorkerComponent implements OnInit {
     const dialogRef = this.createDialog(dialogData);
 
     dialogRef.afterClosed().subscribe( (response:any) => {
-      if(response && response.type === 'update'){
-        this.handleFunctionUpdate(response.data);
-      }
+      const canUpdate = response && response.type === 'update';
+      if(canUpdate) {this.handleFunctionUpdate(response.data);}
     });
   }
 
@@ -68,6 +68,7 @@ export class WorkerComponent implements OnInit {
 
    const height = '680px';
    const width = '600px';
+
    if(dialogData){
      const dialogRef = this.dialogService.createDialog(CreateEditWorkerDialog,height,width,dialogData);
      return dialogRef;
@@ -111,7 +112,7 @@ export class WorkerComponent implements OnInit {
 
   public getWorkers = () => {
       this.workerApi.getWorkers().subscribe((response:Array<WorkerFlatModel>) =>{
-      this.workers = this.sortService.sortListByObjectProperty(response,'name');
+      this.workers = this.sortService.sortListByObjectProperty(response,this._byTypeName);
    });
   }
 }
