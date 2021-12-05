@@ -26,7 +26,6 @@ export class ErPageList {
     ) {}
 
   public handleSideMenuAction(type:string){
-    console.log("type"+type)
     switch (type) {
       case "add":
         this.handleAddEvent();
@@ -45,24 +44,20 @@ export class ErPageList {
     }
   }
 
-  public isContext = (type:string) => {
-    return type === this.context;
-  }
+  public isContext = (type:string) => {return type === this.context;}
 
   public selectOrRemoveCardSelection = (id:string) => {
     const amISelected = this.amISelected(id);
     if(amISelected) {this.removeFromSelectedItemsIds(id)}
     else {this.addIdInSelecedItemsIds(id)}
-    console.log("lista de itens selecionados")
-    console.log(this.selectedItemsIds);
   }
 
   public amISelected = (id:string) => {return this.selectedItemsIds.includes(id);}
 
   private removeFromSelectedItemsIds = (id:string) => {
     this.selectedItemsIds = this.selectedItemsIds.filter( selectedId => {
-      if(selectedId === id) { return false;}
-      else {return true;}
+      const idClickedisSelected = selectedId === id;
+      return !idClickedisSelected;
     });
   }
 
