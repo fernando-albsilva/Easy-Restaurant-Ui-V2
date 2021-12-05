@@ -1,8 +1,10 @@
+import { DialogService } from './../../services/dialog.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
+import { SortService } from 'src/app/services/sort.service';
 import { WorkerApi } from './api/worker-api';
 import { CreateEditWorkerDialog } from './components/create-edit-worker-dialog/create-edit-worker-dialog.component';
 import { WorkerFlatModel, WorkerModel } from './Model/woker-model';
@@ -26,13 +28,15 @@ export class WorkerComponent implements OnInit {
     private workerApi: WorkerApi,
     public dialog: MatDialog,
     private erMessagesSnackbar: ErMessages,
-    private messages: MessagesKeys) {
+    private messages: MessagesKeys,
+    private sortService: SortService,
+    private dialogService: DialogService) {
 
   }
 
   ngOnInit(): void {
     this.workerApi.getWorkers().subscribe ( requestResult => {
-      this.workers = this.sortListByType(requestResult);
+      this.workers = this.sortService.sortListByObjectProperty(requestResult,'name');
     });
   }
 
@@ -62,24 +66,17 @@ export class WorkerComponent implements OnInit {
 
   private createDialog = (dialogData?:WorkerModel) => {
 
-    if(dialogData){
-      const dialogRef = this.dialog.open(CreateEditWorkerDialog, {
-        height: '680px',
-        width: '600px',
-        data: {
-          id: dialogData.id,
-          type: dialogData.name
-        }
-      });
-      return dialogRef;
-    }
-    else {
-      const dialogRef = this.dialog.open(CreateEditWorkerDialog, {
-        height: '680px',
-        width: '600px'
-      });
-      return dialogRef;
-    }
+   const height = '680px';
+   const width = '600px';
+   if(dialogData){
+     const dialogRef = this.dialogService.createDialog(CreateEditWorkerDialog,height,width,dialogData);
+     return dialogRef;
+   }
+   else{
+     const dialogRef = this.dialogService.createDialog(CreateEditWorkerDialog,height,width);
+     return dialogRef;
+   }
+
   }
 
   private handleFunctionCreation = (workerCommand: WorkerModel) => {
@@ -114,15 +111,7 @@ export class WorkerComponent implements OnInit {
 
   public getWorkers = () => {
       this.workerApi.getWorkers().subscribe((response:Array<WorkerFlatModel>) =>{
-      this.workers = this.sortListByType(response);
+      this.workers = this.sortService.sortListByObjectProperty(response,'name');
    });
-  }
-
-  private sortListByType = (list:Array<WorkerFlatModel>):Array<WorkerFlatModel> =>{
-    return list.sort((a,b)=>{
-      if (a.name > b.name) {return 1;}
-      if (a.name < b.name) {return -1;}
-      return 0;
-    });
   }
 }

@@ -1,3 +1,4 @@
+import { DialogService } from './../../services/dialog.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -29,7 +30,8 @@ export class WorkerFunction implements OnInit {
     public dialog: MatDialog,
     private erMessagesSnackbar: ErMessages,
     private messages: MessagesKeys,
-    private sortService: SortService) {
+    private sortService: SortService,
+    private dialogService: DialogService) {
 
   }
 
@@ -65,22 +67,15 @@ export class WorkerFunction implements OnInit {
 
   private createDialog = (dialogData?:FunctionModel) => {
 
+    const height = '350px';
+    const width = '500px';
+
     if(dialogData){
-      const dialogRef = this.dialog.open(CreateFunctionDialog, {
-        height: '350px',
-        width: '500px',
-        data: {
-          id: dialogData.id,
-          type: dialogData.type
-        }
-      });
+      const dialogRef = this.dialogService.createDialog(CreateFunctionDialog,height,width,dialogData);
       return dialogRef;
     }
-    else {
-      const dialogRef = this.dialog.open(CreateFunctionDialog, {
-        height: '350px',
-        width: '500px'
-      });
+    else{
+      const dialogRef = this.dialogService.createDialog(CreateFunctionDialog,height,width);
       return dialogRef;
     }
   }
