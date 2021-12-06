@@ -38,7 +38,7 @@ export class WorkerComponent implements OnInit {
 
   ngOnInit(): void {
     this.workerApi.getWorkers().subscribe ( requestResult => {
-      this.workers = this.sortService.sortListByObjectProperty(requestResult,this._byTypeName);
+      this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(requestResult,this._byTypeName);
     });
   }
 
@@ -112,7 +112,7 @@ export class WorkerComponent implements OnInit {
 
   public getWorkers = () => {
       this.workerApi.getWorkers().subscribe((response:Array<WorkerFlatModel>) =>{
-      this.workers = this.sortService.sortListByObjectProperty(response,this._byTypeName);
+      this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(response,this._byTypeName);
    });
   }
 }
