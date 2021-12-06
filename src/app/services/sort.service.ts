@@ -8,9 +8,17 @@ export class SortService {
 
   constructor () {}
 
-  public sortListByObjectProperty = (listToSort:Array<any>, propoertyChossen: string):Array<any> => {
+  public sortListByObjectPropertyCaseSensitive = (listToSort:Array<any>, propertyChosen: string):Array<any> => {
     return listToSort.sort((element,elementToCompare)=>{
-      return this.compareObjects(element, elementToCompare, propoertyChossen)
+      const isCaseSensitive = true;
+      return this.compareObjects(element, elementToCompare, propertyChosen, isCaseSensitive)
+    });
+  }
+
+  public sortListByObjectPropertyCaseInsensitive = (listToSort:Array<any>, propertyChosen: string):Array<any> => {
+    return listToSort.sort((element,elementToCompare)=>{
+      const isCaseSensitive = false;
+      return this.compareObjects(element, elementToCompare, propertyChosen, isCaseSensitive)
     });
   }
 
@@ -49,12 +57,24 @@ export class SortService {
     });
   }
 
-  private  compareObjects = (object1:any, object2:any, propoertyChossen:string) => {
-    const obj1 = object1[propoertyChossen].toUpperCase();
-    const obj2 = object2[propoertyChossen].toUpperCase();
+  private  compareObjects = (object: any, objectToCompare: any, propertyChosen: string,isCaseSensitive: boolean = false) => {
+    if(isCaseSensitive){
+      const obj = object[propertyChosen].toUpperCase();
+      const objToCompare = objectToCompare[propertyChosen].toUpperCase();
 
-    if (obj1 < obj2) {return -1}
-    if (obj1 > obj2) {return 1}
+      return this.compareDynamicProperties(obj,objToCompare);
+    }
+    else{
+      const obj = object[propertyChosen];
+      const objToCompare = objectToCompare[propertyChosen];
+
+      return this.compareDynamicProperties(obj,objToCompare);
+    }
+  }
+
+  private compareDynamicProperties = (object: any, objectToCompare: any) => {
+    if (object < objectToCompare) {return -1}
+    if (object > objectToCompare) {return 1}
     return 0
   }
 }
