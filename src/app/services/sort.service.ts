@@ -23,7 +23,7 @@ export class SortService {
   }
 
   public sortNumberList = (listToSort:Array<any>):Array<any> => {
-    return this.SortByCaseInsensitive(listToSort);
+    return this.sortByCaseInsensitive(listToSort);
   }
 
   public sortStringListCaseSensitive = (listToSort:Array<any>):Array<any> => {
@@ -37,11 +37,11 @@ export class SortService {
   }
 
   private sortStringList = (listToSort:Array<any>, isCaseSensitive: boolean):Array<any> => {
-    if(isCaseSensitive) {return this.SortByCaseSensitive(listToSort);}
-    else {return this.SortByCaseInsensitive(listToSort);}
+    if(isCaseSensitive) {return this.sortByCaseSensitive(listToSort);}
+    else {return this.sortByCaseInsensitive(listToSort);}
   }
 
-  private SortByCaseSensitive = (listToSort:Array<any>) => {
+  private sortByCaseSensitive = (listToSort:Array<any>) => {
     return listToSort.sort((element,elementToCompare) => {
       if (element.toUpperCase() > elementToCompare.toUpperCase()) {return 1}
       if (element.toUpperCase() < elementToCompare.toUpperCase()) {return -1}
@@ -49,7 +49,7 @@ export class SortService {
     });
   }
 
-  private SortByCaseInsensitive = (listToSort:Array<any>) => {
+  private sortByCaseInsensitive = (listToSort:Array<any>) => {
     return listToSort.sort((element,elementToCompare) => {
       if (element > elementToCompare) {return 1}
       if (element < elementToCompare) {return -1}
@@ -62,13 +62,21 @@ export class SortService {
       const obj = object[propertyChosen].toUpperCase();
       const objToCompare = objectToCompare[propertyChosen].toUpperCase();
 
+      this.checkIfPropertiesExist(obj,objToCompare)
       return this.compareDynamicProperties(obj,objToCompare);
     }
     else{
       const obj = object[propertyChosen];
       const objToCompare = objectToCompare[propertyChosen];
 
+      this.checkIfPropertiesExist(obj,objToCompare)
       return this.compareDynamicProperties(obj,objToCompare);
+    }
+  }
+
+  private checkIfPropertiesExist = (object: any, objectToCompare: any) => {
+    if(object === undefined || objectToCompare === undefined){
+      throw new Error("Property does not exist in object");
     }
   }
 
