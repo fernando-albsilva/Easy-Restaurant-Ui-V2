@@ -1,23 +1,21 @@
-$gray: #ffffffad;
+// Colors
+$gray10: #ffffffad;
+$white10: #ffffff;
+$green10: #69f0ae;
+$purple10: #9c27b0;
+$black10: #000000;
 
-$white: #ffffff;
+//buttons
+$btn_black10: #000000de;
 
-$green: #69f0ae;
-
-$purple: #9c27b0;
-
-$black: #000000;
-
-$btn_black: #000000de;
-
-$bg_home: #121212;
-
-$bg_default: #303030;
-
+//Shadows
 $shadow: 5px 5px 10px #00000030;
 
-$card-background: #1f1f1f;
+//Cards
+$card-background10: #1f1f1f;
+$card-background11: #00062b;
+$card-radius10: 4px;
 
-$card-radius: 4px;
-
-$card-background-darker: #00062b;
+//Pages
+$bg_default: #303030;
+$bg_home: #121212;

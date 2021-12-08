@@ -5,15 +5,15 @@
   width: 100%;
   box-sizing: border-box;
   padding: 15px;
-  background-color: $card-background;
-  border-radius: $card-radius;
+  background-color: $card-background10;
+  border-radius: $card-radius10;
   box-shadow: $shadow;
   display: flex;
   flex-direction: column;
   gap: 30px;
 
   button:hover {
-    background-color: $white;
-    color: $btn_black;
+    background-color: $white10;
+    color: $btn_black10;
   }
 }

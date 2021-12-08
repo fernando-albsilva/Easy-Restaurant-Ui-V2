@@ -32,8 +32,8 @@ $paddingRightFilterAnditems: 10px;
     .filter-container {
       width: calc(100% - #{$paddingRightFilterAnditems});
       height: $filterCardHeight;
-      border-radius: $card-radius;
-      background-color: $card-background;
+      border-radius: $card-radius10;
+      background-color: $card-background10;
       box-shadow: $shadow;
       display: flex;
       align-items: center;

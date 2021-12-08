@@ -3,8 +3,8 @@
 .card-container {
   width: 100%;
   height: 60px;
-  border-radius: $card-radius;
-  background-color: $card-background;
+  border-radius: $card-radius10;
+  background-color: $card-background10;
   box-shadow: $shadow;
   box-sizing: border-box;
   padding: 10px 20px;
@@ -22,14 +22,14 @@
     text-overflow: ellipsis;
 
     .property-title {
-      color: $green;
+      color: $green10;
       font-size: 0.8rem;
       font-weight: 500;
       text-transform: uppercase;
     }
 
     .property-text {
-      color: $white;
+      color: $white10;
       font-size: 0.8rem;
       font-weight: 500;
     }
@@ -41,13 +41,13 @@
 }
 
 .card-selected {
-  background-color: $green;
+  background-color: $green10;
 
   .property-title {
-    color: $btn_black !important;
+    color: $btn_black10 !important;
   }
 
   .property-text {
-    color: $btn_black !important;
+    color: $btn_black10 !important;
   }
 }

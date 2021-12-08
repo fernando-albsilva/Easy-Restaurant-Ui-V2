@@ -11,8 +11,8 @@
   .login-card {
     width: 500px;
     height: 350px;
-    border-radius: $card-radius;
-    background-color: $card-background;
+    border-radius: $card-radius10;
+    background-color: $card-background10;
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -21,7 +21,7 @@
     padding: 0px 100px;
 
     .form-title {
-      color: $white;
+      color: $white10;
       font-size: 35px;
       font-weight: 800;
       margin-bottom: 15px;

@@ -7,8 +7,7 @@
   .top-row-container {
     height: 50px;
     width: 100%;
-    // background-color: $card-background;
-    background-color: $black;
+    background-color: $black10;
     box-sizing: border-box;
     padding: 0px 25px;
     display: flex;
@@ -26,22 +25,21 @@
 
     .icon {
       transition: color 1s ease-in-out;
-      color: $green;
+      color: $green10;
       transform: scale(1);
       padding: 1px;
     }
     .icon:hover {
       cursor: pointer;
       transition: color 0.4s ease-in-out;
-      color: $white;
+      color: $white10;
     }
   }
 
   .bottom-row-container {
     height: 40px;
     width: 100%;
-    // background-color: $black;
-    background-color: $card-background;
+    background-color: $card-background10;
     box-sizing: border-box;
     padding: 0px 20px;
     display: flex;
@@ -69,14 +67,13 @@
 
         .icon {
           transition: color 0.4s ease-in-out;
-          color: $green;
+          color: $green10;
           transform: scale(0.8);
         }
 
         .chield-text {
           transition: color 0.4s ease-in-out;
-          // color: $gray ;
-          color: $green;
+          color: $green10;
           font-size: 1rem;
           position: relative;
           top: 3px;
@@ -88,12 +85,12 @@
         cursor: pointer;
         .icon {
           transition: color 0.4s ease-in-out;
-          color: $white;
+          color: $white10;
         }
 
         .chield-text {
           transition: color 0.4s ease-in-out;
-          color: $white;
+          color: $white10;
           position: relative;
           top: 3px;
         }
@@ -118,13 +115,13 @@
 
         .icon {
           transition: color 0.4s ease-in-out;
-          color: $white;
+          color: $white10;
           transform: scale(0.8);
         }
 
         .chield-text {
           transition: color 0.4s ease-in-out;
-          color: $white;
+          color: $white10;
           font-size: 1rem;
           font-weight: 500;
         }
@@ -133,12 +130,12 @@
         cursor: pointer;
         .icon {
           transition: color 0.4s ease-in-out;
-          color: $white;
+          color: $white10;
         }
 
         .chield-text {
           transition: color 0.4s ease-in-out;
-          color: $white;
+          color: $white10;
         }
       }
     }
