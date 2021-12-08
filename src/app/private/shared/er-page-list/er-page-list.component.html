@@ -1,66 +1,50 @@
 <div class="page">
-
   <er-top-menu></er-top-menu>
 
   <div class="page-content">
-
     <div class="letf-side-menu-container">
-
-      <er-page-list-side-menu
-        [buttonsPermited]="buttonsPermited"
-        (actionEvent)="handleSideMenuAction($event)"
-      >
+      <er-page-list-side-menu [buttonsPermited]="buttonsPermited" (actionEvent)="handleSideMenuAction($event)">
       </er-page-list-side-menu>
-
     </div>
 
     <div class="main-content-container">
-
       <div class="filter-container">
-        <mat-icon color="accent">search</mat-icon>
+        <!-- <mat-icon color="accent">search</mat-icon> -->
+        <er-page-list-filter [handleItems]="itemsFiltred" (refreshItems)="refreshItems($event)"></er-page-list-filter>
       </div>
 
-
       <div class="items-cards-container">
-
         <!-- Function card  -->
         <ng-container *ngIf="isContext('function')">
-
-          <ng-container *ngFor="let item of items">
-
-            <function-card class="er-card"
+          <ng-container *ngFor="let item of itemsFiltred">
+            <function-card
+              class="er-card"
               [item]="item"
               [selected]="amISelected(item.id)"
-              (click)="selectOrRemoveCardSelection(item.id)">
+              (click)="selectOrRemoveCardSelection(item.id)"
+            >
             </function-card>
-
           </ng-container>
-
         </ng-container>
         <!-- /Function card -->
 
-          <!-- Worker card  -->
-          <ng-container *ngIf="isContext('worker')">
-
-            <ng-container *ngFor="let item of items">
-
-              <worker-card class="er-card"
-                [item]="item"
-                [selected]="amISelected(item.id)"
-                (click)="selectOrRemoveCardSelection(item.id)">
-              </worker-card>
-
-            </ng-container>
-
+        <!-- Worker card  -->
+        <ng-container *ngIf="isContext('worker')">
+          <ng-container *ngFor="let item of itemsFiltred">
+            <worker-card
+              class="er-card"
+              [item]="item"
+              [selected]="amISelected(item.id)"
+              (click)="selectOrRemoveCardSelection(item.id)"
+            >
+            </worker-card>
           </ng-container>
-          <!-- /Worker card -->
+        </ng-container>
+        <!-- /Worker card -->
 
         <!-- ????? Card -->
         <!-- /????? Card -->
-
       </div>
-
     </div>
-
   </div>
 </div>

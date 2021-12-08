@@ -5,16 +5,14 @@ import { TableAndCommandManagement } from './table-and-command-management/table-
 import { WorkerFunction } from './worker-function/worker-function.component';
 import { WorkerComponent } from './worker/worker.component';
 
-
-
 const routes: Routes = [
-      { path: 'worker-function', component: WorkerFunction },
-      { path: 'worker', component: WorkerComponent },
-      { path: 'management',  component: TableAndCommandManagement },
+  { path: 'worker-function', component: WorkerFunction },
+  { path: 'worker', component: WorkerComponent },
+  { path: 'management', component: TableAndCommandManagement },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PrivateRoutingModule { }
+export class PrivateRoutingModule {}

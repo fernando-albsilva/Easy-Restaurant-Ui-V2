@@ -48,14 +48,19 @@ er-top-menu {
   height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f1f1f;
+  background: $card-background10;
   border-radius: 30px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #1f1f1f;
+  background: $card-background10;
 }
 ::-webkit-scrollbar-track {
   background: #858585;
   border-radius: 30px;
   box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}
+
+.my-snackbar-class {
+  background-color: $gray15;
+  box-shadow: $shadow10;
 }

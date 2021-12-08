@@ -8,7 +8,12 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
   styleUrls: ['er-page-list.component.scss'],
 })
 export class ErPageList {
-  @Input() items: Array<any> = [];
+  @Input() set items(itemsReceived: Array<any>) {
+    this.itemsReceived = itemsReceived;
+    this.itemsFiltred = [...this.itemsReceived];
+  }
+  public itemsReceived: Array<any> = [];
+  public itemsFiltred: Array<any> = [];
 
   @Input() context: string = '';
   @Input() buttonsPermited: Array<string> = ['add', 'edit', 'delete'];
@@ -39,6 +44,32 @@ export class ErPageList {
         break;
     }
   }
+
+  public refreshItems = (action: any): void => {
+    const isItemsReceivedEmpty = action.state === 'empty-filter';
+    if (isItemsReceivedEmpty) {
+      this.restoreItemsList();
+    } else {
+      this.executefilter(action);
+    }
+  };
+
+  private executefilter = (action: any) => {
+    this.itemsFiltred = this.itemsReceived.filter(item => {
+      const elementToFilter = item[action.propertyToFilter].toLowerCase();
+      const inputFilter = action.filterInput.toLowerCase();
+
+      if (elementToFilter) {
+        return elementToFilter.includes(inputFilter);
+      }
+      return true;
+    });
+  };
+
+  private restoreItemsList = (): void => {
+    this.itemsFiltred = [];
+    this.itemsFiltred = [...this.itemsReceived];
+  };
 
   public isContext = (type: string) => {
     return type === this.context;

@@ -4,63 +4,67 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MessagesKeys {
-
   //Related to create
-  public create = "Criar"
-  public successfullyCreated = "Criado com sucesso";
-  public createFunction = "Criar função";
-  public createWorker = "Criar funcionário";
+  public create: string = 'Criar';
+  public successfullyCreated: string = 'Criado com sucesso';
+  public createFunction: string = 'Criar função';
+  public createWorker: string = 'Criar funcionário';
 
   //Related to edit/updates
-  public edit = "Editar";
-  public successfullyUpdated = "Editado com sucesso";
-  public oneItemHasToBeSelected = "É preciso ter um item selecionado para editar";
-  public editFunction = "Editar função";
-  public editWorker = "Editar funcionário";
+  public edit: string = 'Editar';
+  public successfullyUpdated: string = 'Editado com sucesso';
+  public oneItemHasToBeSelected: string = 'É preciso ter um item selecionado para editar';
+  public editFunction: string = 'Editar função';
+  public editWorker: string = 'Editar funcionário';
 
   //Related to delete/remove
-  public remove = "Remover";
-  public delete = "Deletar";
-  public successfullyDeleted = "Deletado com sucesso";
-  public isNecessaryHaveOneOrMoreItemsSelected = "É preciso ter um ou mais items selecionados para remover";
+  public remove: string = 'Remover';
+  public delete: string = 'Deletar';
+  public successfullyDeleted: string = 'Deletado com sucesso';
+  public isNecessaryHaveOneOrMoreItemsSelected: string = 'É preciso ter um ou mais items selecionados para remover';
 
   //Related to add
-  public add = "Adicionar";
+  public add: string = 'Adicionar';
 
   //Related to close
-  public close = "Fechar";
+  public close: string = 'Fechar';
 
   //Related to produtc
-  public product = "Product";
+  public product: string = 'Product';
 
   //Related to employee
-  public employee = "Funcionário";
+  public employee: string = 'Funcionário';
 
   //Related to function
-  public function = "Função";
+  public function: string = 'Função';
 
   //Related to administrator
-  public administrator = "Administrador";
+  public administrator: string = 'Administrador';
 
   //Related to home
-  public home = "Home";
+  public home: string = 'Home';
 
   //Related to name
-  public name = "Nome";
+  public name: string = 'Nome';
 
   //Related to name
-  public type = "Tipo";
+  public type: string = 'Tipo';
 
   //Related to name
-  public email = "Email";
+  public email: string = 'Email';
 
   //Related to name
-  public cpf = "Cpf";
+  public cpf: string = 'Cpf';
 
   //Related to phone
-  public phone = "Telefone";
+  public phone: string = 'Telefone';
 
   //Related to address
-  public address = "Endereço";
+  public address: string = 'Endereço';
 
+  //Related to filter
+  public searchFor: string = 'Procurar por ...';
+
+  //Related to filter
+  public option: string = 'Opção';
 }

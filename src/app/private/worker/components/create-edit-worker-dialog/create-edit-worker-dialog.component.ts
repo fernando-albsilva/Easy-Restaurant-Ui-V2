@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UUID } from 'angular2-uuid';
+import { ErMessages } from 'src/app/services/er-messages.service';
 
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
@@ -16,6 +17,7 @@ export class CreateEditWorkerDialog implements OnInit {
   public isNew: boolean = true;
 
   constructor(
+    private erMessagesSnackbar: ErMessages,
     private objectService: ObjectService,
     public messages: MessagesKeys,
     public dialogRef: MatDialogRef<CreateEditWorkerDialog>,
@@ -37,9 +39,11 @@ export class CreateEditWorkerDialog implements OnInit {
 
   public onSave = (): void => {
     const isEmpty = this.verifyIfInputValueIsEmpty();
-    if (this.isNew && !isEmpty) {
+    if (isEmpty) {
+      this.erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted, 'warning');
+    } else if (this.isNew) {
       this.dialogRef.close({ data: this.worker, type: 'save' });
-    } else if (!isEmpty) {
+    } else {
       this.dialogRef.close({ data: this.worker, type: 'update' });
     }
   };

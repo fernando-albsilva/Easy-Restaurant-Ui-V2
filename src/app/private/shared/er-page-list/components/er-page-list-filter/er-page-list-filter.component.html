@@ -1,0 +1,30 @@
+<div class="container">
+  <mat-icon color="accent">search</mat-icon>
+
+  <mat-form-field class="input" color="accent" appearance="standard">
+    <mat-label>{{ messages.searchFor }}</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="filterText"
+      name="filterText"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      (input)="handleFilter()"
+    />
+    <button *ngIf="filterText" matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field class="select" appearance="standard" color="accent">
+    <mat-label>{{ messages.option }}</mat-label>
+    <mat-select [(value)]="propetyFilterable">
+      <mat-option *ngFor="let option of filterableOptions" [value]="option">
+        {{ getTextToShow(option) }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
