@@ -1,6 +1,6 @@
- @import '../../../shared-styles/colors.scss';
+@import '../../../shared-styles/colors-and-default-styles.scss';
 
-.badge-container{
+.badge-container {
   box-sizing: border-box;
   border-radius: $card-radius;
   padding: 5px;
@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-around;
 
-  span{
+  span {
     font-weight: 500;
   }
 }

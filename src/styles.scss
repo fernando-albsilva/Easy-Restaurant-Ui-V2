@@ -1,40 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/shared-styles/colors.scss';
+@import './app/shared-styles/colors-and-default-styles.scss';
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   background-color: $bg_default;
   color: $gray;
- }
+}
 
- body {
-   margin: 0;
-   font-family: Roboto, "Helvetica Neue", sans-serif;
- }
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 .txt-gray {
-  color : $gray;
+  color: $gray;
 }
 
 .txt-white {
-  color : $white;
+  color: $white;
 }
 
 .txt-green {
-  color : $green;
-
+  color: $green;
 }
 
-.txt-purple{
-  color : $purple;
+.txt-purple {
+  color: $purple;
 }
 
-.shadow-m{
+.shadow-m {
   box-shadow: $shadow;
 }
 
-.page{
+.page {
   height: 100vh;
   width: 100vw;
 }
@@ -43,19 +43,19 @@ er-top-menu {
   width: 100%;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  }
-  ::-webkit-scrollbar-thumb{
+}
+::-webkit-scrollbar-thumb {
   background: #1f1f1f;
   border-radius: 30px;
-  }
-  ::-webkit-scrollbar-thumb:hover{
-  background: #1F1F1F;
-  }
-  ::-webkit-scrollbar-track{
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1f1f1f;
+}
+::-webkit-scrollbar-track {
   background: #858585;
   border-radius: 30px;
-  box-shadow: inset 0px 0px 0px 0px #F0F0F0;
-  }
+  box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}

@@ -1,35 +1,35 @@
-@import '../../../shared-styles/colors.scss';
+@import '../../../shared-styles/colors-and-default-styles.scss';
 
 // largura menu lateral
-$leftMenuWidth:200px;
+$leftMenuWidth: 200px;
 
 // altura do container da div de filtro
-$filterCardHeight:40px;
+$filterCardHeight: 40px;
 
 //distancia da div de filtro para o comeco do container de cards
 $marginTopItemCardsContainer: 20px;
 
 $paddingRightFilterAnditems: 10px;
 
-.page-content{
+.page-content {
   height: calc(100% - 90px);
   width: 100%;
   display: flex;
 
-  .letf-side-menu-container{
+  .letf-side-menu-container {
     height: 100%;
     width: $leftMenuWidth;
     box-sizing: border-box;
     padding: 20px;
   }
 
-  .main-content-container{
+  .main-content-container {
     height: 100%;
     width: calc(100% - #{$leftMenuWidth});
     box-sizing: border-box;
     padding: 20px;
 
-    .filter-container{
+    .filter-container {
       width: calc(100% - #{$paddingRightFilterAnditems});
       height: $filterCardHeight;
       border-radius: $card-radius;
@@ -41,7 +41,7 @@ $paddingRightFilterAnditems: 10px;
       padding: 0px 20px;
     }
 
-    .items-cards-container{
+    .items-cards-container {
       height: calc(100% - #{$filterCardHeight} - #{$marginTopItemCardsContainer});
       width: 100%;
       box-sizing: border-box;
@@ -52,7 +52,7 @@ $paddingRightFilterAnditems: 10px;
       gap: 30px;
       padding-right: $paddingRightFilterAnditems;
 
-      .er-card{
+      .er-card {
         height: 60px;
         width: 100%;
       }

@@ -1,6 +1,6 @@
-@import '../../../../shared-styles/colors.scss';
+@import '../../../../shared-styles/colors-and-default-styles.scss';
 
-.side-menu-container{
+.side-menu-container {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
@@ -12,10 +12,8 @@
   flex-direction: column;
   gap: 30px;
 
-  button:hover{
+  button:hover {
     background-color: $white;
     color: $btn_black;
   }
-
-
 }
