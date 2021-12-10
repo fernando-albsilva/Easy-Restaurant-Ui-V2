@@ -24,7 +24,6 @@
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
     "angular2-uuid": "^1.1.1",
-    "prettier": "^2.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -46,7 +45,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "lint-staged": "latest",
-    "prettier": "latest",
+    "prettier": "2.5.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",

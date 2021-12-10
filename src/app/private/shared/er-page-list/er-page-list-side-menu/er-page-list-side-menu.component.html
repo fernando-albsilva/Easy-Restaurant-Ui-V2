@@ -1,7 +1,11 @@
 <div class="side-menu-container">
-
-  <button *ngIf="isThisButtonPermited('add')" mat-raised-button color="accent" (click)="emitAddEvent()">{{messages.add}}</button>
-  <button *ngIf="isThisButtonPermited('edit')" mat-raised-button color="accent" (click)="emitEditEvent()">{{messages.edit}}</button>
-  <button *ngIf="isThisButtonPermited('delete')" mat-raised-button color="accent" (click)="emitDeleteEvent()">{{messages.remove}}</button>
-
+    <button *ngIf="isThisButtonPermited('add')" mat-raised-button color="accent" (click)="emitAddEvent()">
+        {{ messages.add }}
+    </button>
+    <button *ngIf="isThisButtonPermited('edit')" mat-raised-button color="accent" (click)="emitEditEvent()">
+        {{ messages.edit }}
+    </button>
+    <button *ngIf="isThisButtonPermited('delete')" mat-raised-button color="accent" (click)="emitDeleteEvent()">
+        {{ messages.remove }}
+    </button>
 </div>

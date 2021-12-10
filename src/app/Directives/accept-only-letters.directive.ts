@@ -1,23 +1,20 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[acceptOnlyLetters]'
+    selector: '[acceptOnlyLetters]',
 })
-export class AcceptOnlyLetterDirective{
+export class AcceptOnlyLetterDirective {
+    constructor(private elementReceived: ElementRef) {
+        console.log('instanciei diretiva AcceptOnlyLetters');
+    }
 
-  constructor(private elementReceived: ElementRef) {
-    console.log("instanciei diretiva AcceptOnlyLetters")
-  }
+    @HostListener('input', ['$event']) onEvent() {
+        // accept letters , white space and chars 'ãõáàâäèéêëîïôœùûüÿçÀÂÄÈÉÊËÎÏÔŒÙÛÜŸÇ'
 
-  @HostListener('input',['$event']) onEvent(){
+        const dataFromInput = this.elementReceived.nativeElement.value;
+        const acceptOnlyLettersPattern = /[^a-zA-Z\sãõáàâäèéêëîïôœùûüÿçÀÂÄÈÉÊËÎÏÔŒÙÛÜŸÇ]/g;
+        const replacedData = dataFromInput.replace(acceptOnlyLettersPattern, '');
 
-    // accept letters , white space and chars 'ãõáàâäèéêëîïôœùûüÿçÀÂÄÈÉÊËÎÏÔŒÙÛÜŸÇ'
-
-    const dataFromInput = this.elementReceived.nativeElement.value;
-    const acceptOnlyLettersPattern = /[^a-zA-Z\sãõáàâäèéêëîïôœùûüÿçÀÂÄÈÉÊËÎÏÔŒÙÛÜŸÇ]/g;
-    const replacedData = dataFromInput.replace(acceptOnlyLettersPattern,'');
-
-    this.elementReceived.nativeElement.value = replacedData;
-  }
-
+        this.elementReceived.nativeElement.value = replacedData;
+    }
 }

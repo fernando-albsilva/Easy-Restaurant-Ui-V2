@@ -1,149 +1,151 @@
 @import '../../../shared-styles/colors-and-default-styles.scss';
 
 .header-menu-container {
-  width: 100%;
-  height: 90px;
-
-  .top-row-container {
-    height: 50px;
     width: 100%;
-    background-color: $black10;
-    box-sizing: border-box;
-    padding: 0px 25px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
+    height: 90px;
 
-    .company-logo {
-      .logo-text {
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-    }
-
-    .icon {
-      transition: color 1s ease-in-out;
-      color: $green10;
-      transform: scale(1);
-      padding: 1px;
-    }
-    .icon:hover {
-      cursor: pointer;
-      transition: color 0.4s ease-in-out;
-      color: $white10;
-    }
-  }
-
-  .bottom-row-container {
-    height: 40px;
-    width: 100%;
-    background-color: $card-background10;
-    box-sizing: border-box;
-    padding: 0px 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: $shadow10;
-    position: fixed;
-    top: 50px;
-
-    .bottom-row-left-chield-container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      gap: 40px;
-
-      .left-chield {
+    .top-row-container {
+        height: 50px;
+        width: 100%;
+        background-color: $black10;
+        box-sizing: border-box;
+        padding: 0px 25px;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        justify-content: space-between;
         align-items: center;
-        gap: 5px;
-        padding: 0px 5px;
+        position: fixed;
+
+        .company-logo {
+            .logo-text {
+                font-size: 1.2rem;
+                font-weight: 600;
+            }
+        }
 
         .icon {
-          transition: color 0.4s ease-in-out;
-          color: $green10;
-          transform: scale(0.8);
+            transition: color 1s ease-in-out;
+            color: $green10;
+            transform: scale(1);
+            padding: 1px;
         }
 
-        .chield-text {
-          transition: color 0.4s ease-in-out;
-          color: $green10;
-          font-size: 1rem;
-          position: relative;
-          top: 3px;
-          font-weight: 600;
+        .icon:hover {
+            cursor: pointer;
+            transition: color 0.4s ease-in-out;
+            color: $white10;
         }
-      }
-
-      .left-chield:hover {
-        cursor: pointer;
-        .icon {
-          transition: color 0.4s ease-in-out;
-          color: $white10;
-        }
-
-        .chield-text {
-          transition: color 0.4s ease-in-out;
-          color: $white10;
-          position: relative;
-          top: 3px;
-        }
-      }
     }
 
-    .bottom-row-right-chield-container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
-      gap: 40px;
-
-      .right-chield {
+    .bottom-row-container {
+        height: 40px;
+        width: 100%;
+        background-color: $card-background10;
+        box-sizing: border-box;
+        padding: 0px 20px;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        justify-content: space-between;
         align-items: center;
-        gap: 5px;
-        padding: 0px 5px;
-        border-radius: 5px;
+        box-shadow: $shadow10;
+        position: fixed;
+        top: 50px;
 
-        .icon {
-          transition: color 0.4s ease-in-out;
-          color: $white10;
-          transform: scale(0.8);
+        .bottom-row-left-chield-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 40px;
+
+            .left-chield {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: 5px;
+                padding: 0px 5px;
+
+                .icon {
+                    transition: color 0.4s ease-in-out;
+                    color: $green10;
+                    transform: scale(0.8);
+                }
+
+                .chield-text {
+                    transition: color 0.4s ease-in-out;
+                    color: $green10;
+                    font-size: 1rem;
+                    position: relative;
+                    top: 3px;
+                    font-weight: 600;
+                }
+            }
+
+            .left-chield:hover {
+                cursor: pointer;
+                .icon {
+                    transition: color 0.4s ease-in-out;
+                    color: $white10;
+                }
+
+                .chield-text {
+                    transition: color 0.4s ease-in-out;
+                    color: $white10;
+                    position: relative;
+                    top: 3px;
+                }
+            }
         }
 
-        .chield-text {
-          transition: color 0.4s ease-in-out;
-          color: $white10;
-          font-size: 1rem;
-          font-weight: 500;
-        }
-      }
-      .right-chield:hover {
-        cursor: pointer;
-        .icon {
-          transition: color 0.4s ease-in-out;
-          color: $white10;
-        }
+        .bottom-row-right-chield-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 40px;
 
-        .chield-text {
-          transition: color 0.4s ease-in-out;
-          color: $white10;
+            .right-chield {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: 5px;
+                padding: 0px 5px;
+                border-radius: 5px;
+
+                .icon {
+                    transition: color 0.4s ease-in-out;
+                    color: $white10;
+                    transform: scale(0.8);
+                }
+
+                .chield-text {
+                    transition: color 0.4s ease-in-out;
+                    color: $white10;
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+            }
+
+            .right-chield:hover {
+                cursor: pointer;
+                .icon {
+                    transition: color 0.4s ease-in-out;
+                    color: $white10;
+                }
+
+                .chield-text {
+                    transition: color 0.4s ease-in-out;
+                    color: $white10;
+                }
+            }
         }
-      }
     }
-  }
 
-  button {
-    background-color: transparent;
-    outline-style: none;
-    border: none;
-  }
+    button {
+        background-color: transparent;
+        outline-style: none;
+        border: none;
+    }
 }

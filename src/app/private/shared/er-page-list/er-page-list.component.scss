@@ -12,55 +12,55 @@ $marginTopItemCardsContainer: 20px;
 $paddingRightFilterAnditems: 10px;
 
 .page-content {
-  height: calc(100% - 90px);
-  width: 100%;
-  display: flex;
+    height: calc(100% - 90px);
+    width: 100%;
+    display: flex;
 
-  .letf-side-menu-container {
-    height: 100%;
-    width: $leftMenuWidth;
-    box-sizing: border-box;
-    padding: 20px;
-  }
-
-  .main-content-container {
-    height: 100%;
-    width: calc(100% - #{$leftMenuWidth});
-    box-sizing: border-box;
-    padding: 20px;
-
-    .filter-container {
-      width: calc(100% - #{$paddingRightFilterAnditems});
-      height: $filterCardHeight;
-      border-radius: $card-radius10;
-      background-color: $card-background10;
-      box-shadow: $shadow10;
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-      padding: 0px 20px;
-
-      er-page-list-filter {
-        width: 100%;
+    .letf-side-menu-container {
         height: 100%;
-      }
+        width: $leftMenuWidth;
+        box-sizing: border-box;
+        padding: 20px;
     }
 
-    .items-cards-container {
-      height: calc(100% - #{$filterCardHeight} - #{$marginTopItemCardsContainer});
-      width: 100%;
-      box-sizing: border-box;
-      margin-top: $marginTopItemCardsContainer;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      padding-right: $paddingRightFilterAnditems;
+    .main-content-container {
+        height: 100%;
+        width: calc(100% - #{$leftMenuWidth});
+        box-sizing: border-box;
+        padding: 20px;
 
-      .er-card {
-        height: 60px;
-        width: 100%;
-      }
+        .filter-container {
+            width: calc(100% - #{$paddingRightFilterAnditems});
+            height: $filterCardHeight;
+            border-radius: $card-radius10;
+            background-color: $card-background10;
+            box-shadow: $shadow10;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0px 20px;
+
+            er-page-list-filter {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .items-cards-container {
+            height: calc(100% - #{$filterCardHeight} - #{$marginTopItemCardsContainer});
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: $marginTopItemCardsContainer;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            padding-right: $paddingRightFilterAnditems;
+
+            .er-card {
+                height: 60px;
+                width: 100%;
+            }
+        }
     }
-  }
 }

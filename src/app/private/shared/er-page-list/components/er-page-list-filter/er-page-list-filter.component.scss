@@ -1,18 +1,18 @@
 .container {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-
-  .input {
+    height: 100%;
     width: 100%;
-    position: relative;
-    bottom: 6px;
-  }
+    display: flex;
+    align-items: center;
+    gap: 20px;
 
-  .select {
-    position: relative;
-    bottom: 6px;
-  }
+    .input {
+        width: 100%;
+        position: relative;
+        bottom: 6px;
+    }
+
+    .select {
+        position: relative;
+        bottom: 6px;
+    }
 }

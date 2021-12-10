@@ -3,19 +3,10 @@ import { HomeModule } from './home/home-module.module';
 
 import { PublicRoutingModule } from './public-routing.module';
 
-
-
 @NgModule({
-  declarations: [
-
-  ],
-  imports: [
-   HomeModule,
-   PublicRoutingModule
-  ],
-  exports:[
-
-  ],
-  providers:[]
+    declarations: [],
+    imports: [HomeModule, PublicRoutingModule],
+    exports: [],
+    providers: [],
 })
-export class PublicModule { }
+export class PublicModule {}

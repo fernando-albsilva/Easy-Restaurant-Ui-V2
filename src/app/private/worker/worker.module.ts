@@ -9,9 +9,9 @@ import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [WorkerComponent, CreateEditWorkerDialog],
-  imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
-  exports: [],
-  providers: [WorkerApi],
+    declarations: [WorkerComponent, CreateEditWorkerDialog],
+    imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
+    exports: [],
+    providers: [WorkerApi],
 })
 export class WorkerModule {}

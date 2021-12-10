@@ -3,151 +3,151 @@ import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
 @Component({
-  selector: 'er-page-list',
-  templateUrl: 'er-page-list.component.html',
-  styleUrls: ['er-page-list.component.scss'],
+    selector: 'er-page-list',
+    templateUrl: 'er-page-list.component.html',
+    styleUrls: ['er-page-list.component.scss'],
 })
 export class ErPageList {
-  @Input() set items(itemsReceived: Array<any>) {
-    this.itemsReceived = itemsReceived;
-    this.itemsFiltred = [...this.itemsReceived];
-  }
-  public itemsReceived: Array<any> = [];
-  public itemsFiltred: Array<any> = [];
-
-  @Input() context: string = '';
-  @Input() buttonsPermited: Array<string> = ['add', 'edit', 'delete'];
-
-  @Output() addEvent = new EventEmitter<string>();
-  @Output() updateEvent = new EventEmitter<string>();
-  @Output() deleteEvent = new EventEmitter<Array<string>>();
-
-  public selectedItemsIds: Array<string> = [];
-
-  constructor(private erMessagesSnackbar: ErMessages, private messages: MessagesKeys) {}
-
-  public handleSideMenuAction(type: string) {
-    switch (type) {
-      case 'add':
-        this.handleAddEvent();
-        break;
-
-      case 'edit':
-        this.handleUpdateEvent();
-        break;
-
-      case 'delete':
-        this.handleDeleteEvent();
-        break;
-
-      default:
-        break;
+    @Input() set items(itemsReceived: Array<any>) {
+        this.itemsReceived = itemsReceived;
+        this.itemsFiltred = [...this.itemsReceived];
     }
-  }
+    public itemsReceived: Array<any> = [];
+    public itemsFiltred: Array<any> = [];
 
-  public refreshItems = (action: any): void => {
-    const isItemsReceivedEmpty = action.state === 'empty-filter';
-    if (isItemsReceivedEmpty) {
-      this.restoreItemsList();
-    } else {
-      this.executefilter(action);
+    @Input() context: string = '';
+    @Input() buttonsPermited: Array<string> = ['add', 'edit', 'delete'];
+
+    @Output() addEvent = new EventEmitter<string>();
+    @Output() updateEvent = new EventEmitter<string>();
+    @Output() deleteEvent = new EventEmitter<Array<string>>();
+
+    public selectedItemsIds: Array<string> = [];
+
+    constructor(private erMessagesSnackbar: ErMessages, private messages: MessagesKeys) {}
+
+    public handleSideMenuAction(type: string) {
+        switch (type) {
+            case 'add':
+                this.handleAddEvent();
+                break;
+
+            case 'edit':
+                this.handleUpdateEvent();
+                break;
+
+            case 'delete':
+                this.handleDeleteEvent();
+                break;
+
+            default:
+                break;
+        }
     }
-  };
 
-  private executefilter = (action: any) => {
-    this.itemsFiltred = this.itemsReceived.filter(item => {
-      const elementToFilter = item[action.propertyToFilter].toLowerCase();
-      const inputFilter = action.filterInput.toLowerCase();
+    public refreshItems = (action: any): void => {
+        const isItemsReceivedEmpty = action.state === 'empty-filter';
+        if (isItemsReceivedEmpty) {
+            this.restoreItemsList();
+        } else {
+            this.executefilter(action);
+        }
+    };
 
-      if (elementToFilter) {
-        return elementToFilter.includes(inputFilter);
-      }
-      return true;
-    });
-  };
+    private executefilter = (action: any) => {
+        this.itemsFiltred = this.itemsReceived.filter((item) => {
+            const elementToFilter = item[action.propertyToFilter].toLowerCase();
+            const inputFilter = action.filterInput.toLowerCase();
 
-  private restoreItemsList = (): void => {
-    this.itemsFiltred = [];
-    this.itemsFiltred = [...this.itemsReceived];
-  };
+            if (elementToFilter) {
+                return elementToFilter.includes(inputFilter);
+            }
+            return true;
+        });
+    };
 
-  public isContext = (type: string) => {
-    return type === this.context;
-  };
+    private restoreItemsList = (): void => {
+        this.itemsFiltred = [];
+        this.itemsFiltred = [...this.itemsReceived];
+    };
 
-  public selectOrRemoveCardSelection = (id: string) => {
-    const amISelected = this.amISelected(id);
-    if (amISelected) {
-      this.removeFromSelectedItemsIds(id);
-    } else {
-      this.addIdInSelecedItemsIds(id);
-    }
-  };
+    public isContext = (type: string) => {
+        return type === this.context;
+    };
 
-  public amISelected = (id: string) => {
-    return this.selectedItemsIds.includes(id);
-  };
+    public selectOrRemoveCardSelection = (id: string) => {
+        const amISelected = this.amISelected(id);
+        if (amISelected) {
+            this.removeFromSelectedItemsIds(id);
+        } else {
+            this.addIdInSelecedItemsIds(id);
+        }
+    };
 
-  private removeFromSelectedItemsIds = (id: string) => {
-    this.selectedItemsIds = this.selectedItemsIds.filter(selectedId => {
-      const idClickedisSelected = selectedId === id;
-      return !idClickedisSelected;
-    });
-  };
+    public amISelected = (id: string) => {
+        return this.selectedItemsIds.includes(id);
+    };
 
-  private addIdInSelecedItemsIds = (id: string) => {
-    this.selectedItemsIds.push(id);
-  };
+    private removeFromSelectedItemsIds = (id: string) => {
+        this.selectedItemsIds = this.selectedItemsIds.filter((selectedId) => {
+            const idClickedisSelected = selectedId === id;
+            return !idClickedisSelected;
+        });
+    };
 
-  private handleAddEvent = (): void => {
-    this.addEvent.emit();
-  };
+    private addIdInSelecedItemsIds = (id: string) => {
+        this.selectedItemsIds.push(id);
+    };
 
-  private handleUpdateEvent = (): void => {
-    const canUpdate = this.verifyIfIsOnlyOneItemSelected();
-    if (canUpdate) {
-      const selectedItem = this.findSelectedItem();
-      this.updateEvent.emit(selectedItem);
-    }
-  };
+    private handleAddEvent = (): void => {
+        this.addEvent.emit();
+    };
 
-  private handleDeleteEvent = (): void => {
-    const canRemove = this.verifyIfIsMoreThanOnlyOneItemSelected();
-    if (canRemove) {
-      const itemsIdsToRemove = this.selectedItemsIds;
-      this.deleteEvent.emit(itemsIdsToRemove);
-      this.clearSelectedIdsList();
-    }
-  };
+    private handleUpdateEvent = (): void => {
+        const canUpdate = this.verifyIfIsOnlyOneItemSelected();
+        if (canUpdate) {
+            const selectedItem = this.findSelectedItem();
+            this.updateEvent.emit(selectedItem);
+        }
+    };
 
-  private findSelectedItem = () => {
-    const index = this.items.findIndex(item => {
-      return this.selectedItemsIds.toString() === item.id.toString();
-    });
-    return this.items[index];
-  };
+    private handleDeleteEvent = (): void => {
+        const canRemove = this.verifyIfIsMoreThanOnlyOneItemSelected();
+        if (canRemove) {
+            const itemsIdsToRemove = this.selectedItemsIds;
+            this.deleteEvent.emit(itemsIdsToRemove);
+            this.clearSelectedIdsList();
+        }
+    };
 
-  private verifyIfIsOnlyOneItemSelected = () => {
-    const isOnlyOneSelected = this.selectedItemsIds.length === 1;
-    if (isOnlyOneSelected) {
-      return true;
-    } else {
-      this.erMessagesSnackbar.openSnackBar(this.messages.oneItemHasToBeSelected, 'warning');
-      return false;
-    }
-  };
+    private findSelectedItem = () => {
+        const index = this.items.findIndex((item) => {
+            return this.selectedItemsIds.toString() === item.id.toString();
+        });
+        return this.items[index];
+    };
 
-  private verifyIfIsMoreThanOnlyOneItemSelected = () => {
-    const isMoreThanOnlyOneItemSelected = this.selectedItemsIds.length > 0;
-    if (isMoreThanOnlyOneItemSelected) {
-      return true;
-    } else {
-      this.erMessagesSnackbar.openSnackBar(this.messages.isNecessaryHaveOneOrMoreItemsSelected, 'warning');
-      return false;
-    }
-  };
+    private verifyIfIsOnlyOneItemSelected = () => {
+        const isOnlyOneSelected = this.selectedItemsIds.length === 1;
+        if (isOnlyOneSelected) {
+            return true;
+        } else {
+            this.erMessagesSnackbar.openSnackBar(this.messages.oneItemHasToBeSelected, 'warning');
+            return false;
+        }
+    };
 
-  private clearSelectedIdsList = () => {
-    this.selectedItemsIds = [];
-  };
+    private verifyIfIsMoreThanOnlyOneItemSelected = () => {
+        const isMoreThanOnlyOneItemSelected = this.selectedItemsIds.length > 0;
+        if (isMoreThanOnlyOneItemSelected) {
+            return true;
+        } else {
+            this.erMessagesSnackbar.openSnackBar(this.messages.isNecessaryHaveOneOrMoreItemsSelected, 'warning');
+            return false;
+        }
+    };
+
+    private clearSelectedIdsList = () => {
+        this.selectedItemsIds = [];
+    };
 }

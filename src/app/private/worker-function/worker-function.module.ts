@@ -9,9 +9,9 @@ import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [WorkerFunction, CreateFunctionDialog],
-  imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
-  exports: [],
-  providers: [FunctionApi],
+    declarations: [WorkerFunction, CreateFunctionDialog],
+    imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
+    exports: [],
+    providers: [FunctionApi],
 })
 export class WorkerFunctionModule {}

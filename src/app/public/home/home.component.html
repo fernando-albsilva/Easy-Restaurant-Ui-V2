@@ -1,40 +1,40 @@
 <div class="home-container">
-  <div class="login-card shadow-m">
-    <span class="form-title">Login</span>
+    <div class="login-card shadow-m">
+        <span class="form-title">Login</span>
 
-    <mat-form-field class="example-full-width" color="accent" appearance="standard">
-      <mat-label>USERNAME</mat-label>
-      <input
-        matInput
-        [(ngModel)]="userName"
-        name="userName"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="userName" matSuffix mat-icon-button aria-label="Clear" (click)="userName = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+        <mat-form-field class="example-full-width" color="accent" appearance="standard">
+            <mat-label>USERNAME</mat-label>
+            <input
+                matInput
+                [(ngModel)]="userName"
+                name="userName"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="userName" matSuffix mat-icon-button aria-label="Clear" (click)="userName = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-    <mat-form-field class="example-full-width" color="accent" appearance="standard">
-      <mat-label>PASSWORD</mat-label>
-      <input
-        matInput
-        type="password"
-        [(ngModel)]="userPassword"
-        name="userPassword"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="userPassword" matSuffix mat-icon-button aria-label="Clear" (click)="userPassword = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+        <mat-form-field class="example-full-width" color="accent" appearance="standard">
+            <mat-label>PASSWORD</mat-label>
+            <input
+                matInput
+                type="password"
+                [(ngModel)]="userPassword"
+                name="userPassword"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="userPassword" matSuffix mat-icon-button aria-label="Clear" (click)="userPassword = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-    <button mat-raised-button color="accent" class="submit" [routerLink]="['/private/management']">Submit</button>
-  </div>
+        <button mat-raised-button color="accent" class="submit" [routerLink]="['/private/management']">Submit</button>
+    </div>
 </div>

@@ -1,19 +1,19 @@
 @import '../../../../shared-styles/colors-and-default-styles.scss';
 
 .side-menu-container {
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 15px;
-  background-color: $card-background10;
-  border-radius: $card-radius10;
-  box-shadow: $shadow10;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    background-color: $card-background10;
+    border-radius: $card-radius10;
+    box-shadow: $shadow10;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 
-  button:hover {
-    background-color: $white10;
-    color: $btn_black10;
-  }
+    button:hover {
+        background-color: $white10;
+        color: $btn_black10;
+    }
 }

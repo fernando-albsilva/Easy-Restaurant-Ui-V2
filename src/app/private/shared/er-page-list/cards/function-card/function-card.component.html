@@ -1,14 +1,8 @@
-<div class="card-container" [ngClass]="{'card-selected': selected}">
+<div class="card-container" [ngClass]="{ 'card-selected': selected }">
+    <er-badge [inputData]="workerFunction.id.toString()" [width]="'60px'" [height]="'80%'"> </er-badge>
 
-  <er-badge
-  [inputData]="workerFunction.id.toString()"
-  [width]="'60px'"
-  [height]="'80%'"
-  >
-  </er-badge>
-
-  <div class="item-property-container">
-    <span class="property-title">{{messages.type}}</span>
-    <span class="property-text">{{workerFunction.type}}</span>
-  </div>
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.type }}</span>
+        <span class="property-text">{{ workerFunction.type }}</span>
+    </div>
 </div>

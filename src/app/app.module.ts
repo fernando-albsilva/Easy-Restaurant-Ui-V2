@@ -9,9 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './private/shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, RouterModule, MatSnackBarModule, SharedModule, AppRoutingModule],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [BrowserModule, BrowserAnimationsModule, RouterModule, MatSnackBarModule, SharedModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

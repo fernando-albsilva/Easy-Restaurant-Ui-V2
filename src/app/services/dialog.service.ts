@@ -3,22 +3,18 @@ import { Component, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class DialogService {
+    constructor(public dialog: MatDialog) {}
 
+    public createDialog = (component: ComponentType<unknown>, height: string, width: string, dataReceived?: any) => {
+        let dialogParameters: any = { height: height, width: width };
 
-  constructor (public dialog: MatDialog,) {}
+        if (dataReceived) {
+            dialogParameters['data'] = dataReceived;
+        }
 
-   public createDialog = (component: ComponentType<unknown>, height: string, width: string, dataReceived?: any) => {
-
-     let dialogParameters: any = {height: height, width: width}
-
-     if(dataReceived) {dialogParameters["data"] = dataReceived;}
-
-     return this.dialog.open(component, dialogParameters);
-   }
+        return this.dialog.open(component, dialogParameters);
+    };
 }
-
-
-

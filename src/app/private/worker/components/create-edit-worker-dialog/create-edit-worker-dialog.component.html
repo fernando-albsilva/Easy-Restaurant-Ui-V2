@@ -1,107 +1,117 @@
 <div class="dialog-container">
-  <form class="form">
-    <span *ngIf="isNew" class="dialog-title">{{ messages.createWorker }}</span>
-    <span *ngIf="!isNew" class="dialog-title">{{ messages.editWorker }}</span>
+    <form class="form">
+        <span *ngIf="isNew" class="dialog-title">{{ messages.createWorker }}</span>
+        <span *ngIf="!isNew" class="dialog-title">{{ messages.editWorker }}</span>
 
-    <!-- Input worker name -->
-    <mat-form-field class="input" color="accent" appearance="standard">
-      <mat-label>{{ messages.name }}</mat-label>
-      <input
-        acceptOnlyLetters
-        matInput
-        type="text"
-        [(ngModel)]="worker.name"
-        name="workerName"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="worker.name" matSuffix mat-icon-button aria-label="Clear" (click)="worker.name = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+        <!-- Input worker name -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.name }}</mat-label>
+            <input
+                acceptOnlyLetters
+                matInput
+                type="text"
+                [(ngModel)]="worker.name"
+                name="workerName"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="worker.name" matSuffix mat-icon-button aria-label="Clear" (click)="worker.name = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-    <!-- Input worker cpf -->
-    <mat-form-field class="input" color="accent" appearance="standard">
-      <mat-label>{{ messages.cpf }}</mat-label>
-      <input
-        acceptOnlyIntPositiveNumbers
-        matInput
-        type="text"
-        [(ngModel)]="worker.cpf"
-        name="workerCpf"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="worker.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="worker.cpf = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+        <!-- Input worker cpf -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.cpf }}</mat-label>
+            <input
+                acceptOnlyIntPositiveNumbers
+                matInput
+                type="text"
+                [(ngModel)]="worker.cpf"
+                name="workerCpf"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="worker.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="worker.cpf = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-    <!-- Input worker phone number -->
-    <mat-form-field class="input" color="accent" appearance="standard">
-      <mat-label>{{ messages.phone }}</mat-label>
-      <input
-        acceptOnlyPhoneNumbers
-        matInput
-        type="text"
-        [(ngModel)]="worker.phoneNumber"
-        name="workerPhoneNumber"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="worker.phoneNumber" matSuffix mat-icon-button aria-label="Clear" (click)="worker.phoneNumber = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+        <!-- Input worker phone number -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.phone }}</mat-label>
+            <input
+                acceptOnlyPhoneNumbers
+                matInput
+                type="text"
+                [(ngModel)]="worker.phoneNumber"
+                name="workerPhoneNumber"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button
+                *ngIf="worker.phoneNumber"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="worker.phoneNumber = ''"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-    <!-- Input worker phone email -->
-    <mat-form-field class="input" color="accent" appearance="standard">
-      <mat-label>{{ messages.email }}</mat-label>
-      <input
-        acceptOnlyEmailChars
-        matInput
-        type="text"
-        [(ngModel)]="worker.email"
-        name="workerEmail"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="worker.email" matSuffix mat-icon-button aria-label="Clear" (click)="worker.email = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
+        <!-- Input worker phone email -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.email }}</mat-label>
+            <input
+                acceptOnlyEmailChars
+                matInput
+                type="text"
+                [(ngModel)]="worker.email"
+                name="workerEmail"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="worker.email" matSuffix mat-icon-button aria-label="Clear" (click)="worker.email = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
-    <!-- Input worker adress -->
-    <mat-form-field class="input" color="accent" appearance="standard">
-      <mat-label>{{ messages.address }}</mat-label>
-      <input
-        acceptOnlyAddressChars
-        matInput
-        type="text"
-        [(ngModel)]="worker.address"
-        name="workerAdress"
-        autocomplete="off"
-        autocorrect="off"
-        autocapitalize="off"
-        spellcheck="false"
-      />
-      <button *ngIf="worker.address" matSuffix mat-icon-button aria-label="Clear" (click)="worker.address = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-  </form>
+        <!-- Input worker adress -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.address }}</mat-label>
+            <input
+                acceptOnlyAddressChars
+                matInput
+                type="text"
+                [(ngModel)]="worker.address"
+                name="workerAdress"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="worker.address" matSuffix mat-icon-button aria-label="Clear" (click)="worker.address = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
 
-  <footer class="footer-container">
-    <button mat-raised-button class="btn" (click)="onCancel()">Voltar</button>
-    <button *ngIf="isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">{{ messages.create }}</button>
-    <button *ngIf="!isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">{{ messages.edit }}</button>
-  </footer>
+    <footer class="footer-container">
+        <button mat-raised-button class="btn" (click)="onCancel()">Voltar</button>
+        <button *ngIf="isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">
+            {{ messages.create }}
+        </button>
+        <button *ngIf="!isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">
+            {{ messages.edit }}
+        </button>
+    </footer>
 </div>

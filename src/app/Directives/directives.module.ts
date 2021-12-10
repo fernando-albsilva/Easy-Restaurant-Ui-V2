@@ -7,24 +7,23 @@ import { AcceptOnlyLettersAndIntNumbers } from './accept-only-letters-and-int-nu
 import { AcceptOnlyLetterDirective } from './accept-only-letters.directive';
 import { AcceptOnlyPhoneNumbers } from './accept-only-phone-numbers.directive';
 
-
 @NgModule({
-  imports: [],
-  declarations: [
-    AcceptOnlyLetterDirective,
-    AcceptOnlyIntPositiveNumbers,
-    AcceptOnlyPhoneNumbers,
-    AcceptOnlyEmailChars,
-    AcceptOnlyAddressChars,
-    AcceptOnlyLettersAndIntNumbers
-  ],
-  exports: [
-    AcceptOnlyLetterDirective,
-    AcceptOnlyIntPositiveNumbers,
-    AcceptOnlyPhoneNumbers,
-    AcceptOnlyEmailChars,
-    AcceptOnlyAddressChars,
-    AcceptOnlyLettersAndIntNumbers
-  ]
+    imports: [],
+    declarations: [
+        AcceptOnlyLetterDirective,
+        AcceptOnlyIntPositiveNumbers,
+        AcceptOnlyPhoneNumbers,
+        AcceptOnlyEmailChars,
+        AcceptOnlyAddressChars,
+        AcceptOnlyLettersAndIntNumbers,
+    ],
+    exports: [
+        AcceptOnlyLetterDirective,
+        AcceptOnlyIntPositiveNumbers,
+        AcceptOnlyPhoneNumbers,
+        AcceptOnlyEmailChars,
+        AcceptOnlyAddressChars,
+        AcceptOnlyLettersAndIntNumbers,
+    ],
 })
-export class DirectivesModule { }
+export class DirectivesModule {}
