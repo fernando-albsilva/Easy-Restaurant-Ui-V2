@@ -18,6 +18,16 @@ export class WorkerApi {
         return this.http.get(this.apiUrl + '/GetAll').pipe(map((element) => element as Array<WorkerFlatModel>));
     }
 
+    //FIXME
+    //Falta o back end tratar o worker model para trazer com function model invez de type
+    public getWorker(id: string): Observable<WorkerModel> {
+        let params = new HttpParams();
+        params = params.append('Id', id);
+        return this.http
+            .get(this.apiUrl + '/WorkerById', { params: params })
+            .pipe(map((element) => element as WorkerModel));
+    }
+
     public getFunctions(): Observable<Array<FunctionModel>> {
         return this.http.get(this.apiFunctionUrl + '/GetAll').pipe(map((element) => element as Array<FunctionModel>));
     }

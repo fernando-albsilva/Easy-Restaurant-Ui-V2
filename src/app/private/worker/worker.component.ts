@@ -51,15 +51,25 @@ export class WorkerComponent implements OnInit {
     };
 
     public updateWorker = (selectedItem: any) => {
-        const dialogData = selectedItem;
-        const dialogRef = this.createDialog(dialogData);
+        //FIXME
+        // usar metodo de pegar trabalhador por id por que e necessario passar o objeto completo com typo de funcao e id da funcao
+        // falta o back end tratar para mandar o objeto com function model invez de type somente ai sim ira funcionar
+        this.workerApi.getWorker(selectedItem.id).subscribe(
+            (requestResult) => {
+                const dialogData = requestResult;
+                const dialogRef = this.createDialog(dialogData);
 
-        dialogRef.afterClosed().subscribe((response: any) => {
-            const canUpdate = response && response.type === 'update';
-            if (canUpdate) {
-                this.handleFunctionUpdate(response.data);
-            }
-        });
+                dialogRef.afterClosed().subscribe((response: any) => {
+                    const canUpdate = response && response.type === 'update';
+                    if (canUpdate) {
+                        this.handleFunctionUpdate(response.data);
+                    }
+                });
+            },
+            (error) => {
+                console.log(error);
+            },
+        );
     };
 
     private createDialog = (dialogData?: WorkerModel) => {

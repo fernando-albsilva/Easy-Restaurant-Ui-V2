@@ -7,10 +7,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './private/shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, RouterModule, MatSnackBarModule, SharedModule, AppRoutingModule],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        SharedModule,
+        AppRoutingModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })

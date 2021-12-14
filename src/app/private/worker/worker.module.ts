@@ -7,11 +7,12 @@ import { CreateEditWorkerDialog } from './components/create-edit-worker-dialog/c
 import { WorkerComponent } from './worker.component';
 import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { SharedModule } from '../shared/shared.module';
+import { FunctionApi } from '../worker-function/api/function-api';
 
 @NgModule({
     declarations: [WorkerComponent, CreateEditWorkerDialog],
     imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
     exports: [],
-    providers: [WorkerApi],
+    providers: [WorkerApi, FunctionApi],
 })
 export class WorkerModule {}

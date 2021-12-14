@@ -5,7 +5,9 @@ import { FunctionModel } from './../Model/FunctionModel';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'any',
+})
 export class FunctionApi {
     public apiUrl = `https://localhost:5101/Functions`;
 

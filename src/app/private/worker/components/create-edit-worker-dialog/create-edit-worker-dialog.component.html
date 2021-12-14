@@ -7,15 +7,15 @@
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.name }}</mat-label>
             <input
-                acceptOnlyLetters
                 matInput
-                type="text"
-                [(ngModel)]="worker.name"
-                name="workerName"
+                acceptOnlyLetters
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
                 spellcheck="false"
+                type="text"
+                name="workerName"
+                [(ngModel)]="worker.name"
             />
             <button *ngIf="worker.name" matSuffix mat-icon-button aria-label="Clear" (click)="worker.name = ''">
                 <mat-icon>close</mat-icon>
@@ -23,18 +23,19 @@
         </mat-form-field>
 
         <!-- Input worker cpf -->
+
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.cpf }}</mat-label>
             <input
-                acceptOnlyIntPositiveNumbers
                 matInput
-                type="text"
-                [(ngModel)]="worker.cpf"
-                name="workerCpf"
+                acceptOnlyIntPositiveNumbers
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
                 spellcheck="false"
+                type="text"
+                name="workerCpf"
+                [(ngModel)]="worker.cpf"
             />
             <button *ngIf="worker.cpf" matSuffix mat-icon-button aria-label="Clear" (click)="worker.cpf = ''">
                 <mat-icon>close</mat-icon>
@@ -45,15 +46,15 @@
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.phone }}</mat-label>
             <input
-                acceptOnlyPhoneNumbers
                 matInput
-                type="text"
-                [(ngModel)]="worker.phoneNumber"
+                acceptOnlyPhoneNumbers
                 name="workerPhoneNumber"
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
+                type="text"
                 spellcheck="false"
+                [(ngModel)]="worker.phoneNumber"
             />
             <button
                 *ngIf="worker.phoneNumber"
@@ -70,15 +71,15 @@
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.email }}</mat-label>
             <input
-                acceptOnlyEmailChars
                 matInput
-                type="text"
-                [(ngModel)]="worker.email"
-                name="workerEmail"
+                acceptOnlyEmailChars
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
                 spellcheck="false"
+                type="text"
+                name="workerEmail"
+                [(ngModel)]="worker.email"
             />
             <button *ngIf="worker.email" matSuffix mat-icon-button aria-label="Clear" (click)="worker.email = ''">
                 <mat-icon>close</mat-icon>
@@ -89,22 +90,33 @@
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.address }}</mat-label>
             <input
-                acceptOnlyAddressChars
                 matInput
-                type="text"
-                [(ngModel)]="worker.address"
-                name="workerAdress"
+                acceptOnlyAddressChars
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
+                [(ngModel)]="worker.address"
+                type="text"
+                name="workerAdress"
                 spellcheck="false"
             />
             <button *ngIf="worker.address" matSuffix mat-icon-button aria-label="Clear" (click)="worker.address = ''">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
+
+        <!-- Input worker type -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.type }}</mat-label>
+            <mat-select [(ngModel)]="worker.function.id" name="workerType">
+                <mat-option *ngFor="let function of workerFunctions" [value]="function.id">
+                    {{ function.type }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </form>
 
+    <!-- Dialog Footer -->
     <footer class="footer-container">
         <button mat-raised-button class="btn" (click)="onCancel()">Voltar</button>
         <button *ngIf="isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">

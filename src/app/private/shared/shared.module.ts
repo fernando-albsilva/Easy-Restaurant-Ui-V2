@@ -37,6 +37,7 @@ import { ErPageListFilterComponent } from './er-page-list/components/er-page-lis
         MatDialogModule,
         DirectivesModule,
         MatSelectModule,
+        MatSelectModule,
     ],
     exports: [
         MatInputModule,
@@ -44,6 +45,7 @@ import { ErPageListFilterComponent } from './er-page-list/components/er-page-lis
         MatButtonModule,
         MatIconModule,
         MatDialogModule,
+        MatSelectModule,
         ErTopMenu,
         ErBadge,
         ErPageList,
