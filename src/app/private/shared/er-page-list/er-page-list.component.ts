@@ -121,10 +121,10 @@ export class ErPageList {
     };
 
     private findSelectedItem = () => {
-        const index = this.items.findIndex((item) => {
+        const index = this.itemsReceived.findIndex((item) => {
             return this.selectedItemsIds.toString() === item.id.toString();
         });
-        return this.items[index];
+        return this.itemsReceived[index];
     };
 
     private verifyIfIsOnlyOneItemSelected = () => {
