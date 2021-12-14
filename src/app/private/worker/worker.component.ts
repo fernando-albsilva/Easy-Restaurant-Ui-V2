@@ -1,10 +1,10 @@
-import { DialogService } from './../../services/dialog.service';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
-import { ErMessages } from 'src/app/services/er-messages.service';
+import { DialogService } from './../../services/dialog.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { SortService } from 'src/app/services/sort.service';
+import { ErMessages } from 'src/app/services/er-messages.service';
+
 import { WorkerApi } from './api/worker-api';
 import { CreateEditWorkerDialog } from './components/create-edit-worker-dialog/create-edit-worker-dialog.component';
 import { WorkerFlatModel, WorkerModel } from './Model/woker-model';
@@ -17,14 +17,12 @@ import { WorkerFlatModel, WorkerModel } from './Model/woker-model';
 export class WorkerComponent implements OnInit {
     public erPageListContext: string = 'worker';
     public erPageListOperationsPermited: Array<string> = ['add', 'edit', 'delete'];
-
     public workers: Array<WorkerFlatModel> = [];
 
-    private _byTypeName: string = 'name';
+    private byTypeName: string = 'name';
 
     constructor(
         private workerApi: WorkerApi,
-        public dialog: MatDialog,
         private erMessagesSnackbar: ErMessages,
         private messages: MessagesKeys,
         private sortService: SortService,
@@ -33,7 +31,7 @@ export class WorkerComponent implements OnInit {
 
     ngOnInit(): void {
         this.workerApi.getWorkers().subscribe((requestResult) => {
-            this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(requestResult, this._byTypeName);
+            this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(requestResult, this.byTypeName);
         });
     }
 
@@ -83,8 +81,8 @@ export class WorkerComponent implements OnInit {
                 this.getWorkers();
                 this.erMessagesSnackbar.openSnackBar(this.messages.successfullyCreated, 'sucess');
             },
-            (erro) => {
-                console.log(erro);
+            (error) => {
+                console.log(error);
             },
         );
     };
@@ -95,8 +93,8 @@ export class WorkerComponent implements OnInit {
                 this.getWorkers();
                 this.erMessagesSnackbar.openSnackBar(this.messages.successfullyUpdated, 'sucess');
             },
-            (erro) => {
-                console.log(erro);
+            (error) => {
+                console.log(error);
             },
         );
     };
@@ -106,15 +104,15 @@ export class WorkerComponent implements OnInit {
                 this.getWorkers();
                 this.erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted, 'sucess');
             },
-            (erro) => {
-                console.log(erro);
+            (error) => {
+                console.log(error);
             },
         );
     };
 
     public getWorkers = () => {
         this.workerApi.getWorkers().subscribe((response: Array<WorkerFlatModel>) => {
-            this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(response, this._byTypeName);
+            this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(response, this.byTypeName);
         });
     };
 }

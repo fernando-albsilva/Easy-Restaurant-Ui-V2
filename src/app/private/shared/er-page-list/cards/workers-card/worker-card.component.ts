@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 import { MessagesKeys } from '../../../../../services/messages-keys.service';
-import { WorkerModel } from 'src/app/private/worker/Model/woker-model';
+
+import { WorkerFlatModel } from 'src/app/private/worker/Model/woker-model';
 
 @Component({
     selector: 'worker-card',
@@ -9,13 +10,13 @@ import { WorkerModel } from 'src/app/private/worker/Model/woker-model';
     styleUrls: ['worker-card.component.scss', '../styles/shared-card-style.scss'],
 })
 export class WorkerCardComponent {
-    @Input() set item(workerModel: WorkerModel) {
-        this.workerModel = workerModel;
+    @Input() set item(workerFlatModel: WorkerFlatModel) {
+        this.workerFlatModel = workerFlatModel;
     }
 
     @Input() selected = false;
 
-    public workerModel: WorkerModel = new WorkerModel();
+    public workerFlatModel: WorkerFlatModel = new WorkerFlatModel();
 
     constructor(public messages: MessagesKeys) {}
 }
