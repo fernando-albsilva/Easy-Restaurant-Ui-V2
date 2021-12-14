@@ -19,8 +19,6 @@ export class WorkerFlatModel {
     public email: string = '';
     public type: string = '';
 }
-//TODO passar o worker flat model para o er page list para nao aparecer o type
-
 export class Functions {
     public functionList: Array<FunctionModel> = [];
 
@@ -28,10 +26,3 @@ export class Functions {
         this.functionList = list;
     }
 }
-
-// export class FunctionModel{
-
-//     public id:number = 0;
-//     public type:string="";
-
-// }
