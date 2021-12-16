@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
+import { PersistenceTypeModel } from './model/er-page-list.model';
 
 @Component({
     selector: 'er-page-list',
@@ -26,23 +27,30 @@ export class ErPageList {
 
     constructor(private erMessagesSnackbar: ErMessages, private messages: MessagesKeys) {}
 
-    public handleSideMenuAction(type: string) {
-        switch (type) {
-            case 'add':
-                this.handleAddEvent();
-                break;
-
-            case 'edit':
-                this.handleUpdateEvent();
-                break;
-
-            case 'delete':
-                this.handleDeleteEvent();
-                break;
-
-            default:
-                break;
+    public handleSideMenuAction(type: PersistenceTypeModel) {
+        if (type.Add) {
+            this.handleAddEvent();
+        } else if (type.Edit) {
+            this.handleUpdateEvent();
+        } else if (type.Delete) {
+            this.handleDeleteEvent();
         }
+        // switch (type) {
+        //     case 'add':
+        //         this.handleAddEvent();
+        //         break;
+
+        //     case 'edit':
+        //         this.handleUpdateEvent();
+        //         break;
+
+        //     case 'delete':
+        //         this.handleDeleteEvent();
+        //         break;
+
+        //     default:
+        //         break;
+        // }
     }
 
     public refreshItems = (action: any): void => {

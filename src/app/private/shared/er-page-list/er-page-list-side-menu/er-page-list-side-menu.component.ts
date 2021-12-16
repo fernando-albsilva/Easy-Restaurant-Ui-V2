@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
+import { PersistenceTypeModel } from '../model/er-page-list.model';
 
 @Component({
     selector: 'er-page-list-side-menu',
@@ -9,18 +10,24 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
 export class ErPageListSideMenu {
     @Input() buttonsPermited: Array<string> = ['add', 'edit', 'delete'];
 
-    @Output() actionEvent = new EventEmitter<string>();
+    @Output() actionEvent = new EventEmitter<PersistenceTypeModel>();
 
     constructor(public messages: MessagesKeys) {}
 
     public emitAddEvent() {
-        this.actionEvent.emit('add');
+        const persistenceType = new PersistenceTypeModel();
+        persistenceType.Add = true;
+        this.actionEvent.emit(persistenceType);
     }
     public emitEditEvent() {
-        this.actionEvent.emit('edit');
+        const persistenceType = new PersistenceTypeModel();
+        persistenceType.Edit = true;
+        this.actionEvent.emit(persistenceType);
     }
     public emitDeleteEvent() {
-        this.actionEvent.emit('delete');
+        const persistenceType = new PersistenceTypeModel();
+        persistenceType.Delete = true;
+        this.actionEvent.emit(persistenceType);
     }
 
     public isThisButtonPermited = (type: string): boolean => {
