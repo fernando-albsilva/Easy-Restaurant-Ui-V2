@@ -28,9 +28,8 @@
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.code }}</mat-label>
             <input
-                acceptOnlyLettersAndIntNumbers
                 matInput
-                type="text"
+                acceptOnlyIntPositiveNumbers
                 [(ngModel)]="product.code"
                 name="productCode"
                 autocomplete="off"
@@ -47,9 +46,10 @@
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.unitValue }}</mat-label>
             <input
-                acceptOnlyLettersAndIntNumbers
                 matInput
-                type="text"
+                type="number"
+                step=".10"
+                min="0.01"
                 [(ngModel)]="product.unitValue"
                 name="productUnitValue"
                 autocomplete="off"
@@ -57,24 +57,17 @@
                 autocapitalize="off"
                 spellcheck="false"
             />
-            <button
-                *ngIf="product.unitValue"
-                matSuffix
-                mat-icon-button
-                aria-label="Clear"
-                (click)="product.unitValue = 0"
-            >
-                <mat-icon>close</mat-icon>
-            </button>
+            <mat-hint>{{ messages.currencyHint }}"</mat-hint>
         </mat-form-field>
 
         <!-- Product Cost -->
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.unitCost }}</mat-label>
             <input
-                acceptOnlyLettersAndIntNumbers
                 matInput
-                type="text"
+                type="number"
+                step=".10"
+                min="0.01"
                 [(ngModel)]="product.cost"
                 name="productCost"
                 autocomplete="off"
@@ -82,9 +75,7 @@
                 autocapitalize="off"
                 spellcheck="false"
             />
-            <button *ngIf="product.cost" matSuffix mat-icon-button aria-label="Clear" (click)="product.cost = 0">
-                <mat-icon>close</mat-icon>
-            </button>
+            <mat-hint>{{ messages.currencyHint }}"</mat-hint>
         </mat-form-field>
     </form>
 

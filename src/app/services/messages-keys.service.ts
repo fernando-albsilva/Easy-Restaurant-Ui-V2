@@ -79,4 +79,7 @@ export class MessagesKeys {
     //Related to unit / value
     public cost: string = 'Custo';
     public unitCost: string = 'Custo Unitário';
+
+    //Related to unit / value
+    public currencyHint: string = '1554.15';
 }
