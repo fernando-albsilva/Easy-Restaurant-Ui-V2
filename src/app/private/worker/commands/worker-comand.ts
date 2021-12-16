@@ -1,35 +1,11 @@
+import { FunctionModel } from '../../worker-function/Model/FunctionModel';
+
 export class WorkerCommand {
     public id: string = '';
     public name: string = '';
-    public unitValue: number = 0;
-    public cost: number = 0;
+    public cpf: string = '';
+    public phoneNumber: string = '';
+    public address: string = '';
+    public email: string = '';
+    public function: FunctionModel = new FunctionModel();
 }
-
-export class WorkerDeleteCommand {
-    public id: string = '';
-}
-
-export class WorkerProductListCommand {
-    public id: Array<string> = [];
-}
-
-// export class ProductCommand{
-
-//     public id:string="";
-//     public name:string="";
-//     public unitValue:number=0;
-//     public cost:number=0;
-
-// }
-
-// export class ProductDeleteCommand{
-
-//     public id:string="";
-
-// }
-
-// export class DeleteProductListCommand{
-
-//     public id: Array<string>  = [];
-
-// }

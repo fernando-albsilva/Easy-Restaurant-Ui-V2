@@ -8,6 +8,7 @@ import { ErMessages } from 'src/app/services/er-messages.service';
 import { WorkerApi } from './api/worker-api';
 import { CreateEditWorkerDialog } from './components/create-edit-worker-dialog/create-edit-worker-dialog.component';
 import { WorkerFlatModel, WorkerModel } from './Model/woker-model';
+import { WorkerCommand } from './commands/worker-comand';
 
 @Component({
     selector: 'worker',
@@ -51,9 +52,6 @@ export class WorkerComponent implements OnInit {
     };
 
     public updateWorker = (selectedItem: any) => {
-        //FIXME
-        // usar metodo de pegar trabalhador por id por que e necessario passar o objeto completo com typo de funcao e id da funcao
-        // falta o back end tratar para mandar o objeto com function model invez de type somente ai sim ira funcionar
         this.workerApi.getWorker(selectedItem.id).subscribe(
             (requestResult) => {
                 const dialogData = requestResult;
@@ -85,7 +83,7 @@ export class WorkerComponent implements OnInit {
         }
     };
 
-    private handleFunctionCreation = (workerCommand: WorkerModel) => {
+    private handleFunctionCreation = (workerCommand: WorkerCommand) => {
         this.workerApi.createWorker(workerCommand).subscribe(
             (result) => {
                 this.getWorkers();
@@ -97,7 +95,7 @@ export class WorkerComponent implements OnInit {
         );
     };
 
-    private handleFunctionUpdate = (workerCommand: WorkerModel) => {
+    private handleFunctionUpdate = (workerCommand: WorkerCommand) => {
         this.workerApi.updateWorker(workerCommand).subscribe(
             (result) => {
                 this.getWorkers();
