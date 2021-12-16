@@ -56,7 +56,7 @@ export class ErPageList {
 
     private executefilter = (action: any) => {
         this.itemsFiltred = this.itemsReceived.filter((item) => {
-            const elementToFilter = item[action.propertyToFilter].toLowerCase();
+            const elementToFilter = this.getItemPropertyValueToFilter(action, item);
             const inputFilter = action.filterInput.toLowerCase();
 
             if (elementToFilter) {
@@ -64,6 +64,15 @@ export class ErPageList {
             }
             return true;
         });
+    };
+
+    private getItemPropertyValueToFilter = (action: any, item: any): string => {
+        const typeOfItem = typeof item[action.propertyToFilter];
+        if (typeOfItem === 'number') {
+            return item[action.propertyToFilter].toString().toLowerCase();
+        } else {
+            return item[action.propertyToFilter].toLowerCase();
+        }
     };
 
     private restoreItemsList = (): void => {
