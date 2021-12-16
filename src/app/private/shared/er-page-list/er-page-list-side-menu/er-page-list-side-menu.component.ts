@@ -7,7 +7,7 @@ import { PersistenceTypeModel } from '../model/er-page-list.model';
     templateUrl: 'er-page-list-side-menu.component.html',
     styleUrls: ['er-page-list-side-menu.component.scss'],
 })
-export class ErPageListSideMenu {
+export class ErPageListSideMenuComponent {
     @Input() buttonsPermited: Array<string> = ['add', 'edit', 'delete'];
 
     @Output() actionEvent = new EventEmitter<PersistenceTypeModel>();
