@@ -31,11 +31,8 @@ export class ErPageListSideMenuComponent {
     }
 
     public isThisButtonPermited = (type: string): boolean => {
-        for (let button of this.buttonsPermited) {
-            if (type === button) {
-                return true;
-            }
-        }
-        return false;
+        return this.buttonsPermited.some((element) => {
+            return element === type;
+        });
     };
 }
