@@ -48,3 +48,15 @@ export class PersistenceTypeModel {
         }
     };
 }
+
+export class FilterActionModel {
+    public state: string = '';
+    public propertyToFilter: string = '';
+    public filterInput: string = '';
+
+    constructor(state: string, propertyToFilter?: string, filterInput?: string) {
+        this.state = state;
+        this.propertyToFilter = propertyToFilter ? propertyToFilter : '';
+        this.filterInput = filterInput ? filterInput : '';
+    }
+}

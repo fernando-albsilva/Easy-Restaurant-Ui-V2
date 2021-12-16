@@ -73,6 +73,9 @@ export class MessagesKeys {
     //Related to unit / value
     public unitValue: string = 'Valor unitário';
 
+    //Related to code
+    public code: string = 'Código';
+
     //Related to unit / value
     public cost: string = 'Custo';
     public unitCost: string = 'Custo Unitário';

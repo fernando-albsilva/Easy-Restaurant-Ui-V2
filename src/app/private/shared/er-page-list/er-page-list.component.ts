@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
-import { PersistenceTypeModel } from './model/er-page-list.model';
+import { FilterActionModel, PersistenceTypeModel } from './model/er-page-list.model';
 
 @Component({
     selector: 'er-page-list',
@@ -18,6 +18,7 @@ export class ErPageList {
 
     @Input() context: string = '';
     @Input() buttonsPermited: Array<string> = ['add', 'edit', 'delete'];
+    @Input() permitFilterById: boolean = false;
 
     @Output() addEvent = new EventEmitter<string>();
     @Output() updateEvent = new EventEmitter<string>();
@@ -35,37 +36,21 @@ export class ErPageList {
         } else if (type.Delete) {
             this.handleDeleteEvent();
         }
-        // switch (type) {
-        //     case 'add':
-        //         this.handleAddEvent();
-        //         break;
-
-        //     case 'edit':
-        //         this.handleUpdateEvent();
-        //         break;
-
-        //     case 'delete':
-        //         this.handleDeleteEvent();
-        //         break;
-
-        //     default:
-        //         break;
-        // }
     }
 
-    public refreshItems = (action: any): void => {
-        const isItemsReceivedEmpty = action.state === 'empty-filter';
+    public refreshItems = (filterAction: FilterActionModel): void => {
+        const isItemsReceivedEmpty = filterAction.state === 'empty-filter';
         if (isItemsReceivedEmpty) {
             this.restoreItemsList();
         } else {
-            this.executefilter(action);
+            this.executefilter(filterAction);
         }
     };
 
-    private executefilter = (action: any) => {
+    private executefilter = (filterAction: FilterActionModel) => {
         this.itemsFiltred = this.itemsReceived.filter((item) => {
-            const elementToFilter = this.getItemPropertyValueToFilter(action, item);
-            const inputFilter = action.filterInput.toLowerCase();
+            const elementToFilter = this.getItemPropertyValueToFilter(filterAction, item);
+            const inputFilter = filterAction.filterInput.toLowerCase();
 
             if (elementToFilter) {
                 return elementToFilter.includes(inputFilter);

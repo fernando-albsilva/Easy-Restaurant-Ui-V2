@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
+import { FilterActionModel } from '../../model/er-page-list.model';
 
 @Component({
     selector: 'er-page-list-filter',
@@ -17,9 +18,11 @@ export class ErPageListFilterComponent {
         { key: 'email', value: this.messages.email },
         { key: 'unitValue', value: this.messages.unitValue },
         { key: 'cost', value: this.messages.unitCost },
+        { key: 'code', value: this.messages.code },
+        { key: 'id', value: this.messages.code },
     ];
-    //BUG
-    // Tratar filtro do tipo number nao deve estar filtrando por exemplo unitValue do rpoduto
+
+    @Input() permitFilterById = false;
 
     @Input() set handleItems(items: Array<any>) {
         this.itemsReceived = items;
@@ -28,7 +31,7 @@ export class ErPageListFilterComponent {
         }
     }
 
-    @Output() refreshItems = new EventEmitter<any>();
+    @Output() refreshItems = new EventEmitter<FilterActionModel>();
 
     public itemsReceived: Array<any> = [];
     public originalItems: Array<any> = [];
@@ -49,13 +52,11 @@ export class ErPageListFilterComponent {
     public handleFilter = (): void => {
         const isFilterEmpty = this.filterText === '';
         if (isFilterEmpty) {
-            this.refreshItems.emit({ state: 'empty-filter' });
+            const filterAction = new FilterActionModel('empty-filter');
+            this.refreshItems.emit(filterAction);
         } else {
-            this.refreshItems.emit({
-                state: 'contains-filter',
-                propertyToFilter: this.propetyFilterable,
-                filterInput: this.filterText,
-            });
+            const filterAction = new FilterActionModel('contains-filter', this.propetyFilterable, this.filterText);
+            this.refreshItems.emit(filterAction);
         }
     };
 
@@ -67,7 +68,9 @@ export class ErPageListFilterComponent {
     private fillFilterableOptions = (): void => {
         if (this.itemsReceived[0]) {
             this.filterableOptions = this.objectService.getAllPropertiesNames(this.itemsReceived[0]);
-            this.removeIdFromFiterableOptions();
+            if (!this.permitFilterById) {
+                this.removeIdFromFiterableOptions();
+            }
             this.propetyFilterable = this.filterableOptions[0];
             this.propertyTypeHaveBeenInicialized = true;
         }
