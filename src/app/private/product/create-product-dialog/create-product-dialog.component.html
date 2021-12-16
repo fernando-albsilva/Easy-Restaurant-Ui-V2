@@ -24,6 +24,25 @@
             </button>
         </mat-form-field>
 
+        <!-- Product Code -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.code }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="text"
+                [(ngModel)]="product.code"
+                name="productCode"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="product.code" matSuffix mat-icon-button aria-label="Clear" (click)="product.code = 0">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
         <!-- Product UnitValue -->
         <mat-form-field class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.unitValue }}</mat-label>

@@ -69,7 +69,7 @@ export class ProductComponent implements OnInit {
     };
 
     private createDialog = (dialogData?: ProductModel) => {
-        const height = '550px';
+        const height = '500px';
         const width = '500px';
 
         if (dialogData) {

@@ -3,4 +3,5 @@ export class ProductCommand {
     public name: string = '';
     public unitValue: number = 0;
     public cost: number = 0;
+    public code: number = 0;
 }

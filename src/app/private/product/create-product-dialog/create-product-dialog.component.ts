@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UUID } from 'angular2-uuid';
 
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
@@ -25,6 +26,8 @@ export class CreateProductDialog implements OnInit {
         if (this.data) {
             this.isNew = false;
             this.product = this.data;
+        } else {
+            this.product.id = UUID.UUID();
         }
     }
 
