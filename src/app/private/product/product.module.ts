@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { WorkerFunction } from './worker-function.component';
-import { FunctionApi } from './api/function.api';
+import { ProductComponent } from './product.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CreateFunctionDialog } from './components/create-function-dialog/create-function-dialog.component';
 import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { SharedModule } from '../shared/shared.module';
+import { ProductApi } from './api/product.api';
+import { CreateProductDialog } from './create-product-dialog/create-product-dialog.component';
 
 @NgModule({
-    declarations: [WorkerFunction, CreateFunctionDialog],
+    declarations: [ProductComponent, CreateProductDialog],
     imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
     exports: [],
-    providers: [FunctionApi],
+    providers: [ProductApi],
 })
-export class WorkerFunctionModule {}
+export class ProductModule {}

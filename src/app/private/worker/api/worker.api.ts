@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { WorkerFlatModel, WorkerModel } from '../Model/woker-model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UUID } from 'angular2-uuid';
-import { FunctionModel } from '../../worker-function/Model/FunctionModel';
-import { WorkerCommand } from '../commands/worker-comand';
+import { FunctionModel } from '../../worker-function/Model/function.model';
+import { WorkerCommand } from '../commands/worker.comand';
+import { WorkerFlatModel, WorkerModel } from '../Model/woker.model';
 
 @Injectable()
 export class WorkerApi {

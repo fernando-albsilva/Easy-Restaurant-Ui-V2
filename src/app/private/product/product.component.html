@@ -1,0 +1,9 @@
+<er-page-list
+    [items]="products"
+    [context]="erPageListContext"
+    [buttonsPermited]="erPageListOperationsPermited"
+    (addEvent)="addProduct()"
+    (updateEvent)="updateProduct($event)"
+    (deleteEvent)="deleteProduct($event)"
+>
+</er-page-list>

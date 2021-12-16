@@ -16,6 +16,7 @@ import { ErBadge } from './er-badge/er-badge.component';
 import { WorkerCardComponent } from './er-page-list/cards/workers-card/worker-card.component';
 import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { ErPageListFilterComponent } from './er-page-list/components/er-page-list-filter/er-page-list-filter.component';
+import { ProductCardComponent } from './er-page-list/cards/product-card/product-card.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { ErPageListFilterComponent } from './er-page-list/components/er-page-lis
         ErPageListFilterComponent,
         FunctionCardComponent,
         WorkerCardComponent,
+        ProductCardComponent,
     ],
     imports: [
         CommonModule,
@@ -53,6 +55,7 @@ import { ErPageListFilterComponent } from './er-page-list/components/er-page-lis
         ErPageListFilterComponent,
         FunctionCardComponent,
         WorkerCardComponent,
+        ProductCardComponent,
     ],
 })
 export class SharedModule {}

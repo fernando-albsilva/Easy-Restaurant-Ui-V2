@@ -6,10 +6,10 @@ import { UUID } from 'angular2-uuid';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
-import { WorkerModel } from '../../Model/woker-model';
+import { WorkerModel } from '../../Model/woker.model';
 
-import { FunctionApi } from 'src/app/private/worker-function/api/function-api';
-import { FunctionModel } from 'src/app/private/worker-function/Model/FunctionModel';
+import { FunctionApi } from 'src/app/private/worker-function/api/function.api';
+import { FunctionModel } from 'src/app/private/worker-function/Model/function.model';
 import { SortService } from 'src/app/services/sort.service';
 
 @Component({

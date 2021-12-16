@@ -9,6 +9,7 @@ export class MessagesKeys {
     public successfullyCreated: string = 'Criado com sucesso';
     public createFunction: string = 'Criar função';
     public createWorker: string = 'Criar funcionário';
+    public createProduct: string = 'Criar produto';
 
     //Related to edit/updates
     public edit: string = 'Editar';
@@ -16,6 +17,7 @@ export class MessagesKeys {
     public oneItemHasToBeSelected: string = 'É preciso ter um item selecionado para editar';
     public editFunction: string = 'Editar função';
     public editWorker: string = 'Editar funcionário';
+    public editProduct: string = 'Editar produto';
 
     //Related to delete/remove
     public remove: string = 'Remover';
@@ -67,4 +69,11 @@ export class MessagesKeys {
 
     //Related to filter
     public option: string = 'Opção';
+
+    //Related to unit / value
+    public unitValue: string = 'Valor unitário';
+
+    //Related to unit / value
+    public cost: string = 'Custo';
+    public unitCost: string = 'Custo Unitário';
 }

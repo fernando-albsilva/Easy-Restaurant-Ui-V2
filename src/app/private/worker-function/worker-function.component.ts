@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { CreateFunctionDialog } from './components/create-function-dialog/create-function-dialog.component';
-import { FunctionApi } from './api/function-api';
-import { FunctionModel } from './Model/FunctionModel';
+import { FunctionApi } from './api/function.api';
+import { FunctionModel } from './Model/function.model';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { SortService } from 'src/app/services/sort.service';
+import { FunctionCommand } from './commands/function.comand';
 
 @Component({
     selector: 'worker-function',
@@ -80,8 +81,8 @@ export class WorkerFunction implements OnInit {
         }
     };
 
-    private handleFunctionCreation = (workerfunction: FunctionModel) => {
-        this.functionApi.createFunction(workerfunction).subscribe(
+    private handleFunctionCreation = (functionCommand: FunctionCommand) => {
+        this.functionApi.createFunction(functionCommand).subscribe(
             (result) => {
                 this.getFunctions();
                 this.erMessagesSnackbar.openSnackBar(this.messages.successfullyCreated, 'sucess');
@@ -92,8 +93,8 @@ export class WorkerFunction implements OnInit {
         );
     };
 
-    private handleFunctionUpdate = (workerfunction: FunctionModel) => {
-        this.functionApi.updateFunction(workerfunction).subscribe(
+    private handleFunctionUpdate = (functionCommand: FunctionCommand) => {
+        this.functionApi.updateFunction(functionCommand).subscribe(
             (result) => {
                 this.getFunctions();
                 this.erMessagesSnackbar.openSnackBar(this.messages.successfullyUpdated, 'sucess');

@@ -1,4 +1,4 @@
-import { FunctionModel } from '../../worker-function/Model/FunctionModel';
+import { FunctionModel } from '../../worker-function/Model/function.model';
 
 export class WorkerCommand {
     public id: string = '';

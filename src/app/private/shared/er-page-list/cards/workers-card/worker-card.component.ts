@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { MessagesKeys } from '../../../../../services/messages-keys.service';
 
-import { WorkerFlatModel } from 'src/app/private/worker/Model/woker-model';
+import { WorkerFlatModel } from 'src/app/private/worker/Model/woker.model';
 
 @Component({
     selector: 'worker-card',

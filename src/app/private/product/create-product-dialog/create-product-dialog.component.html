@@ -1,0 +1,81 @@
+<div class="dialog-container">
+    <form class="form">
+        <span *ngIf="isNew" class="dialog-title">
+            {{ messages.createProduct }}
+        </span>
+        <span *ngIf="!isNew" class="dialog-title">{{ messages.editProduct }}</span>
+
+        <!-- Product Name -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.name }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="text"
+                [(ngModel)]="product.name"
+                name="productName"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="product.name" matSuffix mat-icon-button aria-label="Clear" (click)="product.name = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <!-- Product UnitValue -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.unitValue }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="text"
+                [(ngModel)]="product.unitValue"
+                name="productUnitValue"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button
+                *ngIf="product.unitValue"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="product.unitValue = 0"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <!-- Product Cost -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.unitCost }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="text"
+                [(ngModel)]="product.cost"
+                name="productCost"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button *ngIf="product.cost" matSuffix mat-icon-button aria-label="Clear" (click)="product.cost = 0">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+
+    <footer class="footer-container">
+        <button mat-raised-button class="btn" (click)="onCancel()">Voltar</button>
+        <button *ngIf="isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">
+            {{ messages.create }}
+        </button>
+        <button *ngIf="!isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">
+            {{ messages.edit }}
+        </button>
+    </footer>
+</div>

@@ -4,11 +4,3 @@ export class ProductCommand {
     public unitValue: number = 0;
     public cost: number = 0;
 }
-
-export class ProductDeleteCommand {
-    public id: string = '';
-}
-
-export class DeleteProductListCommand {
-    public id: Array<string> = [];
-}

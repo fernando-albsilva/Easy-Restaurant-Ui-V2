@@ -15,7 +15,11 @@ export class ErPageListFilterComponent {
         { key: 'address', value: this.messages.address },
         { key: 'type', value: this.messages.type },
         { key: 'email', value: this.messages.email },
+        { key: 'unitValue', value: this.messages.unitValue },
+        { key: 'cost', value: this.messages.unitCost },
     ];
+    //BUG
+    // Tratar filtro do tipo number nao deve estar filtrando por exemplo unitValue do rpoduto
 
     @Input() set handleItems(items: Array<any>) {
         this.itemsReceived = items;

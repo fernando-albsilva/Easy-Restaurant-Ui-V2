@@ -3,28 +3,28 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
-import { FunctionModel } from '../../Model/function.model';
+import { ProductModel } from '../Model/product.model';
 
 @Component({
-    selector: 'create-function-dialog',
-    templateUrl: 'create-function-dialog.component.html',
-    styleUrls: ['create-function-dialog.component.scss'],
+    selector: 'create-product-dialog',
+    templateUrl: 'create-product-dialog.component.html',
+    styleUrls: ['create-product-dialog.component.scss'],
 })
-export class CreateFunctionDialog implements OnInit {
-    public function: FunctionModel = new FunctionModel();
+export class CreateProductDialog implements OnInit {
+    public product: ProductModel = new ProductModel();
     public isNew: boolean = true;
 
     constructor(
         private objectService: ObjectService,
         public messages: MessagesKeys,
-        public dialogRef: MatDialogRef<CreateFunctionDialog>,
-        @Inject(MAT_DIALOG_DATA) public data: FunctionModel,
+        public dialogRef: MatDialogRef<CreateProductDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: ProductModel,
     ) {}
 
     ngOnInit(): void {
         if (this.data) {
             this.isNew = false;
-            this.function = this.data;
+            this.product = this.data;
         }
     }
 
@@ -35,13 +35,13 @@ export class CreateFunctionDialog implements OnInit {
     public onSave = (): void => {
         const isEmpty = this.verifyIfInputValueIsEmpty();
         if (this.isNew && !isEmpty) {
-            this.dialogRef.close({ data: this.function, type: 'save' });
+            this.dialogRef.close({ data: this.product, type: 'save' });
         } else if (!isEmpty) {
-            this.dialogRef.close({ data: this.function, type: 'update' });
+            this.dialogRef.close({ data: this.product, type: 'update' });
         }
     };
 
     private verifyIfInputValueIsEmpty = () => {
-        return this.objectService.isAnyPropertyEmpty(this.function);
+        return this.objectService.isAnyPropertyEmpty(this.product);
     };
 }

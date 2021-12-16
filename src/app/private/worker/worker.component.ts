@@ -5,10 +5,10 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { SortService } from 'src/app/services/sort.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 
-import { WorkerApi } from './api/worker-api';
+import { WorkerApi } from './api/worker.api';
 import { CreateEditWorkerDialog } from './components/create-edit-worker-dialog/create-edit-worker-dialog.component';
-import { WorkerFlatModel, WorkerModel } from './Model/woker-model';
-import { WorkerCommand } from './commands/worker-comand';
+import { WorkerFlatModel, WorkerModel } from './Model/woker.model';
+import { WorkerCommand } from './commands/worker.comand';
 
 @Component({
     selector: 'worker',

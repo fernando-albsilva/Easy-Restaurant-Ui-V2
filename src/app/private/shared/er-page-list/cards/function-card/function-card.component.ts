@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { FunctionModel } from '../../../../worker-function/Model/FunctionModel';
+import { FunctionModel } from '../../../../worker-function/Model/function.model';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
 @Component({
