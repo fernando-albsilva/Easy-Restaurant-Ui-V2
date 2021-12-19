@@ -32,11 +32,12 @@ export class AuthService {
 
     public isLoggedIn() {
         const tokenInLocalStorage = localStorage.getItem('access_token');
-        return this.existToken(tokenInLocalStorage);
+        const roles = localStorage.getItem('user_roles');
+        return this.existToken(tokenInLocalStorage, roles);
     }
 
-    private existToken(token: string | null) {
-        return token !== null && token !== '';
+    private existToken(token: string | null, roles: string | null) {
+        return token !== null && token !== '' && roles !== null && roles !== '';
     }
 
     // isLoggedOut() {
