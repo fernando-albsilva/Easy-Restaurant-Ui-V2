@@ -4,6 +4,7 @@ import { UUID } from 'angular2-uuid';
 
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
+import { DialogCreateUpdatePayloadModel } from '../../shared/model/create-dialog.model';
 import { ProductModel } from '../Model/product.model';
 
 @Component({
@@ -38,13 +39,23 @@ export class CreateProductDialog implements OnInit {
     public onSave = (): void => {
         const isEmpty = this.verifyIfInputValueIsEmpty();
         if (this.isNew && !isEmpty) {
-            this.dialogRef.close({ data: this.product, type: 'save' });
+            const save = true;
+            const update = false;
+            const payload = this.createDialogPayload(save, update);
+            this.dialogRef.close(payload);
         } else if (!isEmpty) {
-            this.dialogRef.close({ data: this.product, type: 'update' });
+            const save = false;
+            const update = true;
+            const payload = this.createDialogPayload(save, update);
+            this.dialogRef.close(payload);
         }
     };
 
-    private verifyIfInputValueIsEmpty = () => {
+    private verifyIfInputValueIsEmpty = (): boolean => {
         return this.objectService.isAnyPropertyEmpty(this.product);
+    };
+
+    private createDialogPayload = (save: boolean, update: boolean): DialogCreateUpdatePayloadModel => {
+        return new DialogCreateUpdatePayloadModel(this.product, save, update);
     };
 }

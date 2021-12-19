@@ -9,6 +9,7 @@ import { ProductApi } from './api/product.api';
 import { ProductModel } from './Model/product.model';
 import { ProductCommand } from './commands/product.comand';
 import { CreateProductDialog } from './create-product-dialog/create-product-dialog.component';
+import { DialogCreateUpdatePayloadModel } from '../shared/model/create-dialog.model';
 
 @Component({
     selector: 'product',
@@ -24,8 +25,8 @@ export class ProductComponent implements OnInit {
     private _byTypeProperty: string = 'name';
 
     constructor(
-        private productApi: ProductApi,
         public dialog: MatDialog,
+        private productApi: ProductApi,
         private erMessagesSnackbar: ErMessages,
         private messages: MessagesKeys,
         private sortService: SortService,
@@ -44,8 +45,8 @@ export class ProductComponent implements OnInit {
     public addProduct = () => {
         const dialogRef = this.createDialog();
 
-        dialogRef.afterClosed().subscribe((response: any) => {
-            const canSave = response && response.type === 'save';
+        dialogRef.afterClosed().subscribe((response: DialogCreateUpdatePayloadModel) => {
+            const canSave = response && response.actionSave;
             if (canSave) {
                 this.handleProductCreation(response.data);
             }
@@ -60,8 +61,8 @@ export class ProductComponent implements OnInit {
         const dialogData = selectedItem;
         const dialogRef = this.createDialog(dialogData);
 
-        dialogRef.afterClosed().subscribe((response: any) => {
-            const canUpdate = response && response.type === 'update';
+        dialogRef.afterClosed().subscribe((response: DialogCreateUpdatePayloadModel) => {
+            const canUpdate = response && response.actionUpdate;
             if (canUpdate) {
                 this.handleProductUpdate(response.data);
             }
