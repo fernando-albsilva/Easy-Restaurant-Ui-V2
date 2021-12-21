@@ -5,7 +5,7 @@
             <span class="logo-text txt-green">RESTAURANT</span>
         </div>
 
-        <mat-icon routerLink="/" class="material-icons-round icon">exit_to_app</mat-icon>
+        <mat-icon routerLink="/" class="material-icons-round icon" (click)="doLogout()"> exit_to_app </mat-icon>
     </div>
 
     <div class="bottom-row-container">
@@ -29,12 +29,17 @@
                 <mat-icon class="material-icons-round icon">work</mat-icon>
                 <span class="chield-text">{{ messages.function }}</span>
             </button>
+
+            <button *ngIf="canAcessUserPage()" routerLink="/private/user" class="left-chield">
+                <mat-icon class="material-icons-round icon">account_box</mat-icon>
+                <span class="chield-text">{{ messages.user }}</span>
+            </button>
         </div>
 
         <div class="bottom-row-right-chield-container">
             <div class="right-chield">
                 <mat-icon class="material-icons-round icon">account_box</mat-icon>
-                <span class="chield-text">{{ messages.administrator }}</span>
+                <span class="chield-text">{{ user }}</span>
             </div>
         </div>
     </div>

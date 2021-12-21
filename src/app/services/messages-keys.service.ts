@@ -43,6 +43,9 @@ export class MessagesKeys {
     //Related to administrator
     public administrator: string = 'Administrador';
 
+    //Related to administrator
+    public user: string = 'Usuário';
+
     //Related to home
     public home: string = 'Home';
 
