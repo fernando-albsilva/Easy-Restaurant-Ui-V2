@@ -1,0 +1,11 @@
+<div class="card-container" [ngClass]="{ 'card-selected': selected }">
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.name }}</span>
+        <span class="property-text">{{ userFlatModel.userName }}</span>
+    </div>
+
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.role }}</span>
+        <span class="property-text">{{ userFlatModel.role }}</span>
+    </div>
+</div>

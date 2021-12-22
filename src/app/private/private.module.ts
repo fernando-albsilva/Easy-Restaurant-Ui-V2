@@ -9,10 +9,18 @@ import { TableAndAccountManagementModule } from './table-and-command-management/
 import { WorkerFunctionModule } from './worker-function/worker-function.module';
 import { WorkerModule } from './worker/worker.module';
 import { AuthService } from '../services/auth.service';
+import { UserModule } from './user/user.module';
 
 @NgModule({
     declarations: [],
-    imports: [PrivateRoutingModule, WorkerFunctionModule, WorkerModule, ProductModule, TableAndAccountManagementModule],
+    imports: [
+        PrivateRoutingModule,
+        WorkerFunctionModule,
+        WorkerModule,
+        ProductModule,
+        UserModule,
+        TableAndAccountManagementModule,
+    ],
     exports: [],
     providers: [ErHttpRequestService, AuthService, AuthGuard],
 })

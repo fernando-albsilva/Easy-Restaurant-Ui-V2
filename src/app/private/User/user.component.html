@@ -1,0 +1,9 @@
+<er-page-list
+    [items]="users"
+    [context]="erPageListContext"
+    [buttonsPermited]="erPageListOperationsPermited"
+    (addEvent)="addUser()"
+    (updateEvent)="updateUser($event)"
+    (deleteEvent)="deleteUser($event)"
+>
+</er-page-list>

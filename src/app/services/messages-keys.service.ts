@@ -85,4 +85,7 @@ export class MessagesKeys {
 
     //Related to unit / value
     public currencyHint: string = '1554.15';
+
+    //Related to role
+    public role: string = 'Papel';
 }

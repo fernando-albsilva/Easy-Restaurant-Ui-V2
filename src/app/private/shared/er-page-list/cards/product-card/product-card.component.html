@@ -5,8 +5,9 @@
   [height]="'80%'"
   >
   </er-badge> -->
-
-    <er-badge [inputData]="productModel.code.toString()" [width]="'60px'" [height]="'80%'"> </er-badge>
+    <ng-container *ngIf="productModel && productModel.code">
+        <er-badge [inputData]="productModel.code.toString()" [width]="'60px'" [height]="'80%'"> </er-badge>
+    </ng-container>
 
     <div class="item-property-container">
         <span class="property-title">{{ messages.name }}</span>

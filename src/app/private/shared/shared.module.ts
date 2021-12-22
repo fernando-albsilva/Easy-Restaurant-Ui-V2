@@ -17,6 +17,7 @@ import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { ErPageListFilterComponent } from './er-page-list/components/er-page-list-filter/er-page-list-filter.component';
 import { ProductCardComponent } from './er-page-list/cards/product-card/product-card.component';
 import { ErPageListSideMenuComponent } from './er-page-list/er-page-list-side-menu/er-page-list-side-menu.component';
+import { UserCardComponent } from './er-page-list/cards/user-card/user-card.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { ErPageListSideMenuComponent } from './er-page-list/er-page-list-side-me
         FunctionCardComponent,
         WorkerCardComponent,
         ProductCardComponent,
+        UserCardComponent,
     ],
     imports: [
         CommonModule,
@@ -56,6 +58,7 @@ import { ErPageListSideMenuComponent } from './er-page-list/er-page-list-side-me
         FunctionCardComponent,
         WorkerCardComponent,
         ProductCardComponent,
+        UserCardComponent,
     ],
 })
 export class SharedModule {}

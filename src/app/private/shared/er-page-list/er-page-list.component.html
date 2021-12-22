@@ -60,6 +60,20 @@
                 </ng-container>
                 <!-- /Product card -->
 
+                <!-- User card  -->
+                <ng-container *ngIf="isContext('user')">
+                    <ng-container *ngFor="let item of itemsFiltred">
+                        <user-card
+                            class="er-card"
+                            [item]="item"
+                            [selected]="amISelected(item.id)"
+                            (click)="selectOrRemoveCardSelection(item.id)"
+                        >
+                        </user-card>
+                    </ng-container>
+                </ng-container>
+                <!-- /User card -->
+
                 <!-- ????? Card -->
                 <!-- /????? Card -->
             </div>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthUserCommand } from '../private/User/commands/auth-user.command';
-import { AuthUserModel } from '../private/User/model/auth-user.model';
+import { AuthUserCommand } from '../private/user/commands/auth-user.command';
+import { AuthUserModel } from '../private/user/model/auth-user.model';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
