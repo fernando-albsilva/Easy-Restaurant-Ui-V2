@@ -26,12 +26,13 @@ export class UserComponent implements OnInit {
     private _byTypeProperty: string = 'userName';
 
     constructor(
-        public userApi: UserApi,
+        private _messages: MessagesKeys,
+        private _userApi: UserApi,
         private _auth: AuthService,
         private _router: Router,
         private _dialogService: DialogService,
         private _erMessagesSnackbar: ErMessages,
-        private _messages: MessagesKeys,
+        private erMessagesSnackbar: ErMessages,
     ) {}
 
     ngOnInit(): void {
@@ -54,16 +55,29 @@ export class UserComponent implements OnInit {
         });
     };
 
-    //TODO
-    // implementar metodo de deletar usuario
-    public deleteUser = (selectedItems: any): void => {};
+    //FIXME
+    // verificar o funcionamento apos a implementacao no backend
+    public deleteUser = (selectedItems: any): void => {
+        this.handleUserDelete(selectedItems);
+    };
 
     //TODO
     // implementar metodo de alterar usuario
-    public updateUser = (selectedItem: any): void => {};
+    public updateUser = (selectedItem: any): void => {
+        console.log(selectedItem);
+        const dialogData = selectedItem as UserCommand;
+        const dialogRef = this.createDialog(dialogData);
+
+        dialogRef.afterClosed().subscribe((response: any) => {
+            const canUpdate = response && response.type === 'update';
+            if (canUpdate) {
+                this.handleUserUpdate(response.data);
+            }
+        });
+    };
 
     private getUsers = (): void => {
-        this.userApi.getUsers().subscribe(
+        this._userApi.getUsers().subscribe(
             (requestResult) => {
                 this.users = requestResult;
             },
@@ -92,10 +106,34 @@ export class UserComponent implements OnInit {
     };
 
     private handleUserCreation = (userCommand: UserCommand): void => {
-        this.userApi.createUser(userCommand).subscribe(
+        this._userApi.createUser(userCommand).subscribe(
             (result) => {
                 this.getUsers();
                 this._erMessagesSnackbar.openSnackBar(this._messages.successfullyCreated, 'sucess');
+            },
+            (error) => {
+                console.log(error);
+            },
+        );
+    };
+
+    private handleUserDelete = (usersIds: Array<string>) => {
+        this._userApi.deleteUsersByIds(usersIds).subscribe(
+            (result) => {
+                this.getUsers();
+                this.erMessagesSnackbar.openSnackBar(this._messages.successfullyDeleted, 'sucess');
+            },
+            (error) => {
+                console.log(error);
+            },
+        );
+    };
+
+    private handleUserUpdate = (userCommand: UserCommand) => {
+        this._userApi.updateUser(userCommand).subscribe(
+            (result) => {
+                this.getUsers();
+                this.erMessagesSnackbar.openSnackBar(this._messages.successfullyUpdated, 'sucess');
             },
             (error) => {
                 console.log(error);

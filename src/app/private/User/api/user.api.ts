@@ -23,30 +23,30 @@ export class UserApi {
             .pipe(map((element) => element as Array<UserFlatModel>));
     }
 
-    //TODO
-    // implementar this.requestOptions
     public createUser = (cmd: UserCommand): Observable<any> => {
         cmd.id = UUID.UUID();
         return this.http.post(`${this.apiUrl}/Create`, cmd, this.requestOptions);
     };
 
-    //TODO
-    // implementar this.requestOptions
-    // public updateProduct = (cmd: UserCommand): Observable<any> => {
-    //     return this.http.put<any>(`${this.apiUrl}/Update`, cmd);
-    // };
-
-    //TODO
-    // implementar this.requestOptions
-    public deleteUser = (id: string): Observable<any> => {
-        let params = new HttpParams();
-        params = params.append('Id', id);
-
-        return this.http.delete<any>(`${this.apiUrl}/Delete`, { params: params });
+    //FIXME
+    // Falta implementar o metodo no backend
+    public updateUser = (cmd: UserCommand): Observable<any> => {
+        return this.http.put<any>(`${this.apiUrl}/Update`, cmd);
     };
 
     //TODO
     // implementar this.requestOptions
+    //INFO tem necessidade ??
+
+    // public deleteUser = (id: string): Observable<any> => {
+    //     let params = new HttpParams();
+    //     params = params.append('Id', id);
+
+    //     return this.http.delete<any>(`${this.apiUrl}/Delete`, { params: params });
+    // };
+
+    //FIXME
+    // Falta implementar o metodo no backend
     public deleteUsersByIds = (idList: Array<string>): Observable<any> => {
         return this.http.post<any>(`${this.apiUrl}/DeleteByList`, idList);
     };

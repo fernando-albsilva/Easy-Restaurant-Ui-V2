@@ -106,6 +106,7 @@ export class WorkerComponent implements OnInit {
             },
         );
     };
+
     private handleFunctionDelete = (workesIds: Array<string>) => {
         this.workerApi.deleteMultiplesWorkers(workesIds).subscribe(
             (result) => {

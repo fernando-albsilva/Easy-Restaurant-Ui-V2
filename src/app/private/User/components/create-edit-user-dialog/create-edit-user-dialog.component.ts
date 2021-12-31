@@ -27,7 +27,9 @@ export class CreateEditUserDialog implements OnInit {
     ngOnInit(): void {
         if (this.data) {
             this.isNew = false;
-            this.userCommand = this.data;
+            this.userCommand.id = this.data.id;
+            this.userCommand.userName = this.data.userName;
+            this.userCommand.role = this.data.role;
         } else {
             this.userCommand.id = UUID.UUID();
         }
