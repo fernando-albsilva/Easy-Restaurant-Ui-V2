@@ -55,14 +55,10 @@ export class UserComponent implements OnInit {
         });
     };
 
-    //FIXME
-    // verificar o funcionamento apos a implementacao no backend
     public deleteUser = (selectedItems: any): void => {
         this.handleUserDelete(selectedItems);
     };
 
-    //TODO
-    // implementar metodo de alterar usuario
     public updateUser = (selectedItem: any): void => {
         console.log(selectedItem);
         const dialogData = selectedItem as UserCommand;

@@ -108,7 +108,7 @@ export class WorkerComponent implements OnInit {
     };
 
     private handleFunctionDelete = (workesIds: Array<string>) => {
-        this.workerApi.deleteMultiplesWorkers(workesIds).subscribe(
+        this.workerApi.deleteWorkersByIds(workesIds).subscribe(
             (result) => {
                 this.getWorkers();
                 this.erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted, 'sucess');

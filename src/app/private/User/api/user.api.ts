@@ -28,14 +28,10 @@ export class UserApi {
         return this.http.post(`${this.apiUrl}/Create`, cmd, this.requestOptions);
     };
 
-    //FIXME
-    // Falta implementar o metodo no backend
     public updateUser = (cmd: UserCommand): Observable<any> => {
-        return this.http.put<any>(`${this.apiUrl}/Update`, cmd);
+        return this.http.put<any>(`${this.apiUrl}/Update`, cmd, this.requestOptions);
     };
 
-    //TODO
-    // implementar this.requestOptions
     //INFO tem necessidade ??
 
     // public deleteUser = (id: string): Observable<any> => {
@@ -45,9 +41,7 @@ export class UserApi {
     //     return this.http.delete<any>(`${this.apiUrl}/Delete`, { params: params });
     // };
 
-    //FIXME
-    // Falta implementar o metodo no backend
     public deleteUsersByIds = (idList: Array<string>): Observable<any> => {
-        return this.http.post<any>(`${this.apiUrl}/DeleteByList`, idList);
+        return this.http.post<any>(`${this.apiUrl}/DeleteByList`, idList, this.requestOptions);
     };
 }

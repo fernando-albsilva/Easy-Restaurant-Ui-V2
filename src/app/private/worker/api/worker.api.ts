@@ -49,7 +49,7 @@ export class WorkerApi {
 
     //FIXME
     // mudar nome do metodo para deleteWorkersByIds
-    public deleteMultiplesWorkers = (idList: Array<string>): Observable<any> => {
+    public deleteWorkersByIds = (idList: Array<string>): Observable<any> => {
         return this.http.post<any>(`${this.apiUrl}/DeleteByList`, idList);
     };
 }
