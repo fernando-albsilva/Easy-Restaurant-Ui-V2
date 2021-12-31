@@ -6,9 +6,10 @@ import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserComponent } from './user.component';
 import { UserApi } from './api/user.api';
+import { CreateEditUserDialog } from './components/create-edit-user-dialog/create-edit-user-dialog.component';
 
 @NgModule({
-    declarations: [UserComponent],
+    declarations: [UserComponent, CreateEditUserDialog],
     imports: [HttpClientModule, CommonModule, SharedModule, DirectivesModule],
     exports: [],
     providers: [UserApi],

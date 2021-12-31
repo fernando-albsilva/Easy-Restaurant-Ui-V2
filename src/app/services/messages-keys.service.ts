@@ -10,6 +10,7 @@ export class MessagesKeys {
     public createFunction: string = 'Criar função';
     public createWorker: string = 'Criar funcionário';
     public createProduct: string = 'Criar produto';
+    public createUser: string = 'Criar usuário';
 
     //Related to edit/updates
     public edit: string = 'Editar';
@@ -18,6 +19,7 @@ export class MessagesKeys {
     public editFunction: string = 'Editar função';
     public editWorker: string = 'Editar funcionário';
     public editProduct: string = 'Editar produto';
+    public editUser: string = 'Editar usuário';
 
     //Related to delete/remove
     public remove: string = 'Remover';
@@ -58,6 +60,9 @@ export class MessagesKeys {
     //Related to name
     public email: string = 'Email';
 
+    //Related to password
+    public password: string = 'Senha';
+
     //Related to name
     public cpf: string = 'Cpf';
 
@@ -88,4 +93,7 @@ export class MessagesKeys {
 
     //Related to role
     public role: string = 'Papel';
+
+    //Related to role
+    public stillRemainFieldToBeFiled: string = 'Ainda há campos a serem preenchidos';
 }

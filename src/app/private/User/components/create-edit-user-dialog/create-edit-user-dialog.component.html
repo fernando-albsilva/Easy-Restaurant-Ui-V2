@@ -1,0 +1,96 @@
+<div class="dialog-container">
+    <form class="form">
+        <span *ngIf="isNew" class="dialog-title">
+            {{ messages.createUser }}
+        </span>
+        <span *ngIf="!isNew" class="dialog-title">{{ messages.editUser }}</span>
+
+        <!-- USERNAME INPUT -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.name }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="text"
+                [(ngModel)]="userCommand.userName"
+                name="userName"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button
+                *ngIf="userCommand.userName"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="userCommand.userName = ''"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <!-- /USERNAME INPUT -->
+
+        <!-- ROLE INPUT -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.role }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="text"
+                [(ngModel)]="userCommand.role"
+                name="userRole"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button
+                *ngIf="userCommand.role"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="userCommand.role = ''"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <!-- /ROLE INPUT -->
+
+        <!-- PASSWORD INPUT -->
+        <mat-form-field class="input" color="accent" appearance="standard">
+            <mat-label>{{ messages.password }}</mat-label>
+            <input
+                acceptOnlyLettersAndIntNumbers
+                matInput
+                type="password"
+                [(ngModel)]="userCommand.password"
+                name="userRole"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button
+                *ngIf="userCommand.password"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="userCommand.password = ''"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <!-- /PASSWORD INPUT -->
+    </form>
+
+    <footer class="footer-container">
+        <button mat-raised-button class="btn" (click)="onCancel()">Voltar</button>
+        <button *ngIf="isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">
+            {{ messages.create }}
+        </button>
+        <button *ngIf="!isNew" mat-raised-button color="accent" class="btn" (click)="onSave()">
+            {{ messages.edit }}
+        </button>
+    </footer>
+</div>

@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { UUID } from 'angular2-uuid';
 import { UserFlatModel } from '../model/auth-user.model';
 import { ErHttpRequestService } from '../../services/er-http-request.service';
+import { UserCommand } from '../commands/auth-user.command';
 
 @Injectable()
 export class UserApi {
@@ -24,10 +25,10 @@ export class UserApi {
 
     //TODO
     // implementar this.requestOptions
-    // public createProduct = (cmd: UserCommand): Observable<any> => {
-    //     cmd.id = UUID.UUID();
-    //     return this.http.post(`${this.apiUrl}/Create`, cmd);
-    // };
+    public createUser = (cmd: UserCommand): Observable<any> => {
+        cmd.id = UUID.UUID();
+        return this.http.post(`${this.apiUrl}/Create`, cmd, this.requestOptions);
+    };
 
     //TODO
     // implementar this.requestOptions
