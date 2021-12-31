@@ -20,6 +20,8 @@ export class ErPageListFilterComponent {
         { key: 'cost', value: this.messages.unitCost },
         { key: 'code', value: this.messages.code },
         { key: 'id', value: this.messages.code },
+        { key: 'userName', value: this.messages.name },
+        { key: 'role', value: this.messages.role },
     ];
 
     @Input() permitFilterById = false;
