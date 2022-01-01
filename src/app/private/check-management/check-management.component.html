@@ -9,7 +9,12 @@
 
         <!-- MIDDLE CONTENT -->
         <div class="middle-content-container">
-            <type-check-menu class="type-check-menu"></type-check-menu>
+            <type-check-header-menu
+                class="type-check-menu"
+                [(tableQuantity)]="tableQuantity"
+                [(individualCheckQuantity)]="individualCheckQuantity"
+                (changeViewManagement)="handleChangeViewManagement($event)"
+            ></type-check-header-menu>
         </div>
         <!-- /MIDDLE CONTENT -->
 

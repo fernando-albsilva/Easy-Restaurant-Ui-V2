@@ -1,0 +1,87 @@
+<div class="type-check-menu-container">
+    <div class="buttons-container">
+        <button mat-raised-button color="accent" (click)="handleShowManagementTypeChange(true, false)">
+            <mat-icon class="material-icons-round icon">home</mat-icon>
+            <span class="chield-text">{{ messages.table }}</span>
+        </button>
+
+        <button mat-raised-button color="accent">
+            <mat-icon class="material-icons-round icon">fastfood</mat-icon>
+            <span class="chield-text">{{ messages.individualCheckCommand }}</span>
+        </button>
+    </div>
+
+    <!-- TABLE QUANTITY SELECT INPUT -->
+    <mat-form-field
+        *ngIf="tableManagement"
+        class="input"
+        [class.disabled]="hasTableActive"
+        color="accent"
+        appearance="standard"
+    >
+        <mat-label>{{ messages.tableQuantity }}</mat-label>
+        <input
+            #tableQuantityRef
+            [class.disabled]="hasTableActive"
+            acceptOnlyIntPositiveNumbers
+            matInput
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            name="tableQuantity"
+            spellcheck="false"
+            [disabled]="hasTableActive"
+            [(ngModel)]="tableQuantity"
+            (change)="handleTableQuantityChange(tableQuantityRef.value)"
+        />
+        <button
+            *ngIf="tableQuantity"
+            [class.disabled]="hasTableActive"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="tableQuantity = tableDefaultQuantity"
+        >
+            <mat-icon class="icon-active-accent" [class.disabled]="hasTableActive">restart_alt</mat-icon>
+        </button>
+    </mat-form-field>
+    <!-- /TABLE QUANTITY SELECT INPUT -->
+
+    <!-- INDIVIDUAL CHECK COMMAND QUANTITY SELECT INPUT -->
+    <mat-form-field
+        *ngIf="!tableManagement"
+        class="input"
+        [class.disabled]="hasIndividualCheckActive"
+        color="accent"
+        appearance="standard"
+    >
+        <mat-label>{{ messages.individualCheckQuantity }}</mat-label>
+        <input
+            #individualCheckQuantityRef
+            [class.disabled]="hasIndividualCheckActive"
+            acceptOnlyIntPositiveNumbers
+            matInput
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            name="individualCheckQuantity"
+            spellcheck="false"
+            [disabled]="hasIndividualCheckActive"
+            [(ngModel)]="individualCheckQuantity"
+            (change)="handleIndividualCheckQuantityChange(individualCheckQuantityRef.value)"
+        />
+        <button
+            *ngIf="individualCheckQuantity"
+            [class.disabled]="hasIndividualCheckActive"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="individualCheckQuantity = individualCheckDefaultQuantity"
+        >
+            <mat-icon class="icon-active-accent" [class.disabled]="hasIndividualCheckActive">restart_alt</mat-icon>
+        </button>
+    </mat-form-field>
+    <!-- /INDIVIDUAL CHECK COMMAND QUANTITY SELECT INPUT -->
+</div>

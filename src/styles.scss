@@ -3,64 +3,72 @@
 
 html,
 body {
-  height: 100%;
-  width: 100%;
-  background-color: $bg_default;
-  color: $gray10;
+    height: 100%;
+    width: 100%;
+    background-color: $bg_default;
+    color: $gray10;
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 .txt-gray {
-  color: $gray10;
+    color: $gray10;
 }
 
 .txt-white {
-  color: $white10;
+    color: $white10;
 }
 
 .txt-green {
-  color: $green10;
+    color: $green10;
 }
 
 .txt-purple {
-  color: $purple10;
+    color: $purple10;
 }
 
 .shadow-m {
-  box-shadow: $shadow10;
+    box-shadow: $shadow10;
 }
 
 .page {
-  height: 100vh;
-  width: 100vw;
+    height: 100vh;
+    width: 100vw;
 }
 
 er-top-menu {
-  width: 100%;
+    width: 100%;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+    width: 8px;
+    height: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background: $card-background10;
-  border-radius: 30px;
+    background: $card-background10;
+    border-radius: 30px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: $card-background10;
+    background: $card-background10;
 }
 ::-webkit-scrollbar-track {
-  background: #858585;
-  border-radius: 30px;
-  box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+    background: #858585;
+    border-radius: 30px;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
 
 .my-snackbar-class {
-  background-color: $gray15;
-  box-shadow: $shadow10;
+    background-color: $gray15;
+    box-shadow: $shadow10;
+}
+
+.icon-active-accent:active {
+    color: $green10;
+}
+
+.disabled {
+    cursor: not-allowed;
 }

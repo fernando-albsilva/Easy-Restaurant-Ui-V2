@@ -99,7 +99,9 @@ export class MessagesKeys {
 
     //Related to table
     public table: string = 'Mesa';
+    public tableQuantity: string = 'Quantidade de mesas';
 
-    //Related to table
+    //Related to individual check
     public individualCheckCommand: string = 'Commanda';
+    public individualCheckQuantity: string = 'Quantidade de Commandas';
 }
