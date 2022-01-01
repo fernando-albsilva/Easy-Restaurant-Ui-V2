@@ -1,0 +1,17 @@
+@import '../../../../shared-styles/colors-and-default-styles.scss';
+
+.tables-container {
+    height: calc(100% - 125px);
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    box-sizing: border-box;
+    overflow-y: auto;
+    table {
+        height: 100px;
+    }
+}

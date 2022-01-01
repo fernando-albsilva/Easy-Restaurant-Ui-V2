@@ -1,0 +1,9 @@
+@import '../../../../../shared-styles/colors-and-default-styles.scss';
+
+.table-container {
+    height: inherit;
+    width: 100px;
+    display: flex;
+    background-color: $card-background10;
+    border-radius: $card-radius10;
+}
