@@ -1,0 +1,38 @@
+@import '../../shared-styles/colors-and-default-styles.scss';
+
+$menuWidth: 200px;
+$menuPadding: 20px 20px;
+.page {
+    display: flex;
+    flex-direction: column;
+
+    .content-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        management-left-menu {
+            box-sizing: border-box;
+            width: $menuWidth;
+            padding: $menuPadding;
+        }
+
+        management-right-menu {
+            box-sizing: border-box;
+            width: $menuWidth;
+            padding: $menuPadding;
+        }
+
+        .middle-content-container {
+            width: calc(100% - (#{$menuWidth} * 2));
+            height: 100%;
+
+            .type-check-menu {
+                padding-top: 20px;
+                height: 65px;
+                width: 100%;
+            }
+        }
+    }
+}

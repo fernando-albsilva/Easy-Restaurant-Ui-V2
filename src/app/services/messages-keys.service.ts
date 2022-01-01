@@ -96,4 +96,10 @@ export class MessagesKeys {
 
     //Related to role
     public stillRemainFieldToBeFiled: string = 'Ainda há campos a serem preenchidos';
+
+    //Related to table
+    public table: string = 'Mesa';
+
+    //Related to table
+    public individualCheckCommand: string = 'Commanda';
 }

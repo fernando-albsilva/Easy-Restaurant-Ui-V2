@@ -5,11 +5,11 @@ import { ErHttpRequestService } from './services/er-http-request.service';
 
 import { PrivateRoutingModule } from './private-routing.module';
 import { ProductModule } from './product/product.module';
-import { TableAndAccountManagementModule } from './table-and-command-management/table-and-account-management.module';
 import { WorkerFunctionModule } from './worker-function/worker-function.module';
 import { WorkerModule } from './worker/worker.module';
 import { AuthService } from '../services/auth.service';
 import { UserModule } from './user/user.module';
+import { CheckManagementModule } from './check-management/check-management.module';
 
 @NgModule({
     declarations: [],
@@ -19,7 +19,7 @@ import { UserModule } from './user/user.module';
         WorkerModule,
         ProductModule,
         UserModule,
-        TableAndAccountManagementModule,
+        CheckManagementModule,
     ],
     exports: [],
     providers: [ErHttpRequestService, AuthService, AuthGuard],
