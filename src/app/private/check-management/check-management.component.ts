@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ManagementTablesComponent } from './components/management-tables/management-tables.component';
 import {
     ManagementFilterPayload,
     ShowManagementType,
@@ -19,6 +20,8 @@ export class CheckManagementComponent implements OnInit {
     public tableQuantity: number = 45;
     public tables: Array<TableModel> = [];
     public showTables: boolean = true;
+    @Input() public tableNumberToFilter: number | undefined;
+    @ViewChild('managementTablesRef') managementTablesRef: ManagementTablesComponent | undefined;
 
     constructor() {}
 
@@ -32,7 +35,8 @@ export class CheckManagementComponent implements OnInit {
     };
 
     public handleFilter = (payload: ManagementFilterPayload): void => {
-        if (this.showTables) {
+        const isShowingTables = this.showTables;
+        if (isShowingTables) {
             this.filterTables(payload);
         } else if (this.showIndividualChecks) {
             this.filterIndividualChecks(payload);
@@ -41,7 +45,20 @@ export class CheckManagementComponent implements OnInit {
 
     //TODO
     //implementar filtro das mesas
-    private filterTables = (payload: ManagementFilterPayload): void => {};
+    private filterTables = (payload: ManagementFilterPayload): void => {
+        const isFilterByClientName = payload.nameFilterText !== '';
+        const isFilterByTableNumber = payload.numberFilterText !== undefined;
+        if (!isFilterByTableNumber) {
+            this.managementTablesRef?.resetTablesFilter();
+        }
+        if (isFilterByClientName) {
+            this.filterTableByClientName(payload.nameFilterText);
+        } else if (isFilterByTableNumber) {
+            this.tableNumberToFilter = payload.numberFilterText;
+        }
+    };
+
+    private filterTableByClientName = (text: string): void => {};
 
     //TODO
     //implementar filtro das comandas

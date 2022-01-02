@@ -17,7 +17,12 @@
                 (changeFilterText)="handleFilter($event)"
             ></type-check-header-menu>
 
-            <management-tables [hidden]="!showTables" [tableQuantity]="tableQuantity"></management-tables>
+            <management-tables
+                #managementTablesRef
+                [hidden]="!showTables"
+                [tableQuantity]="tableQuantity"
+                [numberToFilter]="tableNumberToFilter"
+            ></management-tables>
         </div>
         <!-- /MIDDLE CONTENT -->
 

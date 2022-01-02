@@ -12,6 +12,11 @@ export class ManagementTablesComponent {
         this.handleTablesQuantity(value);
     }
     @Input() tables: Array<TableModel> = [];
+    @Input() set numberToFilter(numberToFilter: number | undefined) {
+        this.filterTableByNumber(numberToFilter);
+    }
+
+    private _numberToFilter: number | undefined;
 
     constructor(public messages: MessagesKeys) {}
 
@@ -22,4 +27,24 @@ export class ManagementTablesComponent {
             this.tables.push(table);
         }
     }
+
+    private filterTableByNumber = (tableNumber: number | undefined): void => {
+        this.tables = this.tables.map((table) => {
+            if (tableNumber !== undefined) {
+                const tableHasFilterNumber = table.number.toString().includes(tableNumber.toString());
+                if (tableHasFilterNumber) {
+                    table.shouldHideByFilter = false;
+                } else {
+                    table.shouldHideByFilter = true;
+                }
+            }
+            return table;
+        });
+    };
+
+    public resetTablesFilter = () => {
+        this.tables.forEach((table) => {
+            table.shouldHideByFilter = false;
+        });
+    };
 }

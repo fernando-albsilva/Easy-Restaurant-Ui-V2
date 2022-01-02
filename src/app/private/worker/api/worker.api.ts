@@ -47,8 +47,6 @@ export class WorkerApi {
         return this.http.delete<any>(`${this.apiUrl}/Delete`, { params: params });
     };
 
-    //FIXME
-    // mudar nome do metodo para deleteWorkersByIds
     public deleteWorkersByIds = (idList: Array<string>): Observable<any> => {
         return this.http.post<any>(`${this.apiUrl}/DeleteByList`, idList);
     };

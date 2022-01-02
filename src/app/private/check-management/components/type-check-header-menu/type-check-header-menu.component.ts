@@ -49,20 +49,24 @@ export class TypeChekHeaderMenu {
         }
     };
 
-    //TODO
-    // tratar o evendo de alteracao no campo de filtro de nome commanda ou mesa
-    // quem vai tratar é o pai e mandar para o filho que cuida de colocar a lista de mesas/comandas na tela
+    //INFO
+    // emite o evento com o texto para filtrar pelo nome do cliente
     public handleNameFilterTextChange = (text: string): void => {
         const payload = new ManagementFilterPayload(text, undefined);
         this.changeFilterText.emit(payload);
     };
 
-    //TODO
-    // tratar o evendo de alteracao no campo do filtro de numero da commanda ou mesa
-    // quem vai tratar é o pai e mandar para o filho que cuida de colocar a lista de mesas/comandas na tela
-    public handleNumberFilterTextChange = (number: string): void => {
-        const payload = new ManagementFilterPayload('', Number(number));
-        this.changeFilterText.emit(payload);
+    //INFO
+    //emite o evento de filtro com o numero da comanda/mesa para ser filtrada
+    public handleNumberFilterTextChange = (number: string | undefined): void => {
+        const isNumberEmpty = number === undefined || number === '';
+        if (isNumberEmpty) {
+            const payload = new ManagementFilterPayload('', undefined);
+            this.changeFilterText.emit(payload);
+        } else {
+            const payload = new ManagementFilterPayload('', Number(number));
+            this.changeFilterText.emit(payload);
+        }
     };
 }
 

@@ -6,6 +6,7 @@ export class TableModel {
     public invoiceId: string = '';
     public date: Date = new Date();
     public worker: WorkerTinyModel = new WorkerTinyModel();
+    public shouldHideByFilter: boolean = false;
     public products: Array<ProductModel> = [];
 
     constructor(number?: number) {

@@ -4,6 +4,23 @@
     height: inherit;
     width: 100px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     background-color: $card-background10;
     border-radius: $card-radius10;
+
+    .table-img {
+        height: 37px;
+        width: 42px;
+    }
+
+    .table-number {
+        color: $green10;
+    }
+}
+
+.table-container:hover {
+    cursor: pointer;
 }
