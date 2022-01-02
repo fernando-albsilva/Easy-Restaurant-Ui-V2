@@ -60,8 +60,8 @@ export class TypeChekHeaderMenu {
     //TODO
     // tratar o evendo de alteracao no campo do filtro de numero da commanda ou mesa
     // quem vai tratar é o pai e mandar para o filho que cuida de colocar a lista de mesas/comandas na tela
-    public handleNumberFilterTextChange = (number: number): void => {
-        const payload = new ManagementFilterPayload('', number);
+    public handleNumberFilterTextChange = (number: string): void => {
+        const payload = new ManagementFilterPayload('', Number(number));
         this.changeFilterText.emit(payload);
     };
 }
@@ -99,8 +99,11 @@ export class ManagementFilterPayload {
     private _numberFilterText: number | undefined;
 
     constructor(nameFilterText: string, numberfilterText: number | undefined) {
-        this.nameFilterText = nameFilterText;
-        this.numberFilterText = numberfilterText;
+        if (nameFilterText !== '') {
+            this.nameFilterText = nameFilterText;
+        } else {
+            this.numberFilterText = numberfilterText;
+        }
     }
 
     public set nameFilterText(value: string) {

@@ -53,14 +53,14 @@
             name="numberFilterText"
             spellcheck="false"
             [(ngModel)]="numberFilterText"
-            (change)="handleNameFilterTextChange(numberFilterRef.value)"
+            (change)="handleNumberFilterTextChange(numberFilterRef.value)"
         />
         <button
             *ngIf="numberFilterText"
             matSuffix
             mat-icon-button
             aria-label="Clear"
-            (click)="numberFilterText = undefined; handleNameFilterTextChange(numberFilterRef.value)"
+            (click)="numberFilterText = undefined; handleNumberFilterTextChange(numberFilterRef.value)"
         >
             <mat-icon class="icon-active-accent">close</mat-icon>
         </button>
