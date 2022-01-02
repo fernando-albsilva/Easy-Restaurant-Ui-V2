@@ -7,6 +7,12 @@ export class TableModel {
     public date: Date = new Date();
     public worker: WorkerTinyModel = new WorkerTinyModel();
     public products: Array<ProductModel> = [];
+
+    constructor(number?: number) {
+        if (number) {
+            this.number = number;
+        }
+    }
 }
 
 export class IndividualCheckModel {

@@ -95,6 +95,9 @@ export class MessagesKeys {
     public role: string = 'Papel';
 
     //Related to role
+    public number: string = 'Número';
+
+    //Related to role
     public stillRemainFieldToBeFiled: string = 'Ainda há campos a serem preenchidos';
 
     //Related to table

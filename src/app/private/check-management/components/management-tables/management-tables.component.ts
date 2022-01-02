@@ -8,11 +8,17 @@ import { TableModel } from '../../model/check-management.model';
     styleUrls: ['./management-tables.component.scss'],
 })
 export class ManagementTablesComponent {
+    @Input() set tableQuantity(value: number) {
+        this.handleTablesQuantity(value);
+    }
     @Input() tables: Array<TableModel> = [];
 
-    constructor(public messages: MessagesKeys) {
-        for (let index = 0; index < 60; index++) {
-            let table = new TableModel();
+    constructor(public messages: MessagesKeys) {}
+
+    private handleTablesQuantity(value: number) {
+        this.tables = [];
+        for (let index = 1; index <= value; index++) {
+            let table = new TableModel(index);
             this.tables.push(table);
         }
     }

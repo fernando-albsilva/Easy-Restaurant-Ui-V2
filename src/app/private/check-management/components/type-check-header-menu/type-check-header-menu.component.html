@@ -11,6 +11,62 @@
         </button>
     </div>
 
+    <!-- CLIENT NAME FILTER INPUT -->
+    <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-label>{{ messages.name }}</mat-label>
+        <input
+            #nameFilterRef
+            acceptOnlyLetters
+            matInput
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            name="nameFilterText"
+            spellcheck="false"
+            [(ngModel)]="nameFilterText"
+            (change)="handleNameFilterTextChange(nameFilterRef.value)"
+        />
+        <button
+            *ngIf="nameFilterText"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="nameFilterText = ''; handleNameFilterTextChange(nameFilterRef.value)"
+        >
+            <mat-icon class="icon-active-accent">close</mat-icon>
+        </button>
+    </mat-form-field>
+    <!-- /CLIENT NAME FILTER INPUT -->
+
+    <!-- TABLE OR INDIVIDUAL CHECK NUMBER FILTER INPUT -->
+    <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-label>{{ messages.number }}</mat-label>
+        <input
+            #numberFilterRef
+            acceptOnlyIntPositiveNumbers
+            matInput
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            name="numberFilterText"
+            spellcheck="false"
+            [(ngModel)]="numberFilterText"
+            (change)="handleNameFilterTextChange(numberFilterRef.value)"
+        />
+        <button
+            *ngIf="numberFilterText"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+            (click)="numberFilterText = undefined; handleNameFilterTextChange(numberFilterRef.value)"
+        >
+            <mat-icon class="icon-active-accent">close</mat-icon>
+        </button>
+    </mat-form-field>
+    <!-- /TABLE OR INDIVIDUAL CHECK NUMBER FILTER INPUT -->
+
     <!-- TABLE QUANTITY SELECT INPUT -->
     <mat-form-field
         *ngIf="tableManagement"
@@ -41,7 +97,7 @@
             matSuffix
             mat-icon-button
             aria-label="Clear"
-            (click)="tableQuantity = tableDefaultQuantity"
+            (click)="tableQuantity = tableDefaultQuantity; handleTableQuantityChange(tableDefaultQuantity.toString())"
         >
             <mat-icon class="icon-active-accent" [class.disabled]="hasTableActive">restart_alt</mat-icon>
         </button>

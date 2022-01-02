@@ -14,9 +14,10 @@
                 [(tableQuantity)]="tableQuantity"
                 [(individualCheckQuantity)]="individualCheckQuantity"
                 (changeViewManagement)="handleChangeViewManagement($event)"
+                (changeFilterText)="handleFilter($event)"
             ></type-check-header-menu>
 
-            <management-tables [hidden]="!showTables"></management-tables>
+            <management-tables [hidden]="!showTables" [tableQuantity]="tableQuantity"></management-tables>
         </div>
         <!-- /MIDDLE CONTENT -->
 
