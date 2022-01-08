@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { DialogService } from 'src/app/services/dialog.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { TableModel } from '../../model/check-management.model';
+import { EditTableDialog } from './edit-table-dialog/edit-table-dialog.component';
 
 @Component({
     selector: 'management-tables',
@@ -18,12 +20,13 @@ export class ManagementTablesComponent {
 
     private _numberToFilter: number | undefined;
 
-    constructor(public messages: MessagesKeys) {}
+    constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}
 
     private handleTablesQuantity(value: number) {
         this.tables = [];
         for (let index = 1; index <= value; index++) {
             let table = new TableModel(index);
+            table.number = index;
             this.tables.push(table);
         }
     }
@@ -42,9 +45,33 @@ export class ManagementTablesComponent {
         });
     };
 
-    public resetTablesFilter = () => {
+    public resetTablesFilter = (): void => {
         this.tables.forEach((table) => {
             table.shouldHideByFilter = false;
         });
+    };
+
+    public editTable = (tableNumber: number): void => {
+        const dialogRef = this.createDialog(this.tables[tableNumber - 1]);
+
+        dialogRef.afterClosed().subscribe((response: any) => {
+            // const canSave = response && response.type === 'save';
+            // if (canSave) {
+            //     this.handleFunctionCreation(response.data);
+            // }
+        });
+    };
+
+    private createDialog = (dialogData?: TableModel) => {
+        const height = '95vh';
+        const width = '95vw';
+
+        if (dialogData) {
+            const dialogRef = this._dialogService.createDialog(EditTableDialog, height, width, dialogData);
+            return dialogRef;
+        } else {
+            const dialogRef = this._dialogService.createDialog(EditTableDialog, height, width);
+            return dialogRef;
+        }
     };
 }

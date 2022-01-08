@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="header">
+        <span class="header-title">{{ messages.checkControl }}</span>
+        <button mat-raised-button color="accent" class="btn">
+            {{ messages.back }}
+        </button>
+    </div>
+    <div class="main-content-container">
+        <!-- TABLE CONTAINER -->
+        <div class="main-chield">
+            <div class="chield-header">
+                <span class="chield-header-title">{{ messages.table + ': ' + table.number }}</span>
+            </div>
+            <div class="main-chield-content-container">
+                <!-- CLIENT NAME INPUT -->
+                <mat-form-field class="input" color="accent" appearance="standard">
+                    <mat-label>{{ messages.clientName }}</mat-label>
+                    <input
+                        matInput
+                        acceptOnlyLetters
+                        autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        type="text"
+                        name="clientName"
+                        [ngModel]="table.clientName"
+                    />
+                    <button
+                        *ngIf="table.clientName"
+                        matSuffix
+                        mat-icon-button
+                        aria-label="Clear"
+                        (click)="table.clientName = ''"
+                    >
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+                <!-- /CLIENT NAME INPUT -->
+
+                <!-- TODO ajustar autocomplete de trabalhadores -->
+                <!-- WAITERS NAME INPUT -->
+                <er-auto-complete
+                    [label]="messages.worker"
+                    [items]="workers"
+                    [propertyToshowInOption]="'name'"
+                    (valueChange)="handleWorkerChange($event)"
+                >
+                </er-auto-complete>
+                <!-- /WAITERS NAME INPUT -->
+            </div>
+        </div>
+        <!-- /TABLE CONTAINER -->
+
+        <!-- INCLUDE CONTAINER -->
+        <div class="main-chield">
+            <div class="chield-header">
+                <span class="chield-header-title">{{ messages.include }}</span>
+            </div>
+            <div class="main-chield-content-container"></div>
+        </div>
+        <!-- /INCLUDE CONTAINER -->
+
+        <!-- CHECK DETAILS CONTAINER -->
+        <div class="main-chield">
+            <div class="chield-header">
+                <span class="chield-header-title">{{ messages.checkDetails }}</span>
+            </div>
+            <div class="main-chield-content-container"></div>
+        </div>
+        <!-- CHECK DETAILS CONTAINER -->
+    </div>
+</div>

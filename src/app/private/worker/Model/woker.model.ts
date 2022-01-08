@@ -19,6 +19,7 @@ export class WorkerFlatModel {
     public email: string = '';
     public type: string = '';
 }
+
 export class Functions {
     public functionList: Array<FunctionModel> = [];
 

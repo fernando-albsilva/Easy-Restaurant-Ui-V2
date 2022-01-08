@@ -9,7 +9,7 @@ export class DialogService {
     constructor(public dialog: MatDialog) {}
 
     public createDialog = (component: ComponentType<unknown>, height: string, width: string, dataReceived?: any) => {
-        const dialogParameters: any = { height: height, width: width };
+        const dialogParameters: any = { height: height, maxHeight: height, width: width, maxWidth: width };
 
         if (dataReceived) {
             dialogParameters['data'] = dataReceived;

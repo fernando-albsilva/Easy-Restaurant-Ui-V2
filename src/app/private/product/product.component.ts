@@ -35,10 +35,7 @@ export class ProductComponent implements OnInit {
 
     ngOnInit(): void {
         this.productApi.getProducts().subscribe((requestResult) => {
-            this.products = this.sortService.sortListByObjectPropertyCaseInsensitive(
-                requestResult,
-                this._byTypeProperty,
-            );
+            this.products = this.sortService.sortByProperty(requestResult, this._byTypeProperty);
         });
     }
 
@@ -119,7 +116,7 @@ export class ProductComponent implements OnInit {
 
     public getProducts = () => {
         this.productApi.getProducts().subscribe((response: Array<ProductModel>) => {
-            this.products = this.sortService.sortListByObjectPropertyCaseInsensitive(response, this._byTypeProperty);
+            this.products = this.sortService.sortByProperty(response, this._byTypeProperty);
         });
     };
 }

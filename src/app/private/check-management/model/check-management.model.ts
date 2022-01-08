@@ -1,12 +1,14 @@
 import { ProductModel } from '../../product/Model/product.model';
+import { WorkerFlatModel } from '../../worker/Model/woker.model';
 
 export class TableModel {
     public number: number = 0;
     public clientName: string = '';
     public invoiceId: string = '';
     public date: Date = new Date();
-    public worker: WorkerTinyModel = new WorkerTinyModel();
+    public worker: WorkerFlatModel = new WorkerFlatModel();
     public shouldHideByFilter: boolean = false;
+    public isActive: boolean = false;
     public products: Array<ProductModel> = [];
 
     constructor(number?: number) {
@@ -21,13 +23,8 @@ export class IndividualCheckModel {
     public clientName: string = '';
     public invoiceId: string = '';
     public date: Date = new Date();
-    public worker: WorkerTinyModel = new WorkerTinyModel();
+    public worker: WorkerFlatModel = new WorkerFlatModel();
     public products: Array<ProductModel> = [];
-}
-
-export class WorkerTinyModel {
-    public id: string = '';
-    public name: string = '';
 }
 
 export class ActiveProductModel {

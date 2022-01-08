@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { FunctionCardComponent } from './er-page-list/cards/function-card/function-card.component';
 import { ErPageList } from './er-page-list/er-page-list.component';
@@ -18,6 +19,7 @@ import { ErPageListFilterComponent } from './er-page-list/components/er-page-lis
 import { ProductCardComponent } from './er-page-list/cards/product-card/product-card.component';
 import { ErPageListSideMenuComponent } from './er-page-list/er-page-list-side-menu/er-page-list-side-menu.component';
 import { UserCardComponent } from './er-page-list/cards/user-card/user-card.component';
+import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,7 @@ import { UserCardComponent } from './er-page-list/cards/user-card/user-card.comp
         ErPageList,
         ErPageListSideMenuComponent,
         ErPageListFilterComponent,
+        ErAutoComplete,
         FunctionCardComponent,
         WorkerCardComponent,
         ProductCardComponent,
@@ -42,6 +45,7 @@ import { UserCardComponent } from './er-page-list/cards/user-card/user-card.comp
         DirectivesModule,
         MatSelectModule,
         MatSelectModule,
+        MatAutocompleteModule,
     ],
     exports: [
         MatInputModule,
@@ -55,6 +59,7 @@ import { UserCardComponent } from './er-page-list/cards/user-card/user-card.comp
         ErPageList,
         ErPageListSideMenuComponent,
         ErPageListFilterComponent,
+        ErAutoComplete,
         FunctionCardComponent,
         WorkerCardComponent,
         ProductCardComponent,

@@ -44,19 +44,18 @@ er-top-menu {
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
 }
+
 ::-webkit-scrollbar-thumb {
     background: $card-background10;
-    border-radius: 30px;
+    border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-    background: $card-background10;
-}
+
 ::-webkit-scrollbar-track {
     background: #858585;
-    border-radius: 30px;
+    border-radius: 3px;
     box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
 

@@ -1,0 +1,7 @@
+@import '../shared-styles/colors-and-default-styles.scss';
+
+::ng-deep .mat-dialog-container {
+    padding: 0px;
+    overflow: none !important;
+    border-radius: $card-radius10;
+}

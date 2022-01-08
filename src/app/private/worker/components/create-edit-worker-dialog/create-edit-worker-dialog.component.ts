@@ -65,7 +65,7 @@ export class CreateEditWorkerDialog implements OnInit {
     public fillFunctionsAvailables = (): void => {
         this._workerFunctionApi.getFunctions().subscribe(
             (requestResult) => {
-                this.workerFunctions = this._sortService.sortListByObjectPropertyCaseInsensitive(requestResult, 'type');
+                this.workerFunctions = this._sortService.sortByProperty(requestResult, 'type');
             },
             (error) => {
                 console.log(error);

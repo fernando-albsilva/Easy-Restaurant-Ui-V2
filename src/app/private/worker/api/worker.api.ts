@@ -7,8 +7,11 @@ import { UUID } from 'angular2-uuid';
 import { FunctionModel } from '../../worker-function/Model/function.model';
 import { WorkerCommand } from '../commands/worker.comand';
 import { WorkerFlatModel, WorkerModel } from '../Model/woker.model';
+import { WorkerModule } from '../worker.module';
 
-@Injectable()
+@Injectable({
+    providedIn: 'any',
+})
 export class WorkerApi {
     public apiUrl = `https://localhost:5101/Worker`;
     public apiFunctionUrl = `https://localhost:5101/Functions`;

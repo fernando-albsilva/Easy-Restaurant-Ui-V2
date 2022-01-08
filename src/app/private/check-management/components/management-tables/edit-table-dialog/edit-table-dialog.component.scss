@@ -1,0 +1,95 @@
+@import '../../../../../shared-styles/colors-and-default-styles.scss';
+@import '../../../../../shared-styles/dialog-reset.scss';
+
+$headerHeight: 60px;
+$headerWidth: 100%;
+$headerBottomBorder: 2px;
+
+$mainContentContainerHeight: calc(100% - #{$headerHeight + $headerBottomBorder});
+$mainContentContainerWidth: 100%;
+
+$mainChieldHeight: 100%;
+$mainChieldWidth: calc(33% - 5px);
+$mainChieldBorder: 2px;
+
+$mainChieldHeaderHeight: 40px;
+$mainChieldHeaderWidth: 100%;
+$mainChieldHeaderBorder: 2px;
+
+$mainChieldHeaderTitleHeight: 100%;
+$mainChieldHeaderTitleWidth: 100%;
+
+$mainChieldContentHeight: calc(100% - #{$mainChieldHeaderHeight + $mainChieldHeaderBorder});
+$mainChieldContentWidth: 100%;
+
+.container {
+    height: 100%;
+    width: 100%;
+    background-color: $card-background10;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-top: 0px;
+
+    .header {
+        height: $headerHeight;
+        width: $headerWidth;
+        border-bottom: $headerBottomBorder solid $green10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .header-title {
+            color: $green10;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+    }
+
+    .main-content-container {
+        height: $mainContentContainerHeight;
+        width: $mainContentContainerWidth;
+        box-sizing: border-box;
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+
+        .main-chield {
+            height: $mainChieldHeight;
+            width: $mainChieldWidth;
+            border: $mainChieldBorder solid $green10;
+            border-radius: $card-radius10;
+            box-sizing: border-box;
+            padding: 15px;
+
+            .chield-header {
+                height: $mainChieldHeaderHeight;
+                width: $mainChieldHeaderWidth;
+                border-bottom: $mainChieldHeaderBorder solid $gray10;
+
+                .chield-header-title {
+                    height: $mainChieldHeaderTitleHeight;
+                    width: $mainChieldHeaderTitleWidth;
+                    color: $gray10;
+                    font-size: 1rem;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+
+            .main-chield-content-container {
+                height: $mainChieldContentHeight;
+                width: $mainChieldContentWidth;
+                box-sizing: border-box;
+                padding-top: 15px;
+
+                .input {
+                    width: 100%;
+                    border: 2px solid $green10;
+                    border-radius: 4px;
+                    padding: 0px 15px;
+                    box-sizing: border-box;
+                }
+            }
+        }
+    }
+}

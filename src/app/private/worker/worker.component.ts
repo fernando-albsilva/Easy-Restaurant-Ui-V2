@@ -32,7 +32,7 @@ export class WorkerComponent implements OnInit {
 
     ngOnInit(): void {
         this.workerApi.getWorkers().subscribe((requestResult) => {
-            this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(requestResult, this.byTypeName);
+            this.workers = this.sortService.sortByProperty(requestResult, this.byTypeName);
         });
     }
 
@@ -78,7 +78,7 @@ export class WorkerComponent implements OnInit {
             const dialogRef = this.dialogService.createDialog(CreateEditWorkerDialog, height, width, dialogData);
             return dialogRef;
         } else {
-            const dialogRef = this.dialogService.createDialog(CreateEditWorkerDialog, height, width);
+            const dialogRef = this.dialogService.createDialog(CreateEditWorkerDialog, height, width, dialogData);
             return dialogRef;
         }
     };
@@ -121,7 +121,7 @@ export class WorkerComponent implements OnInit {
 
     public getWorkers = () => {
         this.workerApi.getWorkers().subscribe((response: Array<WorkerFlatModel>) => {
-            this.workers = this.sortService.sortListByObjectPropertyCaseInsensitive(response, this.byTypeName);
+            this.workers = this.sortService.sortByProperty(response, this.byTypeName);
         });
     };
 }

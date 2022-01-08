@@ -104,7 +104,23 @@ export class MessagesKeys {
     public table: string = 'Mesa';
     public tableQuantity: string = 'Quantidade de mesas';
 
+    //Related to check
+    public checkControl: string = 'Controle de conta';
+    public checkDetails: string = 'Detalhes da conta';
+
     //Related to individual check
     public individualCheckCommand: string = 'Commanda';
     public individualCheckQuantity: string = 'Quantidade de Commandas';
+
+    //Related to back
+    public back: string = 'Voltar';
+
+    //Related to include
+    public include: string = 'Incluir';
+
+    //Related to client
+    public clientName: string = 'Nome do cliente';
+
+    //Related to worker
+    public worker: string = 'Funcionário';
 }

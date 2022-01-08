@@ -1,5 +1,5 @@
 <div class="tables-container">
     <ng-container *ngFor="let table of tables">
-        <table [table]="table" [hidden]="table.shouldHideByFilter"></table>
+        <table [table]="table" [hidden]="table.shouldHideByFilter" (dblclick)="editTable(table.number)"></table>
     </ng-container>
 </div>

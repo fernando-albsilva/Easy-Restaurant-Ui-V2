@@ -34,10 +34,7 @@ export class WorkerFunction implements OnInit {
 
     ngOnInit(): void {
         this.functionApi.getFunctions().subscribe((requestResult) => {
-            this.functions = this.sortService.sortListByObjectPropertyCaseInsensitive(
-                requestResult,
-                this._byTypeProperty,
-            );
+            this.functions = this.sortService.sortByProperty(requestResult, this._byTypeProperty);
         });
     }
 
@@ -118,7 +115,7 @@ export class WorkerFunction implements OnInit {
 
     public getFunctions = () => {
         this.functionApi.getFunctions().subscribe((response: Array<FunctionModel>) => {
-            this.functions = this.sortService.sortListByObjectPropertyCaseInsensitive(response, this._byTypeProperty);
+            this.functions = this.sortService.sortByProperty(response, this._byTypeProperty);
         });
     };
 }

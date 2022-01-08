@@ -1,0 +1,20 @@
+<mat-form-field class="input" color="accent" appearance="standard">
+    <mat-label>{{ label }}</mat-label>
+    <input
+        #inputText
+        type="text"
+        matInput [matAutocomplete]="auto"
+        [(ngModel)]="filterText"
+        (input)="handleFilter(inputText.value)"
+    />
+    <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)='handleValueChosen($event.option.value)'
+    >
+     <ng-container *ngFor="let option of itemsFiltered">
+         <mat-option [value]="option">
+             {{ getPropertyToShowValue(option) }}
+            </mat-option>
+        </ng-container>
+    </mat-autocomplete>
+</mat-form-field>

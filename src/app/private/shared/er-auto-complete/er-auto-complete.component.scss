@@ -1,0 +1,16 @@
+@import '../../../shared-styles/colors-and-default-styles.scss';
+
+.badge-container {
+    box-sizing: border-box;
+    border-radius: $card-radius10;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    span {
+        font-weight: 500;
+    }
+}
