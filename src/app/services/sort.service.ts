@@ -1,48 +1,34 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class SortService {
     constructor() {}
 
-    public sortListByObjectPropertyCaseSensitive = (listToSort: Array<any>, propertyChosen: string): Array<any> => {
-        return listToSort.sort((element, elementToCompare) => {
-            const isCaseSensitive = true;
-            return this.compareObjects(element, elementToCompare, propertyChosen, isCaseSensitive);
-        });
+    public sortByPropertyCaseSensitive = (listToSort: Array<any>, propertyChosen: string): Array<any> => {
+        return listToSort.sort((element, elementToCompare) =>
+            this.compareObjectsByProperty(element, elementToCompare, propertyChosen, true),
+        );
     };
 
-    public sortListByObjectPropertyCaseInsensitive = (listToSort: Array<any>, propertyChosen: string): Array<any> => {
-        return listToSort.sort((element, elementToCompare) => {
-            const isCaseSensitive = false;
-            return this.compareObjects(element, elementToCompare, propertyChosen, isCaseSensitive);
-        });
+    public sortByProperty = (listToSort: Array<any>, propertyChosen: string): Array<any> => {
+        return listToSort.sort((element, elementToCompare) =>
+            this.compareObjectsByProperty(element, elementToCompare, propertyChosen, false),
+        );
     };
 
-    public sortNumberList = (listToSort: Array<any>): Array<any> => {
-        return this.sortByCaseInsensitive(listToSort);
+    public sortByNumber = (listToSort: Array<Number>): Array<Number> => this.sortList(listToSort);
+
+    public sortStringCaseSensitive = (listToSort: Array<string>): Array<string> =>
+        this.sortStringList(listToSort, true);
+
+    public sortStringCaseInsensitive = (listToSort: Array<string>): Array<string> =>
+        this.sortStringList(listToSort, false);
+
+    private sortStringList = (listToSort: Array<string>, isCaseSensitive: boolean): Array<string> => {
+        return isCaseSensitive ? this.sortListCaseSensitive(listToSort) : this.sortList(listToSort);
     };
 
-    public sortStringListCaseSensitive = (listToSort: Array<any>): Array<any> => {
-        const isCaseSensitive = true;
-        return this.sortStringList(listToSort, isCaseSensitive);
-    };
-
-    public sortStringListCaseInsensitive = (listToSort: Array<any>): Array<any> => {
-        const isCaseSensitive = false;
-        return this.sortStringList(listToSort, isCaseSensitive);
-    };
-
-    private sortStringList = (listToSort: Array<any>, isCaseSensitive: boolean): Array<any> => {
-        if (isCaseSensitive) {
-            return this.sortByCaseSensitive(listToSort);
-        } else {
-            return this.sortByCaseInsensitive(listToSort);
-        }
-    };
-
-    private sortByCaseSensitive = (listToSort: Array<any>) => {
+    private sortListCaseSensitive = (listToSort: Array<any>) => {
         return listToSort.sort((element, elementToCompare) => {
             if (element.toUpperCase() > elementToCompare.toUpperCase()) {
                 return 1;
@@ -54,7 +40,7 @@ export class SortService {
         });
     };
 
-    private sortByCaseInsensitive = (listToSort: Array<any>) => {
+    private sortList = (listToSort: Array<any>) => {
         return listToSort.sort((element, elementToCompare) => {
             if (element > elementToCompare) {
                 return 1;
@@ -66,31 +52,25 @@ export class SortService {
         });
     };
 
-    private compareObjects = (
+    private compareObjectsByProperty = (
         object: any,
         objectToCompare: any,
         propertyChosen: string,
         isCaseSensitive: boolean = false,
     ) => {
-        if (isCaseSensitive) {
-            const obj = object[propertyChosen].toUpperCase();
-            const objToCompare = objectToCompare[propertyChosen].toUpperCase();
+        const obj = object[propertyChosen];
 
-            this.checkIfPropertiesExist(obj, objToCompare);
-            return this.compareDynamicProperties(obj, objToCompare);
-        } else {
-            const obj = object[propertyChosen];
-            const objToCompare = objectToCompare[propertyChosen];
+        const objToCompare = objectToCompare[propertyChosen];
 
-            this.checkIfPropertiesExist(obj, objToCompare);
-            return this.compareDynamicProperties(obj, objToCompare);
+        if (obj === undefined || objToCompare === undefined) {
+            throw Error(`The ${propertyChosen} property not found in object`);
         }
-    };
 
-    private checkIfPropertiesExist = (object: any, objectToCompare: any) => {
-        if (object === undefined || objectToCompare === undefined) {
-            throw new Error('Property does not exist in object');
-        }
+        const filteredObject = isCaseSensitive ? obj.toUpperCase() : obj;
+
+        const filteredObjectToCompare = isCaseSensitive ? objToCompare.toUpperCase() : objToCompare;
+
+        return this.compareDynamicProperties(filteredObject, filteredObjectToCompare);
     };
 
     private compareDynamicProperties = (object: any, objectToCompare: any) => {
