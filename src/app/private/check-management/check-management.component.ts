@@ -12,6 +12,8 @@ import { IndividualCheckModel, TableModel } from './model/check-management.model
     styleUrls: ['./check-management.component.scss'],
 })
 export class CheckManagementComponent implements OnInit {
+
+    
     public individualCheckQuantity: number = 45;
     public individualChecks: Array<IndividualCheckModel> = [];
     public showIndividualChecks: boolean = false;

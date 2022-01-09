@@ -107,7 +107,8 @@ export class MessagesKeys {
     //Related to check
     public checkControl: string = 'Controle de conta';
     public checkDetails: string = 'Detalhes da conta';
-
+    public check: string = 'Conta';
+    
     //Related to individual check
     public individualCheckCommand: string = 'Commanda';
     public individualCheckQuantity: string = 'Quantidade de Commandas';
@@ -129,4 +130,16 @@ export class MessagesKeys {
     
     //Related to start
     public start: string = 'Iniciar';
+    
+    //Related to waiter
+    public waiter: string = 'Garçom';
+
+    //Related to percent / percentage
+    public tenPerCent: string = '10%';
+
+    //Related to total
+    public total: string = 'Total';
+
+    //Related to quantity
+    public quantity: string = 'Quantidade';
 }

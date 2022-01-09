@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { UUID } from 'angular2-uuid';
 import { CheckManagementModule } from '../check-management.module';
 import { WorkerFlatModel } from '../../worker/Model/woker.model';
+import { ProductModel } from '../../product/Model/product.model';
 
 @Injectable({
     providedIn: 'any',
@@ -17,6 +18,10 @@ export class CheckManagementApi {
 
     public getWorkers(): Observable<Array<WorkerFlatModel>> {
         return this.http.get(this.apiUrl + '/Workers').pipe(map((element) => element as Array<WorkerFlatModel>));
+    }
+   
+    public getProducts(): Observable<Array<ProductModel>> {
+        return this.http.get(this.apiUrl + '/Products').pipe(map((element) => element as Array<ProductModel>));
     }
 
     // public getWorker(id: string): Observable<WorkerModel> {

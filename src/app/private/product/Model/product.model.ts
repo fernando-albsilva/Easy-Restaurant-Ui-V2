@@ -4,4 +4,5 @@ export class ProductModel {
     public unitValue: number = 0;
     public cost: number = 0;
     public code: number = 0;
+    public quantity: number = 0;
 }

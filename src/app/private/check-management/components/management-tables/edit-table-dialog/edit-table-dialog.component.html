@@ -65,32 +65,32 @@
                         </span>
 
                         <div class="info-row">
-                            <span class="info-row-label">Cliente: </span>
+                            <span class="info-row-label">{{ messages.clientName }}</span>
                             <span class="info-row-data">{{ table.clientName }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-label">{{ messages.waiter }}</span>
                             <span class="info-row-data">{{ table.worker.name }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-row-label">Atendente: </span>
-                            <span class="info-row-data"> helena da Silva</span>
+                            <span class="info-row-label">Inicio: </span>
+                            <span class="info-row-data"> {{getParseTableStartTime()}} </span>
                         </div>
                         <div class="info-row">
-                            <span class="info-row-label">Atendente: </span>
-                            <span class="info-row-data"> helena da Silva</span>
+                            <span class="info-row-label">Duração </span>
+                            <span class="info-row-data">{{ durationTime }}</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-row-label">Atendente: </span>
-                            <span class="info-row-data"> helena da Silva</span>
+                            <span class="info-row-label">{{ messages.check }}</span>
+                            <span class="info-row-data"> R$00.00</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-row-label">Atendente: </span>
-                            <span class="info-row-data"> helena da Silva</span>
+                            <span class="info-row-label">{{ messages.tenPerCent}} </span>
+                            <span class="info-row-data"> R$00.00</span>
                         </div>
                         <div class="info-row">
-                            <span class="info-row-label">Atendente: </span>
-                            <span class="info-row-data"> helena da Silva</span>
+                            <span class="info-row-label">{{ messages.total}}</span>
+                            <span class="info-row-data"> R$00.00</span>
                         </div>
                     </ng-container>
                 </div>
@@ -113,7 +113,83 @@
             <div class="chield-header">
                 <span class="chield-header-title">{{ messages.include }}</span>
             </div>
-            <div class="main-chield-content-container"></div>
+            <div class="main-chield-content-container">
+
+                <!-- INCLUDE PRODUCT -->
+                <div  class="input">
+                    <er-auto-complete
+                        [label]="messages.product"
+                        [items]="products"
+                        [propertyToshowInOption]="'name'"
+                        [disabled]="!table.isActive"
+                        (valueChange)="handleProductChosen($event)"
+                    >
+                    </er-auto-complete>
+                </div>
+                <!-- /INCLUDE PRODUCT -->
+
+                <!-- INCLUDE QUANTITY -->
+                <mat-form-field class="input" color="accent" appearance="standard">
+                    <mat-label>{{ messages.quantity }}</mat-label>
+                    <input
+                        matInput
+                        acceptOnlyIntPositiveNumbers
+                        min="1"
+                        max="99999"
+                        autocomplete="off"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        spellcheck="false"
+                        type="number"
+                        name="productQuantity"
+                        [(ngModel)]="selectedProduct.quantity"
+                        [disabled]="!table.isActive"
+                        (input)="handleQuantityChange()"
+                    />
+                </mat-form-field>
+                <!-- INCLUDE QUANTITY -->
+
+                <!-- PRODUCT INFO CONTAINER -->
+                <div class="info-container">
+                    <ng-container *ngIf="isProductAndQuantityChosen()">
+                        <span class="info-title">
+                            {{ messages.product }}
+                        </span>
+
+                        <div class="info-row">
+                            <span class="info-row-label">{{ messages.name }}</span>
+                            <span class="info-row-data">{{ productSelectionInfo.name }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">{{ messages.unitValue }}</span>
+                            <span class="info-row-data">{{ productSelectionInfo.unitValue }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">{{ messages.quantity }}</span>
+                            <span class="info-row-data"> {{ productSelectionInfo.quantity }} </span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">{{ messages.total }} </span>
+                            <span class="info-row-data">{{ productSelectionInfo.total }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">{{ messages.tenPerCent }}</span>
+                            <span class="info-row-data">{{ productSelectionInfo.percentage }}</span>
+                        </div>
+                    </ng-container>
+                </div>
+                <!-- PRODUCT INFO CONTAINER -->
+
+                <button
+                class="check-management-button"
+                mat-raised-button color="accent"
+                [disabled]="!tableHasClientAndWorker() || table.isActive"
+                (click)="includeProduct()"
+                >
+                    {{ messages.include }}
+                </button>
+
+            </div>
         </div>
         <!-- /INCLUDE PRODUCT CONTAINER -->
 
