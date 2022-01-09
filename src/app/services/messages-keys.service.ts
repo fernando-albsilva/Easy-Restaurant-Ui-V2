@@ -123,4 +123,10 @@ export class MessagesKeys {
 
     //Related to worker
     public worker: string = 'Funcionário';
+    
+    //Related to info
+    public informations: string = 'Informações';
+    
+    //Related to start
+    public start: string = 'Iniciar';
 }

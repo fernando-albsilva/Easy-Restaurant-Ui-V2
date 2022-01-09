@@ -44,7 +44,7 @@ export class EditTableDialog implements OnInit {
         this.getWorkesThatHaveWaiterFunction();
     }
 
-    public onCancel = (): void => {
+    public closeDialog = (): void => {
         this.dialogRef.close();
     };
 
@@ -59,17 +59,14 @@ export class EditTableDialog implements OnInit {
         }
     };
 
-    public handleValueChosen(workerChosen: WorkerFlatModel) {
-        console.log('recebi ');
-        console.log(workerChosen);
+    public tableHasClientAndWorker = (): boolean => {
+        return (this.table.clientName !== '' &&  this.table.worker.id !== '');
     }
 
     private getWorkesThatHaveWaiterFunction = (): void => {
         this._checkManagementApi.getWorkers().subscribe(
             (requestResult) => {
-                // console.log(requestResult);
-                this.workers = requestResult;
-                //  this.workerFunctions = this._sortService.sortListByObjectPropertyCaseInsensitive(requestResult, 'type');
+                this.workers = this._sortService.sortByProperty(requestResult, 'name');
             },
             (error) => {
                 console.log(error);
@@ -77,10 +74,17 @@ export class EditTableDialog implements OnInit {
         );
     };
 
-    public handleWorkerChange = (workerChosen: WorkerFlatModel) => {
-        this.table.worker = workerChosen;
-        console.log(this.table);
+    public handleWorkerChange = (workerChosen: WorkerFlatModel | undefined) => {
+        if(!workerChosen){
+            this.table.worker = new WorkerFlatModel();
+        }else{
+            this.table.worker = workerChosen;
+        }
     };
+
+    public startTable = (): void => {
+        this.table.isActive = true;
+    }
 
     private verifyIfInputValueIsEmpty = () => {
         return this._objectService.isAnyPropertyEmpty(this.worker);

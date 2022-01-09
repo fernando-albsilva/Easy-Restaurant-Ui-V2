@@ -1,7 +1,12 @@
 <div class="container">
     <div class="header">
         <span class="header-title">{{ messages.checkControl }}</span>
-        <button mat-raised-button color="accent" class="btn">
+        <button
+            class="btn"
+            mat-raised-button
+            color="accent"
+            (click)="closeDialog()"
+        >
             {{ messages.back }}
         </button>
     </div>
@@ -24,10 +29,11 @@
                         spellcheck="false"
                         type="text"
                         name="clientName"
-                        [ngModel]="table.clientName"
+                        [(ngModel)]="table.clientName"
+                        [disabled]="table.isActive"
                     />
                     <button
-                        *ngIf="table.clientName"
+                        *ngIf="table.clientName && !table.isActive"
                         matSuffix
                         mat-icon-button
                         aria-label="Clear"
@@ -38,28 +44,78 @@
                 </mat-form-field>
                 <!-- /CLIENT NAME INPUT -->
 
-                <!-- TODO ajustar autocomplete de trabalhadores -->
                 <!-- WAITERS NAME INPUT -->
-                <er-auto-complete
-                    [label]="messages.worker"
-                    [items]="workers"
-                    [propertyToshowInOption]="'name'"
-                    (valueChange)="handleWorkerChange($event)"
-                >
-                </er-auto-complete>
+                <div  class="input">
+                        <er-auto-complete
+                            [label]="messages.worker"
+                            [items]="workers"
+                            [propertyToshowInOption]="'name'"
+                            [disabled]="table.isActive"
+                            (valueChange)="handleWorkerChange($event)"
+                        >
+                    </er-auto-complete>
+                </div>
                 <!-- /WAITERS NAME INPUT -->
+
+                <!-- TABLE INFO CONTAINER -->
+                <div class="info-container">
+                    <ng-container *ngIf="table.isActive">
+                        <span class="info-title">
+                            {{ messages.informations }}
+                        </span>
+
+                        <div class="info-row">
+                            <span class="info-row-label">Cliente: </span>
+                            <span class="info-row-data">{{ table.clientName }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-data">{{ table.worker.name }}</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-data"> helena da Silva</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-data"> helena da Silva</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-data"> helena da Silva</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-data"> helena da Silva</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-row-label">Atendente: </span>
+                            <span class="info-row-data"> helena da Silva</span>
+                        </div>
+                    </ng-container>
+                </div>
+                <!-- /TABLE INFO CONTAINER -->
+
+                <button
+                    class="check-management-button"
+                    mat-raised-button color="accent"
+                    [disabled]="!tableHasClientAndWorker() || table.isActive"
+                    (click)="startTable()"
+                >
+                    {{ messages.start }}
+                </button>
             </div>
         </div>
         <!-- /TABLE CONTAINER -->
 
-        <!-- INCLUDE CONTAINER -->
+        <!-- INCLUDE PRODUCT CONTAINER -->
         <div class="main-chield">
             <div class="chield-header">
                 <span class="chield-header-title">{{ messages.include }}</span>
             </div>
             <div class="main-chield-content-container"></div>
         </div>
-        <!-- /INCLUDE CONTAINER -->
+        <!-- /INCLUDE PRODUCT CONTAINER -->
 
         <!-- CHECK DETAILS CONTAINER -->
         <div class="main-chield">

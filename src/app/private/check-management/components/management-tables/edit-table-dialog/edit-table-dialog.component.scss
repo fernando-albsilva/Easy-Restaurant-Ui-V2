@@ -69,7 +69,7 @@ $mainChieldContentWidth: 100%;
                 .chield-header-title {
                     height: $mainChieldHeaderTitleHeight;
                     width: $mainChieldHeaderTitleWidth;
-                    color: $gray10;
+                    color: $green10;
                     font-size: 1rem;
                     display: flex;
                     align-items: center;
@@ -81,6 +81,9 @@ $mainChieldContentWidth: 100%;
                 width: $mainChieldContentWidth;
                 box-sizing: border-box;
                 padding-top: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
 
                 .input {
                     width: 100%;
@@ -88,6 +91,46 @@ $mainChieldContentWidth: 100%;
                     border-radius: 4px;
                     padding: 0px 15px;
                     box-sizing: border-box;
+                }
+
+                .info-container{
+                    width: 100%;
+                    height: calc(100% - 230px);
+                    border-top: $headerBottomBorder solid $gray10;
+
+                    .info-title{
+                        display: flex;
+                        align-items: center;
+                        height: 50px;
+                        color: $green10;
+                        font-size: 1.1rem;
+                        font-weight: 500;
+                    }
+
+                    .info-row{
+                        height: 36px;
+                        width: 100%;
+                        border-bottom: 1px solid $gray10;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .info-row-label{
+                            color: $green10;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                        }
+
+                        .info-row-data{
+                            color: $white10;
+                            font-size: 0.9rem;
+                            font-weight: 400;
+                        }
+                    }
+                }
+
+                .check-management-button{
+                    width: 100%;
                 }
             }
         }

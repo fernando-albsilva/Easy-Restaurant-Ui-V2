@@ -1,11 +1,13 @@
-<mat-form-field class="auto-conplete" color="accent" appearance="standard">
+<mat-form-field class="auto-complete" color="accent" appearance="standard">
     <mat-label>{{ label }}</mat-label>
     <input
-        #inputText
         type="text"
-        matInput [matAutocomplete]="auto"
+        matInput 
+        [matAutocomplete]="auto"
         [(ngModel)]="filterText"
-        (input)="handleFilter(inputText.value)"
+        name="filterText"
+        (input)="handleFilter()"
+        [disabled]="disabled"
     />
     <mat-autocomplete
         #auto="matAutocomplete"

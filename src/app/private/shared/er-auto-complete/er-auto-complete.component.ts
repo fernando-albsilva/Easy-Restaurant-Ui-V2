@@ -8,8 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ErAutoComplete {
     public itemsReceived: Array<any> = [];
     public itemsFiltered: Array<any> = [];
-    public filterText: string = '';
-
+    public filterText: any = '';
+    
+    @Input() disabled: boolean = false;
     @Input() label: string = '';
     @Input() propertyToshowInOption: string = '';
     @Input() set items(items: any) {
@@ -22,9 +23,8 @@ export class ErAutoComplete {
 
     constructor() {}
 
-    public handleFilter = (text: string): void => {
-        // console.log('valor recebido');
-        // console.log(text);
+    public handleFilter = (): void => {
+        this.handleValueChosen(undefined);
         this.itemsFiltered = this.itemsReceived.filter((element) => {
             const valueToFilter = element[this.propertyToshowInOption];
             if (!valueToFilter) {
@@ -32,22 +32,22 @@ export class ErAutoComplete {
                     'this property you are trying to filter in autocomplete does not exit or is undefined.',
                 );
             } else {
-                return valueToFilter.toLowerCase().includes(text.toLocaleLowerCase());
+                return valueToFilter.toLowerCase().includes(this.filterText.toLocaleLowerCase());
             }
         });
     };
 
     public handleValueChosen = (item: any) => {
-        // console.log("emitindo item");
-        // console.log(item);
         this.valueChange.emit(item);
-        const valueToShow = item[this.propertyToshowInOption];
-        if (!valueToShow) {
-            throw new Error(
-                'Was not possible to put de text chosen in input because property is undefined or does not exist.',
-            );
-        } else {
-            this.filterText = valueToShow;
+        if (item !== undefined) {
+            const valueToShow = item[this.propertyToshowInOption];
+            if (!valueToShow) {
+                throw new Error(
+                    'Was not possible to put de text chosen in input because property is undefined or does not exist.',
+                );
+            } else {
+                this.filterText = valueToShow;
+            }
         }
     };
 
@@ -59,4 +59,6 @@ export class ErAutoComplete {
             return valueToShow;
         }
     };
+
+    //FIXME verificar por que quando tecla enter com um nome complete ele coloca o object no input
 }
