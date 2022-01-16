@@ -8,3 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ManagementLeftMenuComponent implements OnInit {
     ngOnInit(): void {}
 }
+
+//TODO
+// Excluir esse componente caso nao for mais usado
+// No momento ainda não ha função para o mesmo

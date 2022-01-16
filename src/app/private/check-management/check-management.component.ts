@@ -1,8 +1,11 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { SortService } from 'src/app/services/sort.service';
+import { CheckManagementApi } from './api/check-management.api';
 import { CheckManagementHelper } from './check-management.helper';
+import { InvoiceActiveCommand } from './commands/check-management.command';
 import { ManagementTablesComponent } from './components/management-tables/management-tables.component';
 import {
     ManagementFilterPayload,
@@ -30,9 +33,11 @@ export class CheckManagementComponent implements OnInit {
     private checkHelper = new CheckManagementHelper();
 
     constructor(
-        private erMessagesSnackbar: ErMessages,
-        private messages: MessagesKeys,
-        private sortService: SortService
+        private _erMessagesSnackbar: ErMessages,
+        private _messages: MessagesKeys,
+        private _sortService: SortService,
+        private _checkManagementApi:CheckManagementApi,
+        private _auth:AuthService,
     ) {}
 
     //TODO
@@ -58,7 +63,7 @@ export class CheckManagementComponent implements OnInit {
     public handleCheckResult = (checkResult: CheckResult): void => {
         if (checkResult.checkOptions.closed) {
             this.handleClosedTableCheck(checkResult.table);
-            this.erMessagesSnackbar.openSnackBar(this.messages.checkClosedSucessfully, 'sucess');
+            this._erMessagesSnackbar.openSnackBar(this._messages.checkClosedSucessfully, 'sucess');
         } else if (checkResult.checkOptions.active) {
             this.handleTableActive(checkResult.table);
         }
@@ -67,10 +72,19 @@ export class CheckManagementComponent implements OnInit {
     //TODO
     //INFO
     // Ao ser fechada a conta esse metodo deve tratar
-    // de gerar a conta final
-    // salvar na tabela de invoice corretamente
-    // liberar a mesa na lista de mesas this.tables
-    private handleClosedTableCheck = (table: TableModel): void => {};
+    // de gerar a conta final (Não implementado ainda)
+    // salvar na tabela de invoice corretamente (Não implementado ainda);
+    // limpar a mesa (Já implementado);
+    private handleClosedTableCheck = (table: TableModel): void => {
+        const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables,table.number);
+        if(tableIndex){
+            this.tables[tableIndex] = new TableModel();
+            this.tables[tableIndex].number = table.number;
+            this.tables = [...this.tables];
+        }else{
+            throw new Error ('Can not clear table after finish because it was not found in table list');
+        }
+    };
 
     //TODO
     //INFO
@@ -80,11 +94,20 @@ export class CheckManagementComponent implements OnInit {
         const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables,table.number);
         if (tableIndex) {
             this.tables[tableIndex] = table;
+            const invoiceActiveCommand = new InvoiceActiveCommand(table);
+            this._checkManagementApi.createActiveTable(invoiceActiveCommand).subscribe(()=>{}, err => console.log(err));
+            //chamar end point para fazer update da mesa
         } else {
             this.tables.push(table);
+            const userId = this._auth.getUserId();
+            if(userId){
+                table.userId = userId;
+            }
+            const invoiceActiveCommand = new InvoiceActiveCommand(table);
+            this._checkManagementApi.createActiveTable(invoiceActiveCommand);
         }
         if(this.tables.length > 0){
-            this.tables = this.sortService.sortByProperty(this.tables,'number');
+            this.tables = this._sortService.sortByProperty(this.tables,'number');
         }
     };
 

@@ -7,6 +7,8 @@ import { UUID } from 'angular2-uuid';
 import { CheckManagementModule } from '../check-management.module';
 import { WorkerFlatModel } from '../../worker/Model/woker.model';
 import { ProductModel } from '../../product/Model/product.model';
+import { TableModel } from '../model/check-management.model';
+import { InvoiceActiveCommand } from '../commands/check-management.command';
 
 @Injectable({
     providedIn: 'any',
@@ -24,35 +26,11 @@ export class CheckManagementApi {
         return this.http.get(this.apiUrl + '/Products').pipe(map((element) => element as Array<ProductModel>));
     }
 
-    // public getWorker(id: string): Observable<WorkerModel> {
-    //     let params = new HttpParams();
-    //     params = params.append('Id', id);
-    //     return this.http
-    //         .get(this.apiUrl + '/WorkerById', { params: params })
-    //         .pipe(map((element) => element as WorkerModel));
-    // }
+    public createActiveTable = (invoiceActiveCommand: InvoiceActiveCommand): Observable<any> => {
+        // let params = new HttpParams();
+        // params = params.append('table', table);
 
-    // public getFunctions(): Observable<Array<FunctionModel>> {
-    //     return this.http.get(this.apiFunctionUrl + '/GetAll').pipe(map((element) => element as Array<FunctionModel>));
-    // }
-
-    // public createWorker = (cmd: WorkerCommand): Observable<any> => {
-    //     cmd.id = UUID.UUID() + '';
-    //     return this.http.post(`${this.apiUrl}/Create`, cmd);
-    // };
-
-    // public updateWorker = (cmd: WorkerCommand): Observable<any> => {
-    //     return this.http.put<any>(`${this.apiUrl}/Update`, cmd);
-    // };
-
-    // public deleteWorker = (id: string): Observable<any> => {
-    //     let params = new HttpParams();
-    //     params = params.append('Id', id);
-
-    //     return this.http.delete<any>(`${this.apiUrl}/Delete`, { params: params });
-    // };
-
-    // public deleteWorkersByIds = (idList: Array<string>): Observable<any> => {
-    //     return this.http.post<any>(`${this.apiUrl}/DeleteByList`, idList);
-    // };
+        // return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, { params: params });
+        return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, invoiceActiveCommand);
+    };
 }

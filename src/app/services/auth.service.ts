@@ -22,6 +22,7 @@ export class AuthService {
         localStorage.setItem('access_token', authResult.access_token);
         localStorage.setItem('user_roles', authResult.user.role);
         localStorage.setItem('user_userName', authResult.user.userName);
+        localStorage.setItem('user_id', authResult.user.id);
         // localStorage.setItem('expires_at', authResult.JSON.stringify(expiresAt.valueOf()));
     };
 
@@ -39,6 +40,10 @@ export class AuthService {
 
     public getRole = (): string | null => {
         return localStorage.getItem('user_roles');
+    };
+   
+    public getUserId = (): string | null => {
+        return localStorage.getItem('user_id');
     };
 
     private existToken = (token: string | null, roles: string | null): boolean => {

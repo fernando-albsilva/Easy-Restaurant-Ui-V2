@@ -11,6 +11,7 @@ export class TableModel {
     public isActive: boolean = false;
     public products: Array<ProductModel> = [];
     public startTime: TableStartTime = new TableStartTime();
+    public userId: string = '';
 
     constructor(number?: number) {
         if (number) {
