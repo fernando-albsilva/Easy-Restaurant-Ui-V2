@@ -21,7 +21,7 @@ export class CheckManagementComponent implements OnInit {
     public showIndividualChecks: boolean = false;
 
     //Related to tables
-    public tableQuantity: number = 5;
+    public tableQuantity: number = 45;
     public tables: Array<TableModel> = [];
     public showTables: boolean = true;
     @Input() public tableNumberToFilter: number | undefined;

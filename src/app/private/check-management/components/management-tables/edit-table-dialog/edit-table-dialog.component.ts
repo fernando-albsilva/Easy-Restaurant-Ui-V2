@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UUID } from 'angular2-uuid';
+import { Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/private/product/Model/product.model';
 import { WorkerFlatModel, WorkerModel } from 'src/app/private/worker/Model/woker.model';
 import { ErMessages } from 'src/app/services/er-messages.service';
@@ -19,7 +20,7 @@ import { CheckOptions, CheckResult, ProductInfo, TableModel, TableStartTime } fr
 })
 export class EditTableDialog implements OnInit, OnDestroy {
     public table: TableModel = new TableModel();
-    public worker: WorkerModel = new WorkerModel();
+    public worker: WorkerFlatModel = new WorkerFlatModel();
     public workers: Array<WorkerFlatModel> = [];
     public products: Array<ProductModel> = [];
     public selectedProduct: ProductModel = new ProductModel();
@@ -30,6 +31,8 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
     //helper
     private _managementHelper = new CheckManagementHelper();
+    private _timeEmitterSubscribe: Subscription = new Subscription();
+    private _startTimeSubscribe: Subscription = new Subscription();
 
     constructor(
         private _erMessagesSnackbar: ErMessages,
@@ -47,15 +50,25 @@ export class EditTableDialog implements OnInit, OnDestroy {
     ngOnInit(): void {
         
         this.table = this.data;
-
-        this.getWorkesThatHaveWaiterFunction();
+        if(!this.table.isActive){
+            this.getWorkesThatHaveWaiterFunction();
+        }else{
+            //TODO verificar por que o er-autocomplete precisa
+            //do input value quando uma mesa ja esta ativa
+            this.worker=this.table.worker
+            this.startTableCounting();
+        }
         this.getAvailableProducts();
+
+
     }
 
     ngOnDestroy(): void {
         this._timeService.stopCounting(this.timeCountingRef);
-        this._timeService.timeEmmiter.unsubscribe();
-        this._timeService.startTimeEmmiter.unsubscribe();
+        this._timeEmitterSubscribe.unsubscribe();
+        if(!this.table.isActive){
+            this._startTimeSubscribe.unsubscribe();
+        }
     }
 
     public closeDialog = (): void => {
@@ -64,38 +77,33 @@ export class EditTableDialog implements OnInit, OnDestroy {
         this.dialogRef.close(checkResult);
     };
 
-    // public onSave = (): void => {
-    //     const isEmpty = this.verifyIfInputValueIsEmpty();
-    //     if (isEmpty) {
-    //         this._erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted, 'warning');
-    //     } else if (this.isNew) {
-    //         this.dialogRef.close({ data: this.worker, type: 'save' });
-    //     } else {
-    //         this.dialogRef.close({ data: this.worker, type: 'update' });
-    //     }
-    // };
-
     public tableHasClientAndWorker = (): boolean => {
         return this.table.clientName !== '' && this.table.worker.id !== '';
     };
 
     public startTable = (): void => {
         this.table.isActive = true;
-
-        this._timeService.startTimeEmmiter.subscribe((startTime: TableStartTime) => {
-            this.table.startTime = startTime;
-        });
-
-        this._timeService.timeEmmiter.subscribe((durationTimeReceived: string) => {
-            this.durationTime = durationTimeReceived;
-        });
-
-        this.timeCountingRef = this._timeService.start(this.table.startTime);
+        this.startTableCounting();
     };
 
     public getParseTableStartTime = (): string => {
         return this._timeService.parseTableStartTime(this.table.startTime);
     };
+
+    public getCheckValue = (): string => {
+        const total = this._managementHelper.getTableCheckValue(this.table.products,2);
+        return `R$${total}`;
+    }
+   
+    public getTenPercentOfCheckValue = (): string => {
+        const tenPercentOfCheck = this._managementHelper.getTenPercentOfCheckValue(this.table.products,2);
+        return `R$${tenPercentOfCheck}`;
+    }
+    
+    public getCheckValueWithTenPercent = (): string => {
+        const totalWihtTenPercent = this._managementHelper.getTableCheckValueWithTenPerCent(this.table.products,2);
+        return `R$${totalWihtTenPercent}`;
+    }
 
     public handleWorkerChange = (workerChosen: WorkerFlatModel | undefined) => {
         if (!workerChosen) {
@@ -221,4 +229,18 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
         return product;
     };
+
+    private startTableCounting = (): void => {
+        if(!this.table.isActive){
+            this._startTimeSubscribe = this._timeService.startTimeEmmiter.subscribe((startTime: TableStartTime) => {
+                this.table.startTime = startTime;
+            });
+        }
+
+        this._timeEmitterSubscribe = this._timeService.timeEmmiter.subscribe((durationTimeReceived: string) => {
+            this.durationTime = durationTimeReceived;
+        });
+
+        this.timeCountingRef = this._timeService.start(this.table.startTime);
+    }
 }

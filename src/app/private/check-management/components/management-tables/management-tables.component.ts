@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
-import { CheckManagementHelper } from '../../check-management.helper';
 import { CheckResult, TableModel } from '../../model/check-management.model';
 import { EditTableDialog } from './edit-table-dialog/edit-table-dialog.component';
 
@@ -19,8 +18,6 @@ export class ManagementTablesComponent {
 
     @Output() checkResult = new EventEmitter<CheckResult>();
 
-    
-    private checkHelper = new CheckManagementHelper()
     private _numberToFilter: number | undefined;
 
     constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}

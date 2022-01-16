@@ -30,6 +30,24 @@ export class SortService {
         return isCaseSensitive ? this.sortListCaseSensitive(listToSort) : this.sortList(listToSort);
     };
 
+    public distinct = (array: Array<any>): Array<any> => {
+        const propertyChosen = undefined;
+
+        if (array.length > 0) {
+            return this.handleDistinct(array, propertyChosen);
+        } else {
+            return array;
+        }
+    };
+
+    public distinctByProperty = (array: Array<any>, propertyChosen: string): Array<any> => {
+        if (array.length > 0) {
+            return this.handleDistinct(array, propertyChosen);
+        } else {
+            return array;
+        }
+    };
+
     private sortListCaseSensitive = (listToSort: Array<any>) => {
         return listToSort.sort((element, elementToCompare) => {
             if (element.toUpperCase() > elementToCompare.toUpperCase()) {
@@ -75,6 +93,34 @@ export class SortService {
         return this.compareDynamicProperties(filteredObject, filteredObjectToCompare);
     };
 
+    private handleDistinct = (array: Array<any>, propertyChosen: string | undefined): Array<any> => {
+        const result = [];
+
+        const map = new Map();
+
+        for (const item of array) {
+            if (propertyChosen !== undefined) {
+                if (!this.propertyExistInObject(item, propertyChosen)) {
+                    throw Error(`The (${propertyChosen}) property was not found in object`);
+                } else {
+                    if (!map.has(item[propertyChosen])) {
+                        map.set(item[propertyChosen], true);
+
+                        result.push(item);
+                    }
+                }
+            } else {
+                if (!map.has(item)) {
+                    map.set(item, true);
+
+                    result.push(item);
+                }
+            }
+        }
+
+        return result;
+    };
+
     private compareDynamicProperties = (object: any, objectToCompare: any) => {
         if (object < objectToCompare) {
             return -1;
@@ -83,5 +129,9 @@ export class SortService {
             return 1;
         }
         return 0;
+    };
+
+    private propertyExistInObject = (object: any, property: string): boolean => {
+        return object[property] !== undefined;
     };
 }

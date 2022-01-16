@@ -51,6 +51,7 @@
                             [items]="workers"
                             [propertyToshowInOption]="'name'"
                             [disabled]="table.isActive"
+                            [value]="table.worker"
                             (valueChange)="handleWorkerChange($event)"
                         >
                     </er-auto-complete>
@@ -82,15 +83,15 @@
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.check }}</span>
-                            <span class="info-row-data"> R$00.00</span>
+                            <span class="info-row-data">{{ getCheckValue() }}</span>
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.tenPerCent}} </span>
-                            <span class="info-row-data"> R$00.00</span>
+                            <span class="info-row-data">{{ getTenPercentOfCheckValue() }}</span>
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.total}}</span>
-                            <span class="info-row-data"> R$00.00</span>
+                            <span class="info-row-data">{{ getCheckValueWithTenPercent() }}</span>
                         </div>
                     </ng-container>
                 </div>
