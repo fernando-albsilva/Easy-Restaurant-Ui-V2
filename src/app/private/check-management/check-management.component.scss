@@ -1,6 +1,6 @@
 @import '../../shared-styles/colors-and-default-styles.scss';
 
-$menuWidth: 200px;
+$menuWidth: 280px;
 $menuPadding: 20px 20px;
 .page {
     display: flex;
@@ -12,12 +12,6 @@ $menuPadding: 20px 20px;
         display: flex;
         justify-content: space-between;
 
-        management-left-menu {
-            box-sizing: border-box;
-            width: $menuWidth;
-            padding: $menuPadding;
-        }
-
         management-right-menu {
             box-sizing: border-box;
             width: $menuWidth;
@@ -25,8 +19,10 @@ $menuPadding: 20px 20px;
         }
 
         .middle-content-container {
-            width: calc(100% - (#{$menuWidth} * 2));
+            width: calc(100% - (#{$menuWidth}));
             height: 100%;
+            box-sizing: border-box;
+            padding-left: 20px;
 
             .type-check-menu {
                 padding-top: 20px;
