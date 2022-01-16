@@ -24,6 +24,7 @@ export class MessagesKeys {
     //Related to delete/remove
     public remove: string = 'Remover';
     public delete: string = 'Deletar';
+    public excluir: string = 'Excluir';
     public successfullyDeleted: string = 'Deletado com sucesso';
     public isNecessaryHaveOneOrMoreItemsSelected: string = 'É preciso ter um ou mais items selecionados para remover';
 
@@ -32,6 +33,7 @@ export class MessagesKeys {
 
     //Related to close
     public close: string = 'Fechar';
+    public closeCheck: string = 'Finalizar conta';
 
     //Related to produtc
     public product: string = 'Product';
@@ -142,4 +144,12 @@ export class MessagesKeys {
 
     //Related to quantity
     public quantity: string = 'Quantidade';
+
+    //Related to quantity / weight / currency / unity
+    public qtd: string = 'Qtd';
+    public und: string = 'Und';
+    
+    //Related to invoice
+    public checkClosedSucessfully: string = 'Conta fechada com sucesso';
+
 }

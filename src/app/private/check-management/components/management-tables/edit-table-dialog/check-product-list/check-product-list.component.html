@@ -1,0 +1,75 @@
+<div class="component-container">
+
+    <div class="products-details-header">
+        <span
+            class="product-name-field align-fields-text ellipse"
+            matTooltip="{{messages.product}}"
+        >
+            {{messages.product}}
+        </span>
+        <span class="field align-fields-text ellipse">{{messages.qtd}}</span>
+        <span class="field align-fields-text ellipse">{{messages.und}}</span>
+        <span class="field align-fields-text ellipse">{{messages.total}}</span>
+        <span class="remove-product-field align-fields-text ellipse"></span>
+    </div>
+
+
+    <div class="rows-container">
+        <ng-container *ngFor="let product of products">
+            <div class="row">
+                
+                <!-- NAME FIELD -->
+                <span
+                    class="product-name-field align-fields-text ellipse"
+                    matTooltip="{{ product.name }}"
+                >
+                    {{ product.name }}
+                </span>
+                <!-- /NAME FIELD -->
+                
+                <!-- QUANTITY FIELD -->
+                <span
+                    class="field align-fields-text ellipse"
+                    matTooltip="{{ product.quantity }}"
+                >
+                    {{ product.quantity }}
+                </span>
+                <!-- /QUANTITY FIELD -->
+                
+                <!-- UNIT VALUE FIELD -->
+                <span
+                    class="field align-fields-text ellipse"
+                    matTooltip="{{ product.unitValue }}"
+                >
+                    {{ product.unitValue }}
+                </span>
+                <!-- /UNIT VALUE FIELD -->
+                
+                <!-- TOTAL FIELD -->
+                <span
+                    class="field align-fields-text ellipse"
+                    matTooltip="{{ calcTotalValue(product) }}"
+                >
+                    {{ calcTotalValue(product) }}
+                </span>
+                <!-- /TOTAL FIELD -->
+                
+                <!-- REMOVE ICON FIELD -->
+                <span
+                    class="remove-product-field align-fields-text"
+                    matTooltip="{{ messages.remove }}"                
+                >
+                    <mat-icon
+                        class="remove-icon"
+                        (click)="removeProductFromCheck(product.idInTableCheck)"
+                    >
+                        delete_forever
+                    </mat-icon>
+                </span>
+                <!-- REMOVE ICON FIELD -->
+
+            </div>
+        </ng-container>
+    </div>
+
+</div>

@@ -72,6 +72,7 @@ er-top-menu {
     cursor: not-allowed;
 }
 
+/* Change style of scroll bar */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -82,4 +83,23 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* Cursors */
+.cursor-help{
+    cursor: help;
+}
+
+.cursor-help-hover:hover{
+    cursor: help;
+}
+
+.cursor-help-active:active{
+    cursor: help;
+}
+
+.ellipse{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }

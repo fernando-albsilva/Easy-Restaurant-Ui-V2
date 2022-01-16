@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UUID } from 'angular2-uuid';
 import { ProductModel } from 'src/app/private/product/Model/product.model';
 import { WorkerFlatModel, WorkerModel } from 'src/app/private/worker/Model/woker.model';
 import { ErMessages } from 'src/app/services/er-messages.service';
@@ -9,7 +10,7 @@ import { SortService } from 'src/app/services/sort.service';
 import { TimeService } from 'src/app/services/time.service';
 import { CheckManagementApi } from '../../../api/check-management.api';
 import { CheckManagementHelper } from '../../../check-management.helper';
-import { ProductInfo, TableModel, TableStartTime } from '../../../model/check-management.model';
+import { CheckOptions, CheckResult, ProductInfo, TableModel, TableStartTime } from '../../../model/check-management.model';
 
 @Component({
     selector: 'edit-table-dialog',
@@ -56,19 +57,21 @@ export class EditTableDialog implements OnInit, OnDestroy {
     }
 
     public closeDialog = (): void => {
-        this.dialogRef.close();
+        const checkOptions = this.createCheckOptions('active');
+        const checkResult = new CheckResult(this.table,checkOptions)
+        this.dialogRef.close(checkResult);
     };
 
-    public onSave = (): void => {
-        const isEmpty = this.verifyIfInputValueIsEmpty();
-        if (isEmpty) {
-            this._erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted, 'warning');
-        } else if (this.isNew) {
-            this.dialogRef.close({ data: this.worker, type: 'save' });
-        } else {
-            this.dialogRef.close({ data: this.worker, type: 'update' });
-        }
-    };
+    // public onSave = (): void => {
+    //     const isEmpty = this.verifyIfInputValueIsEmpty();
+    //     if (isEmpty) {
+    //         this._erMessagesSnackbar.openSnackBar(this.messages.successfullyDeleted, 'warning');
+    //     } else if (this.isNew) {
+    //         this.dialogRef.close({ data: this.worker, type: 'save' });
+    //     } else {
+    //         this.dialogRef.close({ data: this.worker, type: 'update' });
+    //     }
+    // };
 
     public tableHasClientAndWorker = (): boolean => {
         return this.table.clientName !== '' && this.table.worker.id !== '';
@@ -103,16 +106,16 @@ export class EditTableDialog implements OnInit, OnDestroy {
     public handleProductChosen = (product: ProductModel): void => {
         this.selectedProduct = product;
         this.selectedProduct.quantity = 0;
-        if(this.isProductAndQuantityChosen()){
-            this.productSelectionInfo = this._managementHelper.generateProductinfo(product)
+        if (this.isProductAndQuantityChosen()) {
+            this.productSelectionInfo = this._managementHelper.generateProductinfo(product);
         }
     };
 
     public handleQuantityChange = (): void => {
-        if(this.isProductAndQuantityChosen()){
+        if (this.isProductAndQuantityChosen()) {
             this.productSelectionInfo = this._managementHelper.generateProductinfo(this.selectedProduct);
         }
-    }
+    };
 
     public isProductAndQuantityChosen = (): boolean => {
         return this.selectedProduct.id !== '' && this.selectedProduct.quantity > 0;
@@ -120,9 +123,26 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
     //TODO tratar a inclusao do produto
     // revisar como esta aparecendo na tela formato da moeda real nas informacoes
-    public includeProduct = () =>{
+    public includeProduct = (): void => {
+        if (this.isProductAndQuantityChosen()) {
+          const product = this.createProductToPushInTableList();
+          this.table.products.push(product);
+        }
+    };
 
-    }
+    public handleRemovedProduct = (idInTableCheck: string): void => {
+        if (this.productExistInCheck(idInTableCheck)) {
+            this.removeProductFromTableCheck(idInTableCheck);
+        } else {
+            throw new Error('Product does not exist in table products list');
+        }
+    };
+
+    public handleCloseCheck = () => {
+        const checkOptions = this.createCheckOptions('closed');
+        const checkResult = new CheckResult(this.table,checkOptions)
+        this.dialogRef.close(checkResult);
+    };
 
     private getWorkesThatHaveWaiterFunction = (): void => {
         this._checkManagementApi.getWorkers().subscribe(
@@ -148,5 +168,55 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
     private verifyIfInputValueIsEmpty = () => {
         return this._objectService.isAnyPropertyEmpty(this.worker);
+    };
+
+    private removeProductFromTableCheck = (idInTableCheck: string): void => {
+        this.table.products = this.table.products.filter((product) => {
+            return !(product.idInTableCheck === idInTableCheck);
+        });
+    };
+
+    private productExistInCheck = (idInTableCheck: string): boolean => {
+        const exist = this.table.products.find((product) => {
+            return idInTableCheck == product.idInTableCheck;
+        });
+
+        return exist ? true : false;
+    };
+
+    private createCheckOptions = (option: string): CheckOptions => {
+        let checkOptions = new CheckOptions();
+
+        if (option === 'closed') {
+            checkOptions = {
+                closed: true,
+                active: false,
+            }
+            return checkOptions;
+        } else if (option === 'active') {
+            checkOptions = {
+                closed: false,
+                active: true,
+            };
+            return checkOptions;
+        } else {
+            throw new Error('Incorrect option in createCheckOptions()');
+        }
+    };
+  
+    private createProductToPushInTableList = (): ProductModel => {
+        let product = new ProductModel();
+
+        product = {
+            idInTableCheck: UUID.UUID(),
+            id: this.selectedProduct.id,
+            name: this.selectedProduct.name,
+            unitValue: this.selectedProduct.unitValue,
+            cost: this.selectedProduct.cost,
+            code: this.selectedProduct.code,
+            quantity: this.selectedProduct.quantity,
+        };
+
+        return product;
     };
 }

@@ -1,10 +1,12 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ErMessages } from 'src/app/services/er-messages.service';
+import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ManagementTablesComponent } from './components/management-tables/management-tables.component';
 import {
     ManagementFilterPayload,
     ShowManagementType,
 } from './components/type-check-header-menu/type-check-header-menu.component';
-import { IndividualCheckModel, TableModel } from './model/check-management.model';
+import { CheckResult, IndividualCheckModel, TableModel } from './model/check-management.model';
 
 @Component({
     selector: 'check-management',
@@ -25,7 +27,10 @@ export class CheckManagementComponent implements OnInit {
     @Input() public tableNumberToFilter: number | undefined;
     @ViewChild('managementTablesRef') managementTablesRef: ManagementTablesComponent | undefined;
 
-    constructor() {}
+    constructor(
+        private erMessagesSnackbar: ErMessages,
+        private messages: MessagesKeys,
+    ) {}
 
     //TODO
     // implementar busca das mesas e contas individuais ativas no banco
@@ -44,6 +49,35 @@ export class CheckManagementComponent implements OnInit {
             this.filterIndividualChecks(payload);
         }
     };
+
+    public handleCheckResult = (checkResult:CheckResult): void => {
+        console.log("chegou no gerenciador de mesa:");
+        console.log(checkResult);
+        if(checkResult.checkOptions.closed){
+            this.handleClosedTableCheck(checkResult.table);
+            this.erMessagesSnackbar.openSnackBar(this.messages.checkClosedSucessfully, 'sucess');
+        }else if(checkResult.checkOptions.active){
+            this.handleTableActive(checkResult.table)
+        }
+    }
+
+    //TODO
+    //INFO
+    // Ao ser fechada a conta esse metodo deve tratar
+    // de gerar a conta final
+    // salvar na tabela de invoice corretamente
+    // liberar a mesa na lista de mesas this.tables
+    private handleClosedTableCheck = (table:TableModel):void => {
+
+    }
+
+    //TODO
+    //INFO
+    //Ao ser fechado o dialogo de edição com uma mesa ainda ativa
+    //Essa mesa deve ser tratada e feito o update da mesma na lista de mesas this.tables
+    private handleTableActive = (table:TableModel) => {
+
+    }
 
     //TODO
     //implementar filtro das mesas

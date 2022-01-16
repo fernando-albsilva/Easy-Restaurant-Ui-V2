@@ -1,4 +1,7 @@
+import { UUID } from "angular2-uuid";
+
 export class ProductModel {
+    public idInTableCheck: string = UUID.UUID();
     public id: string = '';
     public name: string = '';
     public unitValue: number = 0;

@@ -63,3 +63,18 @@ export class ProductInfo {
     total: number = 0;
     percentage: number = 0;
 }
+
+export class CheckOptions {
+    public closed: boolean = false;
+    public active: boolean = false;
+}
+
+export class CheckResult {
+    public table: TableModel = new TableModel();
+    public checkOptions: CheckOptions = new CheckOptions();
+
+    constructor(table: TableModel, checkOptions: CheckOptions){
+        this.table = table;
+        this.checkOptions = checkOptions;
+    }
+}

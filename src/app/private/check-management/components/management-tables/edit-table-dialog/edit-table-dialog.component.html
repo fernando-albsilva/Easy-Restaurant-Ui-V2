@@ -181,10 +181,10 @@
                 <!-- PRODUCT INFO CONTAINER -->
 
                 <button
-                class="check-management-button"
-                mat-raised-button color="accent"
-                [disabled]="!tableHasClientAndWorker() || table.isActive"
-                (click)="includeProduct()"
+                    class="check-management-button"
+                    mat-raised-button color="accent"
+                    [disabled]="!tableHasClientAndWorker() || !table.isActive"
+                    (click)="includeProduct()"
                 >
                     {{ messages.include }}
                 </button>
@@ -198,7 +198,29 @@
             <div class="chield-header">
                 <span class="chield-header-title">{{ messages.checkDetails }}</span>
             </div>
-            <div class="main-chield-content-container"></div>
+            <div class="main-chield-content-container">
+
+                <!-- COMPONENTE THAT RENDER PRODUCTS INCLUDED IN CHECK -->
+                <check-product-list
+                    [products]="table.products"
+                    (removeProduct)="handleRemovedProduct($event)"
+                >
+                </check-product-list>
+                <!-- /COMPONENTE THAT RENDER PRODUCTS INCLUDED IN CHECK -->
+                            
+                <button
+                    class="check-management-button"
+                    mat-raised-button color="accent"
+                    [disabled]="!tableHasClientAndWorker() || !table.isActive"
+                    (click)="handleCloseCheck()"
+                >
+                    {{ messages.closeCheck }}
+                </button>
+
+            </div>
+
+
+
         </div>
         <!-- CHECK DETAILS CONTAINER -->
     </div>

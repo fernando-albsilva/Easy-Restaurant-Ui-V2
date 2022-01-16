@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { CheckManagementComponent } from './check-management.component';
 import { SharedModule } from '../shared/shared.module';
@@ -12,8 +11,8 @@ import { TableComponent } from './components/management-tables/table/table.compo
 import { HttpClientModule } from '@angular/common/http';
 import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { EditTableDialog } from './components/management-tables/edit-table-dialog/edit-table-dialog.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CheckManagementApi } from './api/check-management.api';
+import { CheckProductList } from './components/management-tables/edit-table-dialog/check-product-list/check-product-list.component';
 
 @NgModule({
     declarations: [
@@ -24,14 +23,13 @@ import { CheckManagementApi } from './api/check-management.api';
         TypeChekHeaderMenu,
         TableComponent,
         EditTableDialog,
+        CheckProductList,
     ],
     imports: [
         HttpClientModule,
         CommonModule,
         SharedModule,
         DirectivesModule,
-        MatAutocompleteModule,
-        ReactiveFormsModule,
     ],
     providers: [CheckManagementApi],
 })

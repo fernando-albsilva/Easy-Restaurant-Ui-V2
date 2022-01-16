@@ -1,0 +1,69 @@
+@import '../../../../../../shared-styles/colors-and-default-styles.scss';
+
+
+$product-detais-header-height:35px;
+$product-detais-header-bottom-border:1px;
+
+$row-height: 35px;
+$row-bottom-border: 0.5px;
+$fields-gap: 10px;
+$product-field-name-widht: 30%;
+$remove-field-widht: 20px;
+$remaining-fields-widht: calc(100% - #{$product-field-name-widht} - #{$remove-field-widht});
+
+.component-container {
+    height: 100%;
+    width: 100%;
+
+    .products-details-header{
+        width: 100%;
+        height: $product-detais-header-height;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: $product-detais-header-bottom-border solid $green10;
+    }
+
+    .rows-container {
+        height: calc(100% - #{$product-detais-header-height});
+        width: 100%;
+        overflow-y: auto;
+
+        .row {
+            width: 100%;
+            height: $row-height;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: $row-bottom-border solid $green10;
+            overflow: hidden;
+        }
+    }
+
+    .product-name-field {
+        height: 100%;
+        width: calc(#{$product-field-name-widht} - #{$fields-gap});
+    }
+
+    .field {
+        height: 100%;
+        width: calc((#{$remaining-fields-widht} / 3) - #{$fields-gap});
+    }
+
+    .remove-product-field {
+        height: 100%;
+        width: $remove-field-widht;
+
+        .remove-icon:active{
+            position: relative;
+            top: 1px;
+        }
+    }
+
+    .align-fields-text{
+        position: relative;
+        top: 10px;
+    }
+
+    
+}

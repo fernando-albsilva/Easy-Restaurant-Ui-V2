@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FunctionCardComponent } from './er-page-list/cards/function-card/function-card.component';
 import { ErPageList } from './er-page-list/er-page-list.component';
@@ -44,8 +46,9 @@ import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
         MatDialogModule,
         DirectivesModule,
         MatSelectModule,
-        MatSelectModule,
         MatAutocompleteModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
     ],
     exports: [
         MatInputModule,
@@ -54,6 +57,9 @@ import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
         MatIconModule,
         MatDialogModule,
         MatSelectModule,
+        MatAutocompleteModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
         ErTopMenu,
         ErBadge,
         ErPageList,

@@ -22,6 +22,7 @@ $mainChieldHeaderTitleWidth: 100%;
 $mainChieldContentHeight: calc(100% - #{$mainChieldHeaderHeight + $mainChieldHeaderBorder});
 $mainChieldContentWidth: 100%;
 
+
 .container {
     height: 100%;
     width: 100%;
@@ -130,6 +131,11 @@ $mainChieldContentWidth: 100%;
                 }
 
                 .check-management-button{
+                    width: 100%;
+                }
+
+                check-product-list{
+                    height: calc(100% - 52px);
                     width: 100%;
                 }
             }

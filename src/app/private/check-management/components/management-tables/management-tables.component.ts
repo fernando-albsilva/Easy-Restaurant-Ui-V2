@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
-import { TableModel } from '../../model/check-management.model';
+import { CheckResult, TableModel } from '../../model/check-management.model';
 import { EditTableDialog } from './edit-table-dialog/edit-table-dialog.component';
 
 @Component({
@@ -17,6 +17,8 @@ export class ManagementTablesComponent {
     @Input() set numberToFilter(numberToFilter: number | undefined) {
         this.filterTableByNumber(numberToFilter);
     }
+
+    @Output() checkResult = new EventEmitter<CheckResult>();
 
     private _numberToFilter: number | undefined;
 
@@ -54,7 +56,9 @@ export class ManagementTablesComponent {
     public editTable = (tableNumber: number): void => {
         const dialogRef = this.createDialog(this.tables[tableNumber - 1]);
 
-        dialogRef.afterClosed().subscribe((response: any) => {
+        dialogRef.afterClosed().subscribe((response: CheckResult) => {
+            console.log(response);
+            this.checkResult.emit(response);
             // const canSave = response && response.type === 'save';
             // if (canSave) {
             //     this.handleFunctionCreation(response.data);
