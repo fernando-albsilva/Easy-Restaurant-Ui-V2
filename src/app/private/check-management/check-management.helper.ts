@@ -1,7 +1,19 @@
 import { ProductModel } from "../product/Model/product.model";
-import { ProductInfo } from "./model/check-management.model";
+import { ProductInfo, TableModel } from "./model/check-management.model";
 
 export class CheckManagementHelper {
+
+    public findTableIndexByNumber = (tablesList:Array<TableModel>,tableNumber: number): number | undefined => {
+        const index = tablesList.findIndex((table) => {
+            return table.number === tableNumber;
+        });
+
+        if (index === -1) {
+            return undefined;
+        } else {
+            return index;
+        }
+    };
 
     public generateProductinfo = (product:ProductModel): ProductInfo => {
         let productInfo: ProductInfo = {
@@ -22,4 +34,5 @@ export class CheckManagementHelper {
     private getTotalProductPercentage = (unitValue:number,quantity:number):number => {
         return (unitValue*quantity*0.1);
     }
+    
 }

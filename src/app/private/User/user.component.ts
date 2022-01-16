@@ -60,7 +60,6 @@ export class UserComponent implements OnInit {
     };
 
     public updateUser = (selectedItem: any): void => {
-        console.log(selectedItem);
         const dialogData = selectedItem as UserCommand;
         const dialogRef = this.createDialog(dialogData);
 

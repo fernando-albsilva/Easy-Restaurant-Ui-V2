@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
+import { CheckManagementHelper } from '../../check-management.helper';
 import { CheckResult, TableModel } from '../../model/check-management.model';
 import { EditTableDialog } from './edit-table-dialog/edit-table-dialog.component';
 
@@ -10,9 +11,7 @@ import { EditTableDialog } from './edit-table-dialog/edit-table-dialog.component
     styleUrls: ['./management-tables.component.scss'],
 })
 export class ManagementTablesComponent {
-    @Input() set tableQuantity(value: number) {
-        this.handleTablesQuantity(value);
-    }
+
     @Input() tables: Array<TableModel> = [];
     @Input() set numberToFilter(numberToFilter: number | undefined) {
         this.filterTableByNumber(numberToFilter);
@@ -20,18 +19,11 @@ export class ManagementTablesComponent {
 
     @Output() checkResult = new EventEmitter<CheckResult>();
 
+    
+    private checkHelper = new CheckManagementHelper()
     private _numberToFilter: number | undefined;
 
     constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}
-
-    private handleTablesQuantity(value: number) {
-        this.tables = [];
-        for (let index = 1; index <= value; index++) {
-            let table = new TableModel(index);
-            table.number = index;
-            this.tables.push(table);
-        }
-    }
 
     private filterTableByNumber = (tableNumber: number | undefined): void => {
         this.tables = this.tables.map((table) => {
@@ -57,12 +49,7 @@ export class ManagementTablesComponent {
         const dialogRef = this.createDialog(this.tables[tableNumber - 1]);
 
         dialogRef.afterClosed().subscribe((response: CheckResult) => {
-            console.log(response);
             this.checkResult.emit(response);
-            // const canSave = response && response.type === 'save';
-            // if (canSave) {
-            //     this.handleFunctionCreation(response.data);
-            // }
         });
     };
 

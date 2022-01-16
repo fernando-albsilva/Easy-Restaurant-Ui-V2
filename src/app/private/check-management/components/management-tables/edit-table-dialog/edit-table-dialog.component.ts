@@ -40,10 +40,12 @@ export class EditTableDialog implements OnInit, OnDestroy {
         public messages: MessagesKeys,
         public dialogRef: MatDialogRef<EditTableDialog>,
         @Inject(MAT_DIALOG_DATA) public data: TableModel,
-    ) {}
+    ) {
+        dialogRef.disableClose = true;
+    }
 
     ngOnInit(): void {
-        console.log(this.data);
+        
         this.table = this.data;
 
         this.getWorkesThatHaveWaiterFunction();

@@ -1,5 +1,5 @@
 <div class="tables-container">
-    <ng-container *ngFor="let table of tables">
+    <ng-container *ngFor="let table of tables; let i = index">
         <table
             [table]="table"
             [hidden]="table.shouldHideByFilter"

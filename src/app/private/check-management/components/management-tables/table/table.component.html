@@ -1,4 +1,20 @@
 <div class="table-container">
-    <img class="table-img" src="../../../../../../assets/icons/dinner-table-green.png" />
-    <span class="table-number">{{ table.number }}</span>
+    
+    <ng-container 
+        *ngIf="!table.isActive"
+    >
+        <img class="table-img" src="../../../../../../assets/icons/dinner-table-green.png" />
+    </ng-container>
+    
+    <ng-container 
+        *ngIf="table.isActive"
+    >
+        <img class="table-img" src="../../../../../../assets/icons/dinner-table-orange.png" />
+    </ng-container>
+    <span
+        class="table-number"
+        [class.table-active]="table.isActive"
+    >
+        {{ table.number }}
+    </span>
 </div>
