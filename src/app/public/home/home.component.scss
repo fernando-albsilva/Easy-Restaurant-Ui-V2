@@ -19,6 +19,7 @@
         flex-direction: column;
         box-sizing: border-box;
         padding: 0px 100px;
+        position: relative;
 
         .form-title {
             color: $white10;
@@ -29,6 +30,13 @@
 
         .submit {
             width: 100px;
+        }
+
+        .error-message{
+            font-size: 0.7rem;
+            color: $red10;
+            position: absolute;
+            bottom: 15px
         }
     }
 }

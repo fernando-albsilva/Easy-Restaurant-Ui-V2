@@ -36,5 +36,14 @@
         </mat-form-field>
 
         <button mat-raised-button color="accent" class="submit" (click)="login()">Submit</button>
+        <ng-container
+            *ngIf="mustDisplayLoginErrorMessage"
+        >
+            <span
+                class="error-message"
+            >
+                {{ loginErrorMessage }}
+            </span>
+        </ng-container>
     </div>
 </div>
