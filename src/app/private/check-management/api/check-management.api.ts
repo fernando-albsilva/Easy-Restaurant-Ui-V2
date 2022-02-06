@@ -3,12 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UUID } from 'angular2-uuid';
-import { CheckManagementModule } from '../check-management.module';
 import { WorkerFlatModel } from '../../worker/Model/woker.model';
 import { ProductModel } from '../../product/Model/product.model';
-import { TableModel } from '../model/check-management.model';
-import { InvoiceActiveCommand } from '../commands/check-management.command';
+import { ActiveInvoiceItem, InvoiceActiveCommand } from '../commands/check-management.command';
 
 @Injectable({
     providedIn: 'any',
@@ -31,6 +28,18 @@ export class CheckManagementApi {
         // params = params.append('table', table);
 
         // return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, { params: params });
-        return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, invoiceActiveCommand);
+        return this.http.post<any>(`${this.apiUrl}/CrateActiveTable`, invoiceActiveCommand);
     };
+   
+    public updateActiveTable = (invoiceActiveCommand: InvoiceActiveCommand): Observable<any> => {
+        // let params = new HttpParams();
+        // params = params.append('table', table);
+
+        // return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, { params: params });
+        return this.http.put<any>(`${this.apiUrl}/UpdateActiveTable`, invoiceActiveCommand);
+    };
+
+    public IncludeProductInActiveTable = (activeInvoiceItem: ActiveInvoiceItem): Observable<any> => {
+        return this.http.post<any>(`${this.apiUrl}/AddItemInInvoice`, activeInvoiceItem);
+    }
 }

@@ -4,6 +4,7 @@ import { UUID } from 'angular2-uuid';
 import { Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/private/product/Model/product.model';
 import { WorkerFlatModel, WorkerModel } from 'src/app/private/worker/Model/woker.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
@@ -11,6 +12,7 @@ import { SortService } from 'src/app/services/sort.service';
 import { TimeService } from 'src/app/services/time.service';
 import { CheckManagementApi } from '../../../api/check-management.api';
 import { CheckManagementHelper } from '../../../check-management.helper';
+import { ActiveInvoiceItem, InvoiceActiveCommand } from '../../../commands/check-management.command';
 import { CheckOptions, CheckResult, ProductInfo, TableModel, TableStartTime } from '../../../model/check-management.model';
 
 @Component({
@@ -36,6 +38,7 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
     constructor(
         private _erMessagesSnackbar: ErMessages,
+        private _authService: AuthService,
         private _objectService: ObjectService,
         private _checkManagementApi: CheckManagementApi,
         private _sortService: SortService,
@@ -84,6 +87,17 @@ export class EditTableDialog implements OnInit, OnDestroy {
     public startTable = (): void => {
         this.table.isActive = true;
         this.startTableCounting();
+        this.fillNecessaryTableFields();
+        const invoiceActivecommand =  new InvoiceActiveCommand(this.table);
+        this.table.invoiceId = invoiceActivecommand.id;
+        this._checkManagementApi
+            .createActiveTable(
+                invoiceActivecommand
+            )
+            .subscribe(
+                ()=>{},
+                (err) => {console.log(err);}
+            );
     };
 
     public getParseTableStartTime = (): string => {
@@ -131,12 +145,24 @@ export class EditTableDialog implements OnInit, OnDestroy {
         return this.selectedProduct.id !== '' && this.selectedProduct.quantity > 0;
     };
 
-    //TODO tratar a inclusao do produto
-    // revisar como esta aparecendo na tela formato da moeda real nas informacoes
+    //FIXME revisar como esta aparecendo na tela formato da moeda real nas informacoes
     public includeProduct = (): void => {
         if (this.isProductAndQuantityChosen()) {
           const product = this.createProductToPushInTableList();
           this.table.products.push(product);
+
+          //TODO continuar daqui
+          // deve mandar atualizar no banco o active invoice items com os produtos
+          this._checkManagementApi
+          .IncludeProductInActiveTable(
+              new ActiveInvoiceItem(product,this.table.invoiceId)
+          )
+          .subscribe(
+              ()=>{},
+              (err) => {console.log(err);}
+          );
+
+
         }
     };
 
@@ -243,4 +269,14 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
         this.timeCountingRef = this._timeService.start(this.table.startTime);
     }
+
+    private fillNecessaryTableFields = (): void => {
+        const userId = this._authService.getUserId();
+        if(userId){
+            this.table.userId = userId;
+        }else{
+            console.error(`table is not adding user on start`);
+        }
+    }
+
 }

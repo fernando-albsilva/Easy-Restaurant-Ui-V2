@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthUserCommand } from '../private/user/commands/auth-user.command';
-import { AuthUserModel } from '../private/user/model/auth-user.model';
 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AuthUserCommand } from 'src/app/private/user/commands/auth-user.command';
+import { AuthUserModel } from 'src/app/private/user/model/auth-user.model';
 // import * as moment from 'moment';
 
-@Injectable()
+@Injectable({
+    providedIn:'any',
+})
 export class AuthService {
     public apiUrl = `https://localhost:5101/authorize`;
 

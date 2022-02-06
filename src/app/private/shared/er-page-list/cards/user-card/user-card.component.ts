@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { UserFlatModel } from 'src/app/private/user/model/auth-user.model';
 
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
-import { UserFlatModel } from 'src/app/private/user/model/auth-user.model';
+
 
 @Component({
     selector: 'user-card',

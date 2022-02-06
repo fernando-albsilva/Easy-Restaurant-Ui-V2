@@ -9,7 +9,6 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { UserApi } from './api/user.api';
 import { UserCommand } from './commands/auth-user.command';
 import { CreateEditUserDialog } from './components/create-edit-user-dialog/create-edit-user-dialog.component';
-
 import { UserFlatModel } from './model/auth-user.model';
 
 @Component({
