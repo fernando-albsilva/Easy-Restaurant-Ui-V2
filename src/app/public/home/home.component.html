@@ -1,4 +1,8 @@
-<div class="home-container">
+<form
+    class="home-container"
+    #f="ngForm"
+    (ngSubmit)="login()"
+>
     <div class="login-card shadow-m">
         <span class="form-title">Login</span>
 
@@ -7,6 +11,7 @@
             <input
                 matInput
                 [(ngModel)]="userName"
+                required
                 name="userName"
                 autocomplete="off"
                 autocorrect="off"
@@ -23,19 +28,34 @@
             <input
                 matInput
                 type="password"
-                [(ngModel)]="userPassword"
                 name="userPassword"
+                [(ngModel)]="userPassword"
+                required
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off"
                 spellcheck="false"
             />
-            <button *ngIf="userPassword" matSuffix mat-icon-button aria-label="Clear" (click)="userPassword = ''">
+            <button
+                *ngIf="userPassword"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="userPassword = ''"
+            >
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
 
-        <button mat-raised-button color="accent" class="submit" (click)="login()">Submit</button>
+        <button
+            mat-raised-button
+            color="accent"
+            class="submit"
+            [disabled]="!canSubimit"
+        >
+            Submit
+        </button>
+        
         <ng-container
             *ngIf="mustDisplayLoginErrorMessage"
         >
@@ -45,5 +65,16 @@
                 {{ loginErrorMessage }}
             </span>
         </ng-container>
+
+        <ng-container
+            *ngIf="mustDisplayLoadingBar"
+        >
+
+            <mat-progress-bar
+                color="accent"
+                mode="query"
+            >
+            </mat-progress-bar>
+        </ng-container>
     </div>
-</div>
+</form>

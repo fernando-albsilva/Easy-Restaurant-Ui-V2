@@ -10,29 +10,66 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent implements OnInit {
     public userName: string = '';
     public userPassword: string = '';
-    public mustDisplayLoginErrorMessage: boolean = false;
     public loginErrorMessage: string = '';
+    public mustDisplayLoginErrorMessage: boolean = false;
+    public mustDisplayLoadingBar: boolean = false;
+    public canSubimit: boolean = true;
 
     constructor(private authService: AuthService, private router: Router) {}
 
     ngOnInit(): void {}
 
     public login() {
-        this.authService
-        .login(this.userName, this.userPassword)
-        .subscribe(
-            (requestResult) => {
-                console.log('User is logged in');
-                console.log(requestResult);
-                this.authService.setSession(requestResult);
-                console.log(localStorage.getItem('access_token'));
-                this.router.navigateByUrl('/private/worker-function');
-            },
-            (err) => {
-                this.loginErrorMessage = err.error.message; 
-                this.mustDisplayLoginErrorMessage = true; 
-                console.log(err.error.message);
-            }
-        );
+        if(this.isUserNameAndPasswordSet()){
+
+            this.disableLoginSubmitBtn();
+            this.disableLoginMessageError();
+            this.enableLoadingBar();
+            
+            this.authService
+            .login(this.userName, this.userPassword)
+            .subscribe(
+                (requestResult) => {
+                    this.authService.setSession(requestResult);
+                    this.router.navigateByUrl('/private/worker-function');
+                    this.disableLoadingBar();
+                    this.enableLoginSubmitBtn();
+                },
+                (err) => {
+                    this.loginErrorMessage = err.error.message; 
+                    this.enableLoginMessageError(); 
+                    this.disableLoadingBar();
+                    this.enableLoginSubmitBtn();
+                }
+            );
+        } 
+    }
+
+    private enableLoadingBar = (): void => {
+        this.mustDisplayLoadingBar = true;
+    }
+    
+    private disableLoadingBar = (): void => {
+        this.mustDisplayLoadingBar = false;
+    }
+    
+    private enableLoginMessageError = (): void => {
+        this.mustDisplayLoginErrorMessage = true; 
+    }
+    
+    private disableLoginMessageError = (): void => {
+        this.mustDisplayLoginErrorMessage = false; 
+    }
+
+    private enableLoginSubmitBtn = (): void => {
+        this.canSubimit = true;
+    }
+    
+    private disableLoginSubmitBtn = (): void => {
+        this.canSubimit = false;
+    }
+
+    private isUserNameAndPasswordSet = (): boolean => {
+        return this.userName !== '' && this.userPassword !== '';
     }
 }

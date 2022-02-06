@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { FunctionCardComponent } from './er-page-list/cards/function-card/function-card.component';
@@ -48,6 +49,7 @@ import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
         MatSelectModule,
         MatAutocompleteModule,
         MatTooltipModule,
+        MatProgressBarModule,
         ReactiveFormsModule,
     ],
     exports: [
@@ -59,6 +61,7 @@ import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
         MatSelectModule,
         MatAutocompleteModule,
         MatTooltipModule,
+        MatProgressBarModule,
         ReactiveFormsModule,
         ErTopMenu,
         ErBadge,
