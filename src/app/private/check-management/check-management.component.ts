@@ -94,17 +94,8 @@ export class CheckManagementComponent implements OnInit {
         const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables,table.number);
         if (tableIndex) {
             this.tables[tableIndex] = table;
-            const invoiceActiveCommand = new InvoiceActiveCommand(table);
-            this._checkManagementApi.createActiveTable(invoiceActiveCommand).subscribe(()=>{}, err => console.log(err));
-            //chamar end point para fazer update da mesa
         } else {
             this.tables.push(table);
-            const userId = this._auth.getUserId();
-            if(userId){
-                table.userId = userId;
-            }
-            const invoiceActiveCommand = new InvoiceActiveCommand(table);
-            this._checkManagementApi.createActiveTable(invoiceActiveCommand);
         }
         if(this.tables.length > 0){
             this.tables = this._sortService.sortByProperty(this.tables,'number');

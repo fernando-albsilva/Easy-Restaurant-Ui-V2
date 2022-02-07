@@ -42,4 +42,15 @@ export class CheckManagementApi {
     public IncludeProductInActiveTable = (activeInvoiceItem: ActiveInvoiceItem): Observable<any> => {
         return this.http.post<any>(`${this.apiUrl}/AddItemInInvoice`, activeInvoiceItem);
     }
+    
+    // public removeProduct = (id: string): Observable<any> => {
+    //     return this.http.delete<any>(`${this.apiUrl}/RemoveActiveInvoiceItem`, id);
+    // }
+
+    public removeProduct = (id: string): Observable<any> => {
+        let params = new HttpParams();
+        params = params.append('id', id);
+
+        return this.http.delete<any>(`${this.apiUrl}/RemoveActiveInvoiceItem`, { params: params });
+    };
 }

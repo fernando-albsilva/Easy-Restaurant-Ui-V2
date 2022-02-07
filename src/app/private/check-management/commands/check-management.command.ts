@@ -46,7 +46,7 @@ export class ActiveInvoiceItem {
     public activeInvoiceId: string = '';
 
     constructor(product:ProductModel, activeInvoiceId:string){
-        this.id = UUID.UUID();
+        this.id = product.idInTableCheck;
         this.product.id = product.id;
         this.quantity = product.quantity;
         if(activeInvoiceId){

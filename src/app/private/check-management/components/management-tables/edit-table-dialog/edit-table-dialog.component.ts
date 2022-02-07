@@ -96,7 +96,9 @@ export class EditTableDialog implements OnInit, OnDestroy {
             )
             .subscribe(
                 ()=>{},
-                (err) => {console.log(err);}
+                (err) => {
+                    console.log(err);
+                }
             );
     };
 
@@ -159,7 +161,9 @@ export class EditTableDialog implements OnInit, OnDestroy {
           )
           .subscribe(
               ()=>{},
-              (err) => {console.log(err);}
+              (err) => {
+                  console.log(err);
+              }
           );
 
 
@@ -206,10 +210,21 @@ export class EditTableDialog implements OnInit, OnDestroy {
         return this._objectService.isAnyPropertyEmpty(this.worker);
     };
 
-    private removeProductFromTableCheck = (idInTableCheck: string): void => {
+    private removeProductFromTableCheck = (productIdInTableCheck: string): void => {
         this.table.products = this.table.products.filter((product) => {
-            return !(product.idInTableCheck === idInTableCheck);
+            return !(product.idInTableCheck === productIdInTableCheck);
         });
+        //TODO
+        //Enviar o id do produto a ser excluido da conta par ao back end
+        //
+        this._checkManagementApi
+            .removeProduct(productIdInTableCheck)
+            .subscribe(
+                ()=>{},
+                (err)=> {
+                    console.error(err);
+                }
+            );
     };
 
     private productExistInCheck = (idInTableCheck: string): boolean => {
