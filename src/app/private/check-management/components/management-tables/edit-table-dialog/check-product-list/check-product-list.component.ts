@@ -11,6 +11,8 @@ export class CheckProductList {
     @Input() products: Array<ProductModel> = [];
     @Output() removeProduct = new EventEmitter<any>();
 
+    public openDialog: boolean = false;
+
     constructor(public messages: MessagesKeys) {}
 
     public calcTotalValue = (product: ProductModel): string => {
@@ -18,6 +20,9 @@ export class CheckProductList {
     };
 
     public removeProductFromCheck = (idInTableCheck: string): void => {
-        this.removeProduct.emit(idInTableCheck);
+        this.openDialog = true;
+        //FIXME aqui vai mandar para o pai passando um comando se vai excluir ou nao dependendo de como 
+        // o usuario decidiu cancelar
+        // this.removeProduct.emit(idInTableCheck);
     };
 }

@@ -23,6 +23,8 @@ import { ProductCardComponent } from './er-page-list/cards/product-card/product-
 import { ErPageListSideMenuComponent } from './er-page-list/er-page-list-side-menu/er-page-list-side-menu.component';
 import { UserCardComponent } from './er-page-list/cards/user-card/user-card.component';
 import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
+import { ErConfirmDialog } from './er-confirm-dialog/er-confirm-dialog.component';
+import { ConfirmDialog } from './er-confirm-dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
     declarations: [
@@ -36,6 +38,8 @@ import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
         WorkerCardComponent,
         ProductCardComponent,
         UserCardComponent,
+        ErConfirmDialog,
+        ConfirmDialog,
     ],
     imports: [
         CommonModule,
@@ -73,6 +77,8 @@ import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
         WorkerCardComponent,
         ProductCardComponent,
         UserCardComponent,
+        ErConfirmDialog,
+        ConfirmDialog,
     ],
 })
 export class SharedModule {}
