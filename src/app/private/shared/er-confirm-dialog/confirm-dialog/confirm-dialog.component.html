@@ -1,1 +1,36 @@
-<h1>Teste brado go horse</h1>
+<div
+    class="dialog-container"
+>
+    <div
+        class="form"
+    >
+        <mat-icon>info</mat-icon>
+        <span
+            class="message-displayed"
+        >
+            {{ messageDisplayed }}
+        </span>
+    
+    </div>
+
+    <footer
+        class="footer-container"
+    >
+        <button
+            mat-raised-button
+            class="btn"
+            (click)="onCancel()"
+        >
+            {{ messages.cancel }}
+        </button>
+        
+        <button
+            mat-raised-button
+            class="btn warning-btn"
+            (click)="onConfirm()"
+        >
+            {{ messages.confirm }}
+        </button>
+        
+    </footer>
+</div>

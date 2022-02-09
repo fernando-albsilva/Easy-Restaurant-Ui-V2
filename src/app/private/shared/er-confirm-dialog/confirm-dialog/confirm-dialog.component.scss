@@ -1,0 +1,29 @@
+@import "../../../../shared-styles/colors-and-default-styles.scss";
+@import "../../../../shared-styles/dialog-base.scss";
+
+.dialog-container {
+    padding: 20px 50px;
+
+    .form{
+        justify-content: center;
+        gap: 30px;
+        
+        $icon-height: 50px;
+        mat-icon{
+            color: $yellow10;
+            height: $icon-height;
+            width: $icon-height;
+            font-size: $icon-height;
+        }
+
+        .message-displayed {
+            color: $white10;
+            font-size: 17px;
+        }    
+    }
+    
+    .warning-btn {
+        background-color: $yellow10;
+        color: $black10;
+    }
+}
