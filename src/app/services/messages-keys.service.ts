@@ -161,7 +161,9 @@ export class MessagesKeys {
     //Related to er-confirm-dialog
     public readonly beCarefulWithDecision: string = 'Tenha certeza ao confirmar, pois essa decisão pode ser irreversível';
     public readonly beCarefulWhenDeleteProduct: string = 'Tenha certeza ao confirmar, pois esse produto será removido da conta de forma irreverssível';
-   
+    
+    // Related to item kept
+    public readonly itemWasKept: string = 'Item foi mantido';
 
 
 }

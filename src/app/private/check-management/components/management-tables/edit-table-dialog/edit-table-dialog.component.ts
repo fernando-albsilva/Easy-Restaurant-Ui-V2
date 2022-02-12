@@ -13,7 +13,7 @@ import { TimeService } from 'src/app/services/time.service';
 import { CheckManagementApi } from '../../../api/check-management.api';
 import { CheckManagementHelper } from '../../../check-management.helper';
 import { ActiveInvoiceItem, InvoiceActiveCommand } from '../../../commands/check-management.command';
-import { CheckOptions, CheckResult, ProductInfo, TableModel, TableStartTime } from '../../../model/check-management.model';
+import { CheckOptions, CheckResult, ProductInfo, ProductRemovePayload, TableModel, TableStartTime } from '../../../model/check-management.model';
 
 @Component({
     selector: 'edit-table-dialog',
@@ -170,9 +170,13 @@ export class EditTableDialog implements OnInit, OnDestroy {
         }
     };
 
-    public handleRemovedProduct = (idInTableCheck: string): void => {
-        if (this.productExistInCheck(idInTableCheck)) {
-            this.removeProductFromTableCheck(idInTableCheck);
+    public handleRemovedProduct = (productAction: ProductRemovePayload): void => {
+        const canRemoveProduct = 
+           productAction.removeAction &&
+           this.productExistInCheck(productAction.productId);
+
+        if (canRemoveProduct && productAction.productId) {
+            this.removeProductFromTableCheck(productAction.productId);
         } else {
             throw new Error('Product does not exist in table products list');
         }
@@ -227,7 +231,7 @@ export class EditTableDialog implements OnInit, OnDestroy {
             );
     };
 
-    private productExistInCheck = (idInTableCheck: string): boolean => {
+    private productExistInCheck = (idInTableCheck: string | undefined): boolean => {
         const exist = this.table.products.find((product) => {
             return idInTableCheck == product.idInTableCheck;
         });

@@ -79,3 +79,19 @@ export class CheckResult {
         this.checkOptions = checkOptions;
     }
 }
+
+
+export class ProductRemovePayload {
+    public removeAction: boolean | undefined;
+    public productId: string | undefined;
+
+    constructor (removeAction?: boolean, productId?: string){
+        if(removeAction){
+            this.removeAction = removeAction;
+        }
+        
+        if(productId){
+            this.productId = productId;
+        }
+    }
+}

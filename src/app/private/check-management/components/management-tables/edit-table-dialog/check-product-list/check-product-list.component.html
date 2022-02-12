@@ -72,9 +72,11 @@
         </ng-container>
     </div>
 
+    <!-- (openChange)="openDialog" -->
     <er-confirm-dialog
-        [open]="openDialog"
-        (openChange)="openDialog"
+        [(open)]="openDialog"
+        (onSelectOption)="handleProductRemovingDecision($event)"
+        [messageDisplayed]="messages.beCarefulWhenDeleteProduct"
     >
     </er-confirm-dialog>
 
