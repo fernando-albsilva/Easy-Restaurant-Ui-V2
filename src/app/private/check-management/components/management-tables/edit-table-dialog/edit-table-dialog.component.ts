@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UUID } from 'angular2-uuid';
 import { Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/private/product/Model/product.model';
-import { WorkerFlatModel, WorkerModel } from 'src/app/private/worker/Model/woker.model';
+import { WorkerActiveInvoiceModel, WorkerFlatModel, WorkerModel } from 'src/app/private/worker/Model/woker.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
@@ -13,7 +13,7 @@ import { TimeService } from 'src/app/services/time.service';
 import { CheckManagementApi } from '../../../api/check-management.api';
 import { CheckManagementHelper } from '../../../check-management.helper';
 import { ActiveInvoiceItem, InvoiceActiveCommand } from '../../../commands/check-management.command';
-import { CheckOptions, CheckResult, ProductInfo, ProductRemovePayload, TableModel, TableStartTime } from '../../../model/check-management.model';
+import { ActiveInvoiceItemModel, ActiveInvoiceModel, CheckOptions, CheckResult, ProductInfo, ProductRemovePayload, TableModel, TableStartTime } from '../../../model/check-management.model';
 
 @Component({
     selector: 'edit-table-dialog',
@@ -22,8 +22,8 @@ import { CheckOptions, CheckResult, ProductInfo, ProductRemovePayload, TableMode
 })
 export class EditTableDialog implements OnInit, OnDestroy {
     public table: TableModel = new TableModel();
-    public worker: WorkerFlatModel = new WorkerFlatModel();
-    public workers: Array<WorkerFlatModel> = [];
+    public worker: WorkerActiveInvoiceModel = new WorkerActiveInvoiceModel();
+    public workers: Array<WorkerActiveInvoiceModel> = [];
     public products: Array<ProductModel> = [];
     public selectedProduct: ProductModel = new ProductModel();
     public productSelectionInfo: ProductInfo = new ProductInfo();
@@ -58,7 +58,17 @@ export class EditTableDialog implements OnInit, OnDestroy {
         }else{
             //TODO verificar por que o er-autocomplete precisa
             //do input value quando uma mesa ja esta ativa
-            this.worker=this.table.worker
+            this._checkManagementApi
+                .getActiveTable(this.table.invoiceId)
+                .subscribe(
+                    (activeInvoice: ActiveInvoiceModel) => {
+                        this.parseActiveTable(activeInvoice);
+                    },
+                    (err) => {
+                        console.error(err);
+                    }
+                );
+            this.worker = this.table.worker;
             this.startTableCounting();
         }
         this.getAvailableProducts();
@@ -296,6 +306,35 @@ export class EditTableDialog implements OnInit, OnDestroy {
         }else{
             console.error(`table is not adding user on start`);
         }
+    }
+
+    private parseActiveTable = (activeInvoice: ActiveInvoiceModel) => {
+        this.table.clientName = activeInvoice.clientName;
+        this.table.worker = activeInvoice.worker;
+        this.table.worker.name = activeInvoice.worker.name;
+
+        this.table.setStartTime(activeInvoice.startTime);
+        
+        activeInvoice.activeInvoiceItems.forEach(
+            (item) => {
+                this.table.products
+                .push(this.parseIntoProduct(item));
+            }
+        )
+    }
+
+    private parseIntoProduct = (activeInvoiceItem: ActiveInvoiceItemModel): ProductModel => {
+        const product = new ProductModel();
+
+        // fazer o parse 
+        product.id = activeInvoiceItem.product.id;
+        product.name = activeInvoiceItem.product.name;
+        product.unitValue = activeInvoiceItem.product.unitValue;
+        product.quantity = activeInvoiceItem.quantity;
+        product.cost = activeInvoiceItem.product.cost;
+        product.idInTableCheck = activeInvoiceItem.id;
+
+        return product;
     }
 
 }

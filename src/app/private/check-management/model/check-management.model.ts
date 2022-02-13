@@ -1,12 +1,12 @@
-import { ProductModel } from '../../product/Model/product.model';
-import { WorkerFlatModel } from '../../worker/Model/woker.model';
+import { ProductActiveInvoiceModel, ProductModel } from '../../product/Model/product.model';
+import { WorkerActiveInvoiceModel, WorkerFlatModel } from '../../worker/Model/woker.model';
 
 export class TableModel {
     public number: number = 0;
     public clientName: string = '';
     public invoiceId: string = '';
     public date: Date = new Date();
-    public worker: WorkerFlatModel = new WorkerFlatModel();
+    public worker: WorkerActiveInvoiceModel = new WorkerActiveInvoiceModel();
     public shouldHideByFilter: boolean = false;
     public isActive: boolean = false;
     public products: Array<ProductModel> = [];
@@ -17,6 +17,13 @@ export class TableModel {
         if (number) {
             this.number = number;
         }
+    }
+
+    public setStartTime = (startTime: string) => {
+        const time = startTime.split(":");
+        this.startTime.hour = Number(time[0]);
+        this.startTime.min = Number(time[1]);
+        this.startTime.sec = Number(time[2]);
     }
 }
 
@@ -94,4 +101,29 @@ export class ProductRemovePayload {
             this.productId = productId;
         }
     }
+}
+
+export class ActiveTable {
+    public id: string = '';  
+    public tableNumber: number | undefined | null;  
+    public individualCheckNumber: number | undefined | null;  
+}
+
+export class ActiveInvoiceModel { 
+    public id: string = '';
+    public UserId: string = '';
+    public worker: WorkerActiveInvoiceModel = new WorkerActiveInvoiceModel();
+    public date: string = '';
+    public clientName: string = '';
+    public tableNumber: number = 0;
+    public individualCheckNumber: number = 0;
+    public startTime: string = '';
+    public activeInvoiceItems: Array<ActiveInvoiceItemModel> = [];
+}
+
+export class ActiveInvoiceItemModel {
+    id: string = '';
+    activeInvoiceId: string = '';
+    quantity: number = 0;
+    product: ProductActiveInvoiceModel = new ProductActiveInvoiceModel();
 }

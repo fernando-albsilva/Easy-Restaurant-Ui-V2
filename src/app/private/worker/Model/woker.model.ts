@@ -27,3 +27,8 @@ export class Functions {
         this.functionList = list;
     }
 }
+
+export class WorkerActiveInvoiceModel {
+    id: string = '';
+    name: string = '';
+}

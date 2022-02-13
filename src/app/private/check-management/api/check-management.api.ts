@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { WorkerFlatModel } from '../../worker/Model/woker.model';
 import { ProductModel } from '../../product/Model/product.model';
 import { ActiveInvoiceItem, InvoiceActiveCommand } from '../commands/check-management.command';
+import { ActiveInvoiceModel, ActiveTable } from '../model/check-management.model';
 
 @Injectable({
     providedIn: 'any',
@@ -22,12 +23,21 @@ export class CheckManagementApi {
     public getProducts(): Observable<Array<ProductModel>> {
         return this.http.get(this.apiUrl + '/Products').pipe(map((element) => element as Array<ProductModel>));
     }
+    
+    public getActiveTable(ActiveinvoiceId: string): Observable<ActiveInvoiceModel> {
+        let params = new HttpParams();
+
+        params = params.append('id', ActiveinvoiceId);
+
+        return this.http.get(this.apiUrl + '/GetActiveInvoice', { params: params })
+            .pipe(map((element) => element as ActiveInvoiceModel));
+    }
+
+    public getActiveTablesAndIndividualChecksNumber(): Observable<Array<ActiveTable>> {
+        return this.http.get(this.apiUrl + '/GetActiveTablesAndIndividualChecks').pipe(map((element) => element as Array<ActiveTable>));
+    }
 
     public createActiveTable = (invoiceActiveCommand: InvoiceActiveCommand): Observable<any> => {
-        // let params = new HttpParams();
-        // params = params.append('table', table);
-
-        // return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, { params: params });
         return this.http.post<any>(`${this.apiUrl}/CrateActiveTable`, invoiceActiveCommand);
     };
    
@@ -42,10 +52,6 @@ export class CheckManagementApi {
     public IncludeProductInActiveTable = (activeInvoiceItem: ActiveInvoiceItem): Observable<any> => {
         return this.http.post<any>(`${this.apiUrl}/AddItemInInvoice`, activeInvoiceItem);
     }
-    
-    // public removeProduct = (id: string): Observable<any> => {
-    //     return this.http.delete<any>(`${this.apiUrl}/RemoveActiveInvoiceItem`, id);
-    // }
 
     public removeProduct = (id: string): Observable<any> => {
         let params = new HttpParams();

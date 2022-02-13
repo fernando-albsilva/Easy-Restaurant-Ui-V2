@@ -25,7 +25,7 @@ export class ErMessages {
             clas="container"
             [style.text-align]="'center'"
             [style.font-weight]="'font-weight: 500'"
-            [style.font-size]="'1.1rem'"
+            [style.font-size]="'1.0rem'"
             [style.color]="textColor"
         >
             {{ data.message }}
