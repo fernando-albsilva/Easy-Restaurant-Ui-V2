@@ -10,10 +10,17 @@
         
         $icon-height: 50px;
         mat-icon{
-            color: $yellow10;
             height: $icon-height;
             width: $icon-height;
             font-size: $icon-height;
+        }
+
+        .warning-icon {
+            color: $yellow10;
+        }
+
+        .info-icon {
+            color: $green10;
         }
 
         .message-displayed {
@@ -24,6 +31,11 @@
     
     .warning-btn {
         background-color: $yellow10;
+        color: $black10;
+    }
+   
+    .info-btn {
+        background-color: $green10;
         color: $black10;
     }
 }

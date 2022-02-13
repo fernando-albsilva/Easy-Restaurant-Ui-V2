@@ -11,6 +11,7 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
 })
 export class ConfirmDialog implements OnInit {
     public messageDisplayed: string = this.messages.beCarefulWithDecision;
+    public styleToUse: string = '';
 
     constructor(
         public messages: MessagesKeys,
@@ -21,7 +22,8 @@ export class ConfirmDialog implements OnInit {
     }
     ngOnInit(): void {
         if (this.data) {
-            this.messageDisplayed = this.data;
+            this.messageDisplayed = this.data.messageDisplayed;
+            this.styleToUse = this.data.styleToUse;
         }
     }
 

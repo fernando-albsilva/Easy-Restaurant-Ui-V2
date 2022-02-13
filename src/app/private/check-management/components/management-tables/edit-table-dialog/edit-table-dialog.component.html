@@ -226,3 +226,14 @@
         <!-- CHECK DETAILS CONTAINER -->
     </div>
 </div>
+
+
+
+<!-- (openChange)="openDialog" -->
+<er-confirm-dialog
+    [(open)]="openConfirmDialog"
+    (onSelectOption)="handleCloseCheckDecision($event)"
+    [messageDisplayed]="messages.checkCloseConfirm"
+    [styleToUse]="'info'"
+>
+</er-confirm-dialog>

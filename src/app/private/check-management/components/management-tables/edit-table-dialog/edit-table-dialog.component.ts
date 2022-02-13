@@ -30,6 +30,7 @@ export class EditTableDialog implements OnInit, OnDestroy {
     public isNew: boolean = true;
     public timeCountingRef: any;
     public durationTime: string = '00:00:00';
+    public openConfirmDialog: boolean = false;
 
     //helper
     private _managementHelper = new CheckManagementHelper();
@@ -163,8 +164,6 @@ export class EditTableDialog implements OnInit, OnDestroy {
           const product = this.createProductToPushInTableList();
           this.table.products.push(product);
 
-          //TODO continuar daqui
-          // deve mandar atualizar no banco o active invoice items com os produtos
           this._checkManagementApi
           .IncludeProductInActiveTable(
               new ActiveInvoiceItem(product,this.table.invoiceId)
@@ -193,10 +192,16 @@ export class EditTableDialog implements OnInit, OnDestroy {
     };
 
     public handleCloseCheck = () => {
-        const checkOptions = this.createCheckOptions('closed');
-        const checkResult = new CheckResult(this.table,checkOptions)
-        this.dialogRef.close(checkResult);
+        this.openConfirmDialog = true;
     };
+
+    public handleCloseCheckDecision = (confirm: boolean) => {
+        if(confirm){
+            const checkOptions = this.createCheckOptions('closed');
+            const checkResult = new CheckResult(this.table,checkOptions);
+            this.dialogRef.close(checkResult);
+        }
+    }
 
     private getWorkesThatHaveWaiterFunction = (): void => {
         this._checkManagementApi.getWorkers().subscribe(
@@ -228,9 +233,7 @@ export class EditTableDialog implements OnInit, OnDestroy {
         this.table.products = this.table.products.filter((product) => {
             return !(product.idInTableCheck === productIdInTableCheck);
         });
-        //TODO
-        //Enviar o id do produto a ser excluido da conta par ao back end
-        //
+
         this._checkManagementApi
             .removeProduct(productIdInTableCheck)
             .subscribe(
@@ -315,6 +318,7 @@ export class EditTableDialog implements OnInit, OnDestroy {
 
         this.table.setStartTime(activeInvoice.startTime);
         
+        this.table.products = [];
         activeInvoice.activeInvoiceItems.forEach(
             (item) => {
                 this.table.products
@@ -326,7 +330,6 @@ export class EditTableDialog implements OnInit, OnDestroy {
     private parseIntoProduct = (activeInvoiceItem: ActiveInvoiceItemModel): ProductModel => {
         const product = new ProductModel();
 
-        // fazer o parse 
         product.id = activeInvoiceItem.product.id;
         product.name = activeInvoiceItem.product.name;
         product.unitValue = activeInvoiceItem.product.unitValue;

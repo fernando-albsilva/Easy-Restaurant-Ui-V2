@@ -8,6 +8,9 @@ import { ConfirmDialog } from './confirm-dialog/confirm-dialog.component';
     template: '',
 })
 export class ErConfirmDialog {
+
+    @Input() public styleToUse: string = 'warn';
+
     @Input() set open(option: boolean) {
         if (option) {
             this.handleCreateDialog();
@@ -22,7 +25,12 @@ export class ErConfirmDialog {
     constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}
 
     public handleCreateDialog = (): void => {
-        const dialogRef = this.createDialog(this.messageDisplayed);
+        const dialogRef = this.createDialog(
+            {
+                messageDisplayed: this.messageDisplayed,
+                styleToUse: this.styleToUse
+            }
+        );
 
         dialogRef.afterClosed().subscribe((confirm: boolean) => {
             if (confirm) {

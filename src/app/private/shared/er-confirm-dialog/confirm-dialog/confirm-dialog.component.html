@@ -4,7 +4,16 @@
     <div
         class="form"
     >
-        <mat-icon>info</mat-icon>
+        <mat-icon
+            [ngClass]="
+                {
+                    'warning-icon': styleToUse === 'warn',
+                    'info-icon': styleToUse === 'info'
+                }
+            "
+        >
+            info
+        </mat-icon>
         <span
             class="message-displayed"
         >
@@ -26,7 +35,13 @@
         
         <button
             mat-raised-button
-            class="btn warning-btn"
+            class="btn"
+            [ngClass]="
+                {
+                    'warning-btn': styleToUse === 'warn',
+                    'info-btn': styleToUse === 'info'
+                }
+            "
             (click)="onConfirm()"
         >
             {{ messages.confirm }}
