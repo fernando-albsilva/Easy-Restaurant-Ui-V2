@@ -11,7 +11,7 @@ import {
     ManagementFilterPayload,
     ShowManagementType,
 } from './components/type-check-header-menu/type-check-header-menu.component';
-import { CheckResult, IndividualCheckModel, TableModel } from './model/check-management.model';
+import { ActiveTable, CheckResult, IndividualCheckModel, TableModel } from './model/check-management.model';
 
 @Component({
     selector: 'check-management',
@@ -36,14 +36,15 @@ export class CheckManagementComponent implements OnInit {
         private _erMessagesSnackbar: ErMessages,
         private _messages: MessagesKeys,
         private _sortService: SortService,
-        private _checkManagementApi:CheckManagementApi,
-        private _auth:AuthService,
+        private _checkManagementApi: CheckManagementApi,
+        private _auth: AuthService
     ) {}
 
     //TODO
     // implementar busca das mesas e contas individuais ativas no banco
     ngOnInit(): void {
         this.handleTablesQuantity();
+        this.getActivesTablesAndIndividualChecks();
     }
 
     public handleChangeViewManagement = (show: ShowManagementType): void => {
@@ -76,13 +77,13 @@ export class CheckManagementComponent implements OnInit {
     // salvar na tabela de invoice corretamente (Não implementado ainda);
     // limpar a mesa (Já implementado);
     private handleClosedTableCheck = (table: TableModel): void => {
-        const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables,table.number);
-        if(tableIndex){
+        const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables, table.number);
+        if (tableIndex) {
             this.tables[tableIndex] = new TableModel();
             this.tables[tableIndex].number = table.number;
             this.tables = [...this.tables];
-        }else{
-            throw new Error ('Can not clear table after finish because it was not found in table list');
+        } else {
+            throw new Error('Can not clear table after finish because it was not found in table list');
         }
     };
 
@@ -91,14 +92,14 @@ export class CheckManagementComponent implements OnInit {
     //Ao ser fechado o dialogo de edição com uma mesa ainda ativa
     //Essa mesa deve ser tratada e feito o update da mesma na lista de mesas this.tables
     private handleTableActive = (table: TableModel) => {
-        const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables,table.number);
+        const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables, table.number);
         if (tableIndex) {
             this.tables[tableIndex] = table;
         } else {
             this.tables.push(table);
         }
-        if(this.tables.length > 0){
-            this.tables = this._sortService.sortByProperty(this.tables,'number');
+        if (this.tables.length > 0) {
+            this.tables = this._sortService.sortByProperty(this.tables, 'number');
         }
     };
 
@@ -131,4 +132,46 @@ export class CheckManagementComponent implements OnInit {
             this.tables.push(table);
         }
     }
+
+    private getActivesTablesAndIndividualChecks = (): void => {
+        this._checkManagementApi.getActiveTablesAndIndividualChecksNumber().subscribe(
+            (result) => {
+                this.tagActiveChecks(result);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    };
+
+    //TODO fazer com as comandas tambem
+    private tagActiveChecks = (activeChecks: Array<ActiveTable>): void => {
+        let activeTables: Array<ActiveTable> = [];
+        let individualChecks: Array<ActiveTable> = [];
+
+        activeChecks.forEach((element) => {
+            if (element.tableNumber) {
+                activeTables.push(element);
+            } else {
+                individualChecks.push(element); //implementar aqui os numberos das comandas
+            }
+        });
+
+        this.fillActiveTablesBasicInfo(activeTables);
+
+        //TODO fazer igual o foreeach acima para comanda
+    };
+
+    private fillActiveTablesBasicInfo = (activeTables: Array<ActiveTable>): void => {
+        this.tables.forEach((table) => {
+            const activeTable = activeTables.find((activeTable) => {
+                return activeTable.tableNumber === table.number;
+            });
+
+            if (activeTable) {
+                table.isActive = true;
+                table.invoiceId = activeTable.id;
+            }
+        });
+    };
 }
