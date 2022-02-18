@@ -41,6 +41,12 @@ export class CheckManagementApi {
         return this.http.post<any>(`${this.apiUrl}/CrateActiveTable`, invoiceActiveCommand);
     };
    
+    public closeCheck = (activeInvoiceId: string): Observable<any> => {   
+        let params = new HttpParams();
+        params = params.append('activeInvoiceId', activeInvoiceId);
+        return this.http.post<any>(`${this.apiUrl}/CloseCheck`, params);
+    };
+   
     public updateActiveTable = (invoiceActiveCommand: InvoiceActiveCommand): Observable<any> => {
         // let params = new HttpParams();
         // params = params.append('table', table);

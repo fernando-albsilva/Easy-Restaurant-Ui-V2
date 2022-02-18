@@ -76,7 +76,15 @@ export class CheckManagementComponent implements OnInit {
     // de gerar a conta final (Não implementado ainda)
     // salvar na tabela de invoice corretamente (Não implementado ainda);
     // limpar a mesa (Já implementado);
+
+        //BMFERNANDO  implementando conclusao de mesa no backend
     private handleClosedTableCheck = (table: TableModel): void => {
+        this._checkManagementApi
+            .closeCheck(table.invoiceId)
+            .subscribe(
+                ()=>{},
+                (err)=>{ console.error(err);}
+            );
         const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables, table.number);
         if (tableIndex) {
             this.tables[tableIndex] = new TableModel();
