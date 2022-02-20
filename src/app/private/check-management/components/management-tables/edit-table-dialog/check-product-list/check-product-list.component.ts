@@ -22,7 +22,7 @@ export class CheckProductList {
     ) {}
 
     public calcTotalValue = (product: ProductModel): string => {
-        return (product.quantity * product.unitValue).toString();
+        return (product.quantity * product.unitValue).toFixed(2).toString();
     };
 
     public removeProductFromCheck = (idInTableCheck: string): void => {

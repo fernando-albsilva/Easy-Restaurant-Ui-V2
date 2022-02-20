@@ -25,6 +25,7 @@ import { UserCardComponent } from './er-page-list/cards/user-card/user-card.comp
 import { ErAutoComplete } from './er-auto-complete/er-auto-complete.component';
 import { ErConfirmDialog } from './er-confirm-dialog/er-confirm-dialog.component';
 import { ConfirmDialog } from './er-confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { InvoiceCardComponent } from './er-page-list/cards/invoice-card/invoice-card.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { ConfirmDialog } from './er-confirm-dialog/confirm-dialog/confirm-dialog
         UserCardComponent,
         ErConfirmDialog,
         ConfirmDialog,
+        InvoiceCardComponent,
     ],
     imports: [
         CommonModule,

@@ -22,6 +22,11 @@ export class ErPageListFilterComponent {
         { key: 'id', value: this.messages.code },
         { key: 'userName', value: this.messages.name },
         { key: 'role', value: this.messages.role },
+        { key: 'clientName', value: this.messages.clientName },
+        { key: 'workerName', value: this.messages.attendant },
+        { key: 'date', value: this.messages.date },
+        { key: 'duration', value: this.messages.duration },
+        { key: 'totalValue', value: this.messages.total },
     ];
 
     @Input() permitFilterById = false;

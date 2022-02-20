@@ -15,18 +15,24 @@ export class ErPageListSideMenuComponent {
     constructor(public messages: MessagesKeys) {}
 
     public emitAddEvent() {
-        const persistenceType = new PersistenceTypeModel();
+        const persistenceType = this.createPersistenceTypeModel();
         persistenceType.Add = true;
         this.actionEvent.emit(persistenceType);
     }
     public emitEditEvent() {
-        const persistenceType = new PersistenceTypeModel();
+        const persistenceType = this.createPersistenceTypeModel();
         persistenceType.Edit = true;
         this.actionEvent.emit(persistenceType);
     }
     public emitDeleteEvent() {
-        const persistenceType = new PersistenceTypeModel();
+        const persistenceType = this.createPersistenceTypeModel();
         persistenceType.Delete = true;
+        this.actionEvent.emit(persistenceType);
+    }
+   
+    public emitDetailEvent() {
+        const persistenceType = this.createPersistenceTypeModel();
+        persistenceType.Detail = true;
         this.actionEvent.emit(persistenceType);
     }
 
@@ -35,4 +41,8 @@ export class ErPageListSideMenuComponent {
             return element === type;
         });
     };
+
+    private createPersistenceTypeModel = (): PersistenceTypeModel => {
+        return new PersistenceTypeModel();
+    }
 }

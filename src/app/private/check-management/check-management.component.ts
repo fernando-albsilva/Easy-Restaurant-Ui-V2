@@ -1,11 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { SortService } from 'src/app/services/sort.service';
 import { CheckManagementApi } from './api/check-management.api';
 import { CheckManagementHelper } from './check-management.helper';
-import { InvoiceActiveCommand } from './commands/check-management.command';
 import { ManagementTablesComponent } from './components/management-tables/management-tables.component';
 import {
     ManagementFilterPayload,
@@ -37,7 +36,7 @@ export class CheckManagementComponent implements OnInit {
         private _messages: MessagesKeys,
         private _sortService: SortService,
         private _checkManagementApi: CheckManagementApi,
-        private _auth: AuthService
+        private _auth: AuthService,
     ) {}
 
     //TODO
@@ -70,22 +69,17 @@ export class CheckManagementComponent implements OnInit {
         }
     };
 
-    //TODO
-    //INFO
-    // Ao ser fechada a conta esse metodo deve tratar
-    // de gerar a conta final (Não implementado ainda)
-    // salvar na tabela de invoice corretamente (Não implementado ainda);
-    // limpar a mesa (Já implementado);
-
-        //BMFERNANDO  implementando conclusao de mesa no backend
     private handleClosedTableCheck = (table: TableModel): void => {
         this._checkManagementApi
             .closeCheck(table.invoiceId)
             .subscribe(
-                ()=>{},
-                (err)=>{ console.error(err);}
+                () => {},
+                (err) => {
+                    console.error(err);
+                },
             );
-        const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables, table.number);
+        const tableIndex = 
+            this.checkHelper.findTableIndexByNumber(this.tables, table.number);
         if (tableIndex) {
             this.tables[tableIndex] = new TableModel();
             this.tables[tableIndex].number = table.number;
@@ -95,10 +89,6 @@ export class CheckManagementComponent implements OnInit {
         }
     };
 
-    //TODO
-    //INFO
-    //Ao ser fechado o dialogo de edição com uma mesa ainda ativa
-    //Essa mesa deve ser tratada e feito o update da mesma na lista de mesas this.tables
     private handleTableActive = (table: TableModel) => {
         const tableIndex = this.checkHelper.findTableIndexByNumber(this.tables, table.number);
         if (tableIndex) {
@@ -148,7 +138,7 @@ export class CheckManagementComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     };
 

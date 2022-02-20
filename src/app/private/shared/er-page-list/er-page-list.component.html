@@ -3,7 +3,10 @@
 
     <div class="page-content">
         <div class="letf-side-menu-container">
-            <er-page-list-side-menu [buttonsPermited]="buttonsPermited" (actionEvent)="handleSideMenuAction($event)">
+            <er-page-list-side-menu
+                [buttonsPermited]="buttonsPermited"
+                (actionEvent)="handleSideMenuAction($event)"
+            >
             </er-page-list-side-menu>
         </div>
 
@@ -73,6 +76,20 @@
                     </ng-container>
                 </ng-container>
                 <!-- /User card -->
+              
+                <!-- Invoice card  -->
+                <ng-container *ngIf="isContext('invoice')">
+                    <ng-container *ngFor="let item of itemsFiltred">
+                        <invoice-card
+                            class="er-card"
+                            [item]="item"
+                            [selected]="amISelected(item.id)"
+                            (click)="selectOrRemoveCardSelection(item.id)"
+                        >
+                        </invoice-card>
+                    </ng-container>
+                </ng-container>
+                <!-- /Invoice card -->
 
                 <!-- ????? Card -->
                 <!-- /????? Card -->

@@ -34,6 +34,11 @@
                 <mat-icon class="material-icons-round icon">account_box</mat-icon>
                 <span class="chield-text">{{ messages.user }}</span>
             </button>
+           
+            <button *ngIf="canAcessUserPage()" routerLink="/private/query" class="left-chield">
+                <mat-icon class="material-icons-round icon">query_stats</mat-icon>
+                <span class="chield-text">{{ messages.query }}</span>
+            </button>
         </div>
 
         <div class="bottom-row-right-chield-container">

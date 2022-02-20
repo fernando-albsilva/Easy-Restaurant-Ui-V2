@@ -30,6 +30,9 @@ export class MessagesKeys {
 
     //Related to add
     public readonly add: string = 'Adicionar';
+    
+    //Related to detail
+    public readonly detail: string = 'Detalhar';
 
     //Related to close
     public readonly close: string = 'Fechar';
@@ -58,6 +61,9 @@ export class MessagesKeys {
 
     //Related to name
     public readonly type: string = 'Tipo';
+   
+    //Related to name
+    public readonly date: string = 'Data';
 
     //Related to name
     public readonly email: string = 'Email';
@@ -127,6 +133,9 @@ export class MessagesKeys {
     //Related to worker
     public readonly worker: string = 'Funcionário';
     
+    //Related to attendant
+    public readonly attendant: string = 'Atendente';
+    
     //Related to info
     public readonly informations: string = 'Informações';
     
@@ -139,8 +148,9 @@ export class MessagesKeys {
     //Related to percent / percentage
     public readonly tenPerCent: string = '10%';
 
-    //Related to total
+    //Related to total / percentage / percent
     public readonly total: string = 'Total';
+    public readonly totalWithTenPerCent: string = 'Total + 10%';
 
     //Related to quantity
     public readonly quantity: string = 'Quantidade';
@@ -165,6 +175,12 @@ export class MessagesKeys {
     
     // Related to item kept
     public readonly itemWasKept: string = 'Item foi mantido';
+    
+    // Related to item duration
+    public readonly duration: string = 'Duração';
+    
+    // Related to item duration
+    public readonly query: string = 'Consulta';
 
 
 }

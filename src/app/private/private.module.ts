@@ -8,11 +8,13 @@ import { ProductModule } from './product/product.module';
 import { WorkerFunctionModule } from './worker-function/worker-function.module';
 import { WorkerModule } from './worker/worker.module';
 import { AuthService } from '../services/auth.service';
-import { UserModule } from './user/user.module';
 import { CheckManagementModule } from './check-management/check-management.module';
+import { QueryModule } from './query/query.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
-    declarations: [],
+    declarations: [
+  ],
     imports: [
         PrivateRoutingModule,
         WorkerFunctionModule,
@@ -20,6 +22,7 @@ import { CheckManagementModule } from './check-management/check-management.modul
         ProductModule,
         UserModule,
         CheckManagementModule,
+        QueryModule
     ],
     exports: [],
     providers: [ErHttpRequestService, AuthService, AuthGuard],

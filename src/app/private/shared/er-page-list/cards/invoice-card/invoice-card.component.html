@@ -1,0 +1,39 @@
+<div class="card-container" [ngClass]="{ 'card-selected': selected }">
+    <!-- <er-badge
+  [inputData]="workerModel.id.toString()"
+  [width]="'60px'"
+  [height]="'80%'"
+  >
+  </er-badge> -->
+
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.clientName }}</span>
+        <span class="property-text">{{ invoiceFlatModel.clientName }}</span>
+    </div>
+
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.attendant }}</span>
+        <span class="property-text">{{ invoiceFlatModel.workerName }}</span>
+    </div>
+
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.duration }}</span>
+        <span class="property-text">{{ invoiceFlatModel.duration ? invoiceFlatModel.duration : '-'  }}</span>
+    </div>
+
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.total }}</span>
+        <span class="property-text">{{ 'R$ ' + invoiceFlatModel.totalValue.toFixed(2) }}</span>
+    </div>
+ 
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.tenPerCent }}</span>
+        <span class="property-text">{{ 'R$ ' + (invoiceFlatModel.totalValue * 0.1).toFixed(2) }}</span>
+    </div>
+    
+    <div class="item-property-container">
+        <span class="property-title">{{ messages.totalWithTenPerCent }}</span>
+        <span class="property-text">{{ 'R$ ' + (invoiceFlatModel.totalValue + (invoiceFlatModel.totalValue * 0.1)).toFixed(2) }}</span>
+    </div>
+
+</div>

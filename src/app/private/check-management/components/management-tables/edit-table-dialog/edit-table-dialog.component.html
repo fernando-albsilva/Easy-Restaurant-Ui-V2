@@ -163,7 +163,7 @@
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.unitValue }}</span>
-                            <span class="info-row-data">{{ productSelectionInfo.unitValue }}</span>
+                            <span class="info-row-data">{{ 'R$ ' + productSelectionInfo.unitValue.toFixed(2) }}</span>
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.quantity }}</span>
@@ -171,11 +171,11 @@
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.total }} </span>
-                            <span class="info-row-data">{{ productSelectionInfo.total }}</span>
+                            <span class="info-row-data">{{ 'R$ ' + productSelectionInfo.total.toFixed(2) }}</span>
                         </div>
                         <div class="info-row">
                             <span class="info-row-label">{{ messages.tenPerCent }}</span>
-                            <span class="info-row-data">{{ productSelectionInfo.percentage }}</span>
+                            <span class="info-row-data">{{ 'R$ ' + productSelectionInfo.percentage.toFixed(2) }}</span>
                         </div>
                     </ng-container>
                 </div>

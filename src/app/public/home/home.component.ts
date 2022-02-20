@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
             .subscribe(
                 (requestResult) => {
                     this.authService.setSession(requestResult);
-                    this.router.navigateByUrl('/private/worker-function');
+                    this.router.navigateByUrl('/private/management');
                     this.disableLoadingBar();
                     this.enableLoginSubmitBtn();
                 },

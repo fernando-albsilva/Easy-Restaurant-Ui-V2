@@ -7,6 +7,7 @@ import { CheckManagementComponent } from './check-management/check-management.co
 import { UserComponent } from './user/user.component';
 import { WorkerFunction } from './worker-function/worker-function.component';
 import { WorkerComponent } from './worker/worker.component';
+import { QueryComponent } from './query/query.component';
 
 const routes: Routes = [
     { path: 'worker-function', component: WorkerFunction, canActivate: [AuthGuard] },
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'product', component: ProductComponent, canActivate: [AuthGuard] },
     { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
     { path: 'management', component: CheckManagementComponent, canActivate: [AuthGuard] },
+    { path: 'query', component: QueryComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
