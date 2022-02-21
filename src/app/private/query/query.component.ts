@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'src/app/services/dialog.service';
 import { QueryApi } from './api/query.api';
-import { InvoiceFlatModel } from './model/invoice.model';
+import { QueryDetailDialogComponent } from './components/query-detail-dialog/query-detail-dialog.component';
+import { InvoiceFlatModel, InvoiceModel } from './model/invoice.model';
 
 @Component({
   selector: 'app-query',
@@ -15,22 +17,53 @@ export class QueryComponent implements OnInit {
   public invoices: Array<InvoiceFlatModel> = [];
 
   constructor(
-    private queryApi: QueryApi
+    private queryApi: QueryApi,
+    private dialogService: DialogService,
   ) { }
 
   ngOnInit(): void {
     this.queryApi
-      .getWorkers()
+      .getAllInvoices()
       .subscribe(
         (result) => {this.invoices = result},
         (err) => { console.error(err);}
       );
   }
 
-  //BMFERNANDO
-  // aqui ira abrir o dialogo detalhando a conta
-  public detailSelectedInvoice = (): void => {
-    console.log("cliquei em detalhar");
+  public detailSelectedInvoice = (id: string): void => {
+    console.log(id);
+    this.queryApi
+      .getInvoiceById(id)
+      .subscribe(
+        (invoiceRreceived: InvoiceModel)=> {
+          this.detailInvoice(invoiceRreceived);
+        },
+        (err)=>{
+          console.error(err);
+        }
+      );
   }
 
+  public detailInvoice = (invoiceToDetail: InvoiceModel) => {
+    this.createDialog(invoiceToDetail);
+  };
+
+  private createDialog = (dialogData?: InvoiceModel) => {
+    const height = '600px';
+    const width = '1000px';
+
+    if (dialogData) {
+        const dialogRef = 
+          this.dialogService
+            .createDialog(QueryDetailDialogComponent,height,width,dialogData);
+
+        return dialogRef;
+    } else {
+
+        const dialogRef = 
+        this.dialogService
+          .createDialog(QueryDetailDialogComponent, height, width, dialogData);
+        return dialogRef;
+    }
+};
 }

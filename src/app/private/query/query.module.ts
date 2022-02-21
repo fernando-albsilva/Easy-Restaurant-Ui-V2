@@ -5,12 +5,14 @@ import { SharedModule } from '../shared/shared.module';
 import { DirectivesModule } from 'src/app/Directives/directives.module';
 import { QueryComponent } from './query.component';
 import { QueryApi } from './api/query.api';
+import { QueryDetailDialogComponent } from './components/query-detail-dialog/query-detail-dialog.component';
 
 
 
 @NgModule({
   declarations: [
-    QueryComponent
+    QueryComponent,
+    QueryDetailDialogComponent
   ],
   imports: [
     HttpClientModule,

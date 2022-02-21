@@ -23,7 +23,7 @@ export class ErPageList {
     @Output() addEvent = new EventEmitter<string>();
     @Output() updateEvent = new EventEmitter<string>();
     @Output() deleteEvent = new EventEmitter<Array<string>>();
-    @Output() detailEvent = new EventEmitter();
+    @Output() detailEvent = new EventEmitter<string>();
 
     public selectedItemsIds: Array<string> = [];
 
@@ -126,7 +126,11 @@ export class ErPageList {
     };
   
     private handleDetailEvent = (): void => {
-        this.detailEvent.emit();
+        const canDetail = this.verifyIfIsOnlyOneItemSelected();
+        if (canDetail) {
+            const selectedItem = this.findSelectedItem();
+            this.detailEvent.emit(selectedItem.id);
+        }
     };
 
     private findSelectedItem = () => {

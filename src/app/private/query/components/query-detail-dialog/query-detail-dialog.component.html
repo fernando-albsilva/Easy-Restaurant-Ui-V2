@@ -1,0 +1,43 @@
+<div class="dialog-container">
+
+    <div class="dialog-header">
+        <span>Informações da fatura</span>
+    </div>
+
+    <div class="dialog-content">
+
+        <div class="basic-info-container">
+
+            <div class="info-field">
+                <span class="info-label"> Nome do Cliente </span>
+                <span class="info-value">{{ data.clientName }}</span>
+            </div>
+           
+            <div class="info-field">
+                <span class="info-label"> Atendente </span>
+                <span class="info-value">{{ data.worker.name }}</span>
+            </div>
+            
+            <div class="info-field">
+                <span class="info-label"> Total </span>
+                <span class="info-value">{{'R$ ' + totalValue}}</span>
+            </div>
+            
+            <div class="info-field">
+                <span class="info-label"> 10% </span>
+                <span class="info-value">{{'R$ ' + getTenPerCentOfTotalValue()}}</span>
+            </div>
+            
+            <div class="info-field">
+                <span class="info-label"> Total + 10% </span>
+                <span class="info-value">{{'R$ ' + getTotalValueWithTenPerCent()}}</span>
+            </div>
+
+        </div>
+
+       <div class="products-list-container">
+
+       </div>
+
+    </div>
+</div>

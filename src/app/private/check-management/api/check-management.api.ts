@@ -48,10 +48,6 @@ export class CheckManagementApi {
     };
    
     public updateActiveTable = (invoiceActiveCommand: InvoiceActiveCommand): Observable<any> => {
-        // let params = new HttpParams();
-        // params = params.append('table', table);
-
-        // return this.http.post<any>(`${this.apiUrl}/crateActiveTable`, { params: params });
         return this.http.put<any>(`${this.apiUrl}/UpdateActiveTable`, invoiceActiveCommand);
     };
 
