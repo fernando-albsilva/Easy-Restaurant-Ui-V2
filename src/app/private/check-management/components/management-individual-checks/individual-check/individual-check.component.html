@@ -1,10 +1,16 @@
 <div class="individual-check-container">
     
-    <mat-icon
-        [class.individual-check-active]="individualCheck.isActive"
+    <ng-container 
+        *ngIf="!individualCheck.isActive"
     >
-        credit_card
-    </mat-icon>
+        <img class="table-img" src="../../../../../../assets/icons/card-green.png" />
+    </ng-container>
+
+    <ng-container 
+        *ngIf="individualCheck.isActive"
+    >
+        <img class="table-img" src="../../../../../../assets/icons/card-orange.png" />
+    </ng-container>
     
     <span
         class="individual-check-number"

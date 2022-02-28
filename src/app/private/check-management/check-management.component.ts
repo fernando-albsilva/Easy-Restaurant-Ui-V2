@@ -19,7 +19,7 @@ import { ActiveIndividualCheck, ActiveTable, CheckResult, IndividualCheckModel, 
     styleUrls: ['./check-management.component.scss'],
 })
 export class CheckManagementComponent implements OnInit {
-    public individualCheckQuantity: number = 45;
+    public individualCheckQuantity: number = 50;
     public individualChecks: Array<IndividualCheckModel> = [];
     public showIndividualChecks: boolean = false;
     public individualCheckNumberToFilter: number | undefined;
@@ -27,7 +27,7 @@ export class CheckManagementComponent implements OnInit {
     @ViewChild('managementIndividualCheckRef') managementIndividualCheckRef: ManagementIndividualChecksComponent | undefined;
 
     //Related to tables
-    public tableQuantity: number = 45;
+    public tableQuantity: number = 50;
     public tables: Array<TableModel> = [];
     public showTables: boolean = true;
     public tableNumberToFilter: number | undefined;

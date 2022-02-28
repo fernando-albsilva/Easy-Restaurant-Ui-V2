@@ -11,12 +11,9 @@
     background-color: $card-background10;
     border-radius: $card-radius10;
 
-    $icon-size: 40px;
-    mat-icon {
-        height: $icon-size;
-        width: $icon-size;
-        font-size: $icon-size;
-        color: $green10;
+    .table-img {
+        height: 37px;
+        width: 48px;
     }
 
     .individual-check-number {
