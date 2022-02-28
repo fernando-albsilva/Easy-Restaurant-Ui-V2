@@ -3,7 +3,7 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { TableModel } from '../../../model/check-management.model';
 
 @Component({
-    selector: 'table',
+    selector: 'table-component',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
 })

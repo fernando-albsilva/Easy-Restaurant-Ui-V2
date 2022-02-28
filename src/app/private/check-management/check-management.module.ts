@@ -10,9 +10,11 @@ import { ManagementTablesComponent } from './components/management-tables/manage
 import { TableComponent } from './components/management-tables/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DirectivesModule } from 'src/app/Directives/directives.module';
-import { EditTableDialog } from './components/management-tables/edit-table-dialog/edit-table-dialog.component';
 import { CheckManagementApi } from './api/check-management.api';
-import { CheckProductList } from './components/management-tables/edit-table-dialog/check-product-list/check-product-list.component';
+import { IndividualCheckComponent } from './components/management-individual-checks/individual-check/individual-check.component';
+import { CheckProductList } from './components/edit-table-dialog/check-product-list/check-product-list.component';
+import { EditTableDialog } from './components/edit-table-dialog/edit-table-dialog.component';
+import { ManagementIndividualChecksComponent } from './components/management-individual-checks/management-individual-checks.component';
 
 @NgModule({
     declarations: [
@@ -20,8 +22,10 @@ import { CheckProductList } from './components/management-tables/edit-table-dial
         ManagementLeftMenuComponent,
         ManagementRightMenuComponent,
         ManagementTablesComponent,
+        ManagementIndividualChecksComponent,
         TypeChekHeaderMenu,
         TableComponent,
+        IndividualCheckComponent,
         EditTableDialog,
         CheckProductList,
     ],

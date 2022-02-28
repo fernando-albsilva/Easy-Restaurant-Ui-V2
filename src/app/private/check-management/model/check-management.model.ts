@@ -9,6 +9,7 @@ export class TableModel {
     public worker: WorkerActiveInvoiceModel = new WorkerActiveInvoiceModel();
     public shouldHideByFilter: boolean = false;
     public isActive: boolean = false;
+    public isIndividualCheck: boolean = false;
     public products: Array<ProductModel> = [];
     public startTime: TableStartTime = new TableStartTime();
     public userId: string = '';
@@ -47,14 +48,17 @@ export class TableStartTime {
     }
 }
 
-export class IndividualCheckModel {
-    public number: number = 0;
-    public clientName: string = '';
-    public invoiceId: string = '';
-    public date: Date = new Date();
-    public worker: WorkerFlatModel = new WorkerFlatModel();
-    public products: Array<ProductModel> = [];
+export class IndividualCheckModel extends TableModel{
+    constructor(number?: number){
+        super();
+        this.number
+        this.isIndividualCheck = true;
+        if(number){
+            this.number = number;
+        }
+    }
 }
+export class IndividualCheckStartTime extends TableStartTime{}
 
 export class ActiveProductModel {
     public id: string = '';
@@ -108,6 +112,8 @@ export class ActiveTable {
     public tableNumber: number | undefined | null;  
     public individualCheckNumber: number | undefined | null;  
 }
+
+export class ActiveIndividualCheck extends ActiveTable{}
 
 export class ActiveInvoiceModel { 
     public id: string = '';

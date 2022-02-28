@@ -2,9 +2,9 @@ import { ProductModel } from '../product/Model/product.model';
 import { ProductInfo, TableModel } from './model/check-management.model';
 
 export class CheckManagementHelper {
-    public findTableIndexByNumber = (tablesList: Array<TableModel>, tableNumber: number): number | undefined => {
-        const index = tablesList.findIndex((table) => {
-            return table.number === tableNumber;
+    public findTableOrIndividualCheckIndexByNumber = (list: Array<TableModel>, numberToSearch: number): number | undefined => {
+        const index = list.findIndex((element) => {
+            return element.number === numberToSearch;
         });
 
         if (index === -1) {

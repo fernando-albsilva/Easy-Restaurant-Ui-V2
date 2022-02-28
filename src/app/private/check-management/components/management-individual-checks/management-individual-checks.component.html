@@ -1,0 +1,12 @@
+<div class="individual-checks-container">
+        <ng-container
+            *ngFor="let individualCheck of individualChecks; let i = index"
+        >
+            <individual-check
+                [individualCheck]="individualCheck"
+                [hidden]="individualCheck.shouldHideByFilter"
+                (dblclick)="editIndividualCheck(individualCheck.number)"
+            >
+            </individual-check>
+        </ng-container>
+</div>

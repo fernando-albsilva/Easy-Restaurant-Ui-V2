@@ -1,0 +1,15 @@
+<div class="individual-check-container">
+    
+    <mat-icon
+        [class.individual-check-active]="individualCheck.isActive"
+    >
+        credit_card
+    </mat-icon>
+    
+    <span
+        class="individual-check-number"
+        [class.individual-check-active]="individualCheck.isActive"
+    >
+        {{ individualCheck.number }}
+    </span>
+</div>

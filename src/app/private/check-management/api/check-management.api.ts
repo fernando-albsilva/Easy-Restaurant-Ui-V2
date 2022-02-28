@@ -41,9 +41,12 @@ export class CheckManagementApi {
         return this.http.post<any>(`${this.apiUrl}/CrateActiveTable`, invoiceActiveCommand);
     };
    
-    public closeCheck = (activeInvoiceId: string): Observable<any> => {   
+    public closeCheck = (activeInvoiceId: string, isIndividualCheck?: boolean): Observable<any> => {   
         let params = new HttpParams();
         params = params.append('activeInvoiceId', activeInvoiceId);
+        if(isIndividualCheck){
+            params = params.append('isIndividualCheck', 'true');
+        }
         return this.http.post<any>(`${this.apiUrl}/CloseCheck`, params);
     };
    

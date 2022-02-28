@@ -3,17 +3,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UUID } from 'angular2-uuid';
 import { Subscription } from 'rxjs';
 import { ProductModel } from 'src/app/private/product/Model/product.model';
-import { WorkerActiveInvoiceModel, WorkerFlatModel, WorkerModel } from 'src/app/private/worker/Model/woker.model';
+import { WorkerActiveInvoiceModel, WorkerFlatModel } from 'src/app/private/worker/Model/woker.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { ObjectService } from 'src/app/services/object.service';
 import { SortService } from 'src/app/services/sort.service';
 import { TimeService } from 'src/app/services/time.service';
-import { CheckManagementApi } from '../../../api/check-management.api';
-import { CheckManagementHelper } from '../../../check-management.helper';
-import { ActiveInvoiceItem, InvoiceActiveCommand } from '../../../commands/check-management.command';
-import { ActiveInvoiceItemModel, ActiveInvoiceModel, CheckOptions, CheckResult, ProductInfo, ProductRemovePayload, TableModel, TableStartTime } from '../../../model/check-management.model';
+import { ActiveInvoiceItemModel, ActiveInvoiceModel, CheckOptions, CheckResult, ProductInfo, ProductRemovePayload, TableModel, TableStartTime } from '../../model/check-management.model';
+import { CheckManagementApi } from '../../api/check-management.api';
+import { CheckManagementHelper } from '../../check-management.helper';
+import { ActiveInvoiceItem, InvoiceActiveCommand } from '../../commands/check-management.command';
 
 @Component({
     selector: 'edit-table-dialog',
@@ -99,7 +99,12 @@ export class EditTableDialog implements OnInit, OnDestroy {
         this.table.isActive = true;
         this.startTableCounting();
         this.fillNecessaryTableFields();
-        const invoiceActivecommand =  new InvoiceActiveCommand(this.table);
+        let invoiceActivecommand;
+        if(this.table.isIndividualCheck){
+            invoiceActivecommand =  new InvoiceActiveCommand(this.table, this.table.isIndividualCheck);
+        }else{
+            invoiceActivecommand =  new InvoiceActiveCommand(this.table);
+        }
         this.table.invoiceId = invoiceActivecommand.id;
         this._checkManagementApi
             .createActiveTable(

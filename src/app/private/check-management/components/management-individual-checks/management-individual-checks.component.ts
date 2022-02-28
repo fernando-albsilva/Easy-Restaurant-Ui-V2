@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DialogService } from 'src/app/services/dialog.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
-import { CheckResult, TableModel } from '../../model/check-management.model';
+import { CheckResult, IndividualCheckModel, TableModel } from '../../model/check-management.model';
 import { EditTableDialog } from '../edit-table-dialog/edit-table-dialog.component';
 
 @Component({
-    selector: 'management-tables',
-    templateUrl: './management-tables.component.html',
-    styleUrls: ['./management-tables.component.scss'],
+    selector: 'management-individual-checks',
+    templateUrl: './management-individual-checks.component.html',
+    styleUrls: ['./management-individual-checks.component.scss'],
 })
-export class ManagementTablesComponent {
+export class ManagementIndividualChecksComponent {
 
-    @Input() tables: Array<TableModel> = [];
+    @Input() individualChecks: Array<IndividualCheckModel> = [];
     @Input() set numberToFilter(numberToFilter: number | undefined) {
-        this.filterTableByNumber(numberToFilter);
+        this.filterIndividualCheckByNumber(numberToFilter);
     }
 
     @Output() checkResult = new EventEmitter<CheckResult>();
@@ -22,11 +22,11 @@ export class ManagementTablesComponent {
 
     constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}
 
-    private filterTableByNumber = (tableNumber: number | undefined): void => {
-        this.tables = this.tables.map((table) => {
-            if (tableNumber !== undefined) {
-                const tableHasFilterNumber = table.number.toString().includes(tableNumber.toString());
-                if (tableHasFilterNumber) {
+    private filterIndividualCheckByNumber = (individualCheckNumber: number | undefined): void => {
+        this.individualChecks = this.individualChecks.map((table) => {
+            if (individualCheckNumber !== undefined) {
+                const individualCheckHasFilterNumber = table.number.toString().includes(individualCheckNumber.toString());
+                if (individualCheckHasFilterNumber) {
                     table.shouldHideByFilter = false;
                 } else {
                     table.shouldHideByFilter = true;
@@ -36,14 +36,14 @@ export class ManagementTablesComponent {
         });
     };
 
-    public resetTablesFilter = (): void => {
-        this.tables.forEach((table) => {
-            table.shouldHideByFilter = false;
+    public resetIndivdualChecksFilter = (): void => {
+        this.individualChecks.forEach((individualCheck) => {
+            individualCheck.shouldHideByFilter = false;
         });
     };
 
-    public editTable = (tableNumber: number): void => {
-        const dialogRef = this.createDialog(this.tables[tableNumber - 1]);
+    public editIndividualCheck = (individualCheckNumber: number): void => {
+        const dialogRef = this.createDialog(this.individualChecks[individualCheckNumber - 1]);
 
         dialogRef.afterClosed().subscribe((response: CheckResult) => {
             this.checkResult.emit(response);

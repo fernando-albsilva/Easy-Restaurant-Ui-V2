@@ -21,6 +21,14 @@
                 [numberToFilter]="tableNumberToFilter"
                 (checkResult)="handleCheckResult($event)"
             ></management-tables>
+
+            <management-individual-checks
+                #managementIndividualCheckRef
+                [hidden]="!showIndividualChecks"
+                [individualChecks]="individualChecks"
+                [numberToFilter]="individualCheckNumberToFilter"
+                (checkResult)="handleCheckResult($event)"
+            ></management-individual-checks>
         </div>
         <!-- /MIDDLE CONTENT -->
 

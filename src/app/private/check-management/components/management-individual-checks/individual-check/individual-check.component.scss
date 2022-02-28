@@ -1,6 +1,6 @@
 @import '../../../../../shared-styles/colors-and-default-styles.scss';
 
-.table-container {
+.individual-check-container {
     height: inherit;
     width: 100px;
     display: flex;
@@ -10,22 +10,24 @@
     gap: 10px;
     background-color: $card-background10;
     border-radius: $card-radius10;
-    user-select: none;
 
-    .table-img {
-        height: 37px;
-        width: 42px;
-    }
-
-    .table-number {
+    $icon-size: 40px;
+    mat-icon {
+        height: $icon-size;
+        width: $icon-size;
+        font-size: $icon-size;
         color: $green10;
     }
 
-    .table-active{
+    .individual-check-number {
+        color: $green10;
+    }
+
+    .individual-check-active {
         color: $orange10;
     }
 }
 
-.table-container:hover {
+.individual-check-container:hover {
     cursor: pointer;
 }

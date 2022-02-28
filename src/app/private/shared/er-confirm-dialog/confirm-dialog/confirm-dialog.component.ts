@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { EditTableDialog } from 'src/app/private/check-management/components/edit-table-dialog/edit-table-dialog.component';
 
-import { EditTableDialog } from 'src/app/private/check-management/components/management-tables/edit-table-dialog/edit-table-dialog.component';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
 
 @Component({

@@ -1,6 +1,6 @@
 @import '../../../../shared-styles/colors-and-default-styles.scss';
 
-.tables-container {
+.individual-checks-container {
     height: calc(100% - 125px);
     width: 100%;
     margin-top: 20px;
@@ -12,8 +12,9 @@
     box-sizing: border-box;
     overflow-y: auto;
     gap: 7px;
-    
-    table-component {
+    user-select: none;
+
+    individual-check {
         height: 100px;
     }
 }
