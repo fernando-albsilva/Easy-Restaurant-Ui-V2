@@ -74,25 +74,25 @@
             <div class="products-list-container">
                 <table mat-table [dataSource]="invoiceItems" class="mat-elevation-z8">
                   
-                    <!-- Position Column -->
+                    <!-- productName Column -->
                     <ng-container matColumnDef="productName">
                       <th mat-header-cell *matHeaderCellDef> Nome </th>
                       <td mat-cell *matCellDef="let invoiceItemModel"> {{invoiceItemModel.product.name}} </td>
                     </ng-container>
                   
-                    <!-- Name Column -->
+                    <!-- quantity Column -->
                     <ng-container matColumnDef="quantity">
                       <th mat-header-cell *matHeaderCellDef> Quantity </th>
                       <td mat-cell *matCellDef="let invoiceItemModel"> {{invoiceItemModel.quantity}} </td>
                     </ng-container>
                   
-                    <!-- Weight Column -->
+                    <!-- unitValue Column -->
                     <ng-container matColumnDef="unitValue">
                       <th mat-header-cell *matHeaderCellDef> UnitValue </th>
                       <td mat-cell *matCellDef="let invoiceItemModel"> {{'R$ ' + invoiceItemModel.unitValue.toFixed(2)}} </td>
                     </ng-container>
                   
-                    <!-- Symbol Column -->
+                    <!-- cost Column -->
                     <ng-container matColumnDef="cost">
                       <th mat-header-cell *matHeaderCellDef> Cost </th>
                       <td mat-cell *matCellDef="let invoiceItemModel"> {{'R$ ' + invoiceItemModel.cost.toFixed(2)}} </td>
