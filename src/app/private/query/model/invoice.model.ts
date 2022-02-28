@@ -26,7 +26,7 @@ export class InvoiceItemModel {
     product: ProductModel = new ProductModel();
     quantity: number = 0;
     unitValue: number = 0;
-    Cost: number = 0;
+    cost: number = 0;
 }
 
 export class WorkerInvoiceModel {

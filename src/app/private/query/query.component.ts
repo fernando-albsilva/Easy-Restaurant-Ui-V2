@@ -49,7 +49,7 @@ export class QueryComponent implements OnInit {
   };
 
   private createDialog = (dialogData?: InvoiceModel) => {
-    const height = '600px';
+    const height = '700px';
     const width = '1000px';
 
     if (dialogData) {

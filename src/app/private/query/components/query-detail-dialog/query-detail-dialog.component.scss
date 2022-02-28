@@ -7,9 +7,10 @@
     border-radius: $card-radius10;
 }
 
-$header-height: 40px;
-$basic-info-height: 80px;
-
+$title-height: 40px;
+$basic-info-height: 70px;
+$revenue-list-height: $basic-info-height;
+$dialog-container-gap: 15px;
 .dialog-container {
     height: 100%;
     width: 100%;
@@ -21,9 +22,10 @@ $basic-info-height: 80px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
-    .dialog-header{
-        height: $header-height;
+    gap:$dialog-container-gap;
+    
+    .dialog-title{
+        height: $title-height;
         width: 100%;
         border-bottom: 2px solid $green10;
         display: flex;
@@ -35,46 +37,75 @@ $basic-info-height: 80px;
         }
     }
 
-    .dialog-content{
-        height: calc(100% - #{$header-height});
+    .basic-info-container,.revenue-list-container{
+        height: $basic-info-height;
         width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        .basic-info-container{
-            height: $basic-info-height;
-            width: 100%;
+        .info-field{
+            border-radius: 4px;
+            border: 2px solid $gray10;
+            box-sizing: border-box;
+            padding: 15px;
+            height: 80%;
+            width: 170px;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
 
-            .info-field{
-                border-radius: 4px;
-                border: 2px solid $green10;
-                box-sizing: border-box;
-                padding: 15px;
-                height: 80%;
-                width: 170px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                gap: 8px;
+            .info-label{
+                font-size: 0.8rem;
+                color: $gray10;
+                font-weight: 500;
+            }
+            
+            .info-value{
+                font-size: 1.0rem;
+                color: $white10;
+                font-weight: 500;
+            }
+            
+            .positive-revenue{
+                color: $green10;
+            }
 
-                .info-label{
-                    font-size: 0.8rem;
-                    color: $white10;
-                    font-weight: 500;
-                }
-                
-                .info-value{
-                    font-size: 1.2rem;
-                    color: $white10;
-                    font-weight: 500;
+            .negative-revenue{
+                color: $red10;
+            }
+
+            &.arrow{
+                align-items: center;
+                border: none;
+
+                $arrow-icon-size:70px;
+                mat-icon{
+                    font-size: $arrow-icon-size;
+                    height: $arrow-icon-size;
+                    width: $arrow-icon-size;
+                    color: $gray10;
                 }
             }
         }
+    }
+    
+    .products-list-container{
+        width: 100%;
+        height: calc(100% - #{
+            $basic-info-height + 
+            $revenue-list-height +
+            (2 * $title-height) + 
+            (5 * $dialog-container-gap)
+        });
+        overflow-y: auto;
 
-        .products-list-container{
-            height: calc(100% - #{$basic-info-height});
+        table{
             width: 100%;
+            background: transparent;
+            box-shadow: none;
         }
     }
+    
 }
