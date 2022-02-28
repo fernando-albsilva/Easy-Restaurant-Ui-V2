@@ -15,10 +15,12 @@ export class ManagementTablesComponent {
     @Input() set numberToFilter(numberToFilter: number | undefined) {
         this.filterTableByNumber(numberToFilter);
     }
+    @Input() set nameToFilter(nameToFilter: string | undefined) {
+        this.filterTableByName(nameToFilter);
+        console.log("chamei input");
+    }
 
     @Output() checkResult = new EventEmitter<CheckResult>();
-
-    private _numberToFilter: number | undefined;
 
     constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}
 
@@ -27,6 +29,21 @@ export class ManagementTablesComponent {
             if (tableNumber !== undefined) {
                 const tableHasFilterNumber = table.number.toString().includes(tableNumber.toString());
                 if (tableHasFilterNumber) {
+                    table.shouldHideByFilter = false;
+                } else {
+                    table.shouldHideByFilter = true;
+                }
+            }
+            return table;
+        });
+    };
+    
+    private filterTableByName = (nameToFilter: string | undefined): void => {
+        this.tables = this.tables.map((table) => {
+            if (nameToFilter !== undefined) {
+                const tableHasFilterName = 
+                    table.clientName.toString().includes(nameToFilter.toString());
+                if (tableHasFilterName) {
                     table.shouldHideByFilter = false;
                 } else {
                     table.shouldHideByFilter = true;

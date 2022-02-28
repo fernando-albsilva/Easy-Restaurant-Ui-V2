@@ -8,27 +8,27 @@
 
             <div class="info-field">
                 <span class="info-label"> Nome do Cliente </span>
-                <span class="info-value">{{ data.clientName }}</span>
+                <span class="info-value ellipse">{{ data.clientName }}</span>
             </div>
            
             <div class="info-field">
                 <span class="info-label"> Atendente </span>
-                <span class="info-value">{{ data.worker.name }}</span>
+                <span class="info-value ellipse">{{ data.worker.name }}</span>
             </div>
             
             <div class="info-field">
                 <span class="info-label"> Total </span>
-                <span class="info-value">{{'R$ ' + totalValue.toFixed(2)}}</span>
+                <span class="info-value ellipse">{{'R$ ' + totalValue.toFixed(2)}}</span>
             </div>
             
             <div class="info-field">
                 <span class="info-label"> 10% </span>
-                <span class="info-value">{{'R$ ' + getTenPerCentOfTotalValue()}}</span>
+                <span class="info-value ellipse">{{'R$ ' + getTenPerCentOfTotalValue()}}</span>
             </div>
             
             <div class="info-field">
                 <span class="info-label"> Total + 10% </span>
-                <span class="info-value">{{'R$ ' + getTotalValueWithTenPerCent()}}</span>
+                <span class="info-value ellipse">{{'R$ ' + getTotalValueWithTenPerCent()}}</span>
             </div>
 
         </div>
@@ -41,7 +41,7 @@
 
             <div class="info-field">
                 <span class="info-label"> Receita </span>
-                <span class="info-value positive-revenue">{{'R$ ' + getTotalValueWithTenPerCent()}}</span>
+                <span class="info-value positive-revenue ">{{'R$ ' + getTotalValueWithTenPerCent()}}</span>
             </div>
             
             <div class="info-field arrow">

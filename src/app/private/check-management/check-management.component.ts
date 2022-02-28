@@ -22,14 +22,16 @@ export class CheckManagementComponent implements OnInit {
     public individualCheckQuantity: number = 45;
     public individualChecks: Array<IndividualCheckModel> = [];
     public showIndividualChecks: boolean = false;
-    @Input() public individualCheckNumberToFilter: number | undefined;
+    public individualCheckNumberToFilter: number | undefined;
+    public individualCheckNameToFilter: string | undefined;
     @ViewChild('managementIndividualCheckRef') managementIndividualCheckRef: ManagementIndividualChecksComponent | undefined;
 
     //Related to tables
     public tableQuantity: number = 45;
     public tables: Array<TableModel> = [];
     public showTables: boolean = true;
-    @Input() public tableNumberToFilter: number | undefined;
+    public tableNumberToFilter: number | undefined;
+    public tableNameToFilter: string | undefined;
     @ViewChild('managementTablesRef') managementTablesRef: ManagementTablesComponent | undefined;
 
     private checkHelper = new CheckManagementHelper();
@@ -162,11 +164,28 @@ export class CheckManagementComponent implements OnInit {
         }
     };
 
-    private filterTableByClientName = (text: string): void => {};
+    private filterTableByClientName = (text: string): void => {
+        this.tableNameToFilter = text;
+    };
 
     //TODO
     //implementar filtro das comandas
-    private filterIndividualChecks = (payload: ManagementFilterPayload): void => {};
+    private filterIndividualChecks = (payload: ManagementFilterPayload): void => {
+        const isFilterByClientName = payload.nameFilterText !== '';
+        const isFilterByTableNumber = payload.numberFilterText !== undefined;
+        if (!isFilterByTableNumber) {
+            this.managementIndividualCheckRef?.resetIndivdualChecksFilter();
+        }
+        if (isFilterByClientName) {
+            this.filterIndividualCheckByClientName(payload.nameFilterText);
+        } else if (isFilterByTableNumber) {
+            this.individualCheckNumberToFilter = payload.numberFilterText;
+        }
+    };
+
+    private filterIndividualCheckByClientName = (text: string): void => {
+        this.individualCheckNameToFilter = text;
+    };
 
     private handleTablesQuantity() {
         this.tables = [];
@@ -221,6 +240,9 @@ export class CheckManagementComponent implements OnInit {
             if (activeTable) {
                 table.isActive = true;
                 table.invoiceId = activeTable.id;
+                if(activeTable.clientName){
+                    table.clientName = activeTable.clientName;
+                }
             }
         });
       
@@ -232,6 +254,9 @@ export class CheckManagementComponent implements OnInit {
             if (activeIndividualCheck) {
                 individualCheck.isActive = true;
                 individualCheck.invoiceId = activeIndividualCheck.id;
+                if(activeIndividualCheck.clientName){
+                    individualCheck.clientName = activeIndividualCheck.clientName;
+                }
             }
         });
     };

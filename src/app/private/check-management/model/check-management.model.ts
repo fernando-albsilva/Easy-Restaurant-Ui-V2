@@ -111,6 +111,7 @@ export class ActiveTable {
     public id: string = '';  
     public tableNumber: number | undefined | null;  
     public individualCheckNumber: number | undefined | null;  
+    public clientName: string | undefined | null;  
 }
 
 export class ActiveIndividualCheck extends ActiveTable{}

@@ -15,10 +15,12 @@ export class ManagementIndividualChecksComponent {
     @Input() set numberToFilter(numberToFilter: number | undefined) {
         this.filterIndividualCheckByNumber(numberToFilter);
     }
+    @Input() set nameToFilter(nameToFilter: string | undefined) {
+        this.filterIndividualCheckByName(nameToFilter);
+        console.log("chamei input");
+    }
 
     @Output() checkResult = new EventEmitter<CheckResult>();
-
-    private _numberToFilter: number | undefined;
 
     constructor(public messages: MessagesKeys, private _dialogService: DialogService) {}
 
@@ -47,6 +49,21 @@ export class ManagementIndividualChecksComponent {
 
         dialogRef.afterClosed().subscribe((response: CheckResult) => {
             this.checkResult.emit(response);
+        });
+    };
+
+    private filterIndividualCheckByName = (nameToFilter: string | undefined): void => {
+        this.individualChecks = this.individualChecks.map((individualCheck) => {
+            if (nameToFilter !== undefined) {
+                const individualCheckHasFilterName = 
+                individualCheck.clientName.toString().includes(nameToFilter.toString());
+                if (individualCheckHasFilterName) {
+                    individualCheck.shouldHideByFilter = false;
+                } else {
+                    individualCheck.shouldHideByFilter = true;
+                }
+            }
+            return individualCheck;
         });
     };
 

@@ -19,6 +19,7 @@
                 [hidden]="!showTables"
                 [tables]="tables"
                 [numberToFilter]="tableNumberToFilter"
+                [nameToFilter]="tableNameToFilter"
                 (checkResult)="handleCheckResult($event)"
             ></management-tables>
 
@@ -27,6 +28,7 @@
                 [hidden]="!showIndividualChecks"
                 [individualChecks]="individualChecks"
                 [numberToFilter]="individualCheckNumberToFilter"
+                [nameToFilter]="individualCheckNameToFilter"
                 (checkResult)="handleCheckResult($event)"
             ></management-individual-checks>
         </div>
