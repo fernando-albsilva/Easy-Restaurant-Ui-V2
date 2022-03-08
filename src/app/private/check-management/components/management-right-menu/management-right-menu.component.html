@@ -1,1 +1,17 @@
-<div class="side-menu-container"></div>
+<div class="side-menu-container">
+    <span class="menu-title"> Informações </span>
+
+    <div class="info-container">
+        <span class="info-title">Mesas</span>
+        <span class="info-text free"> {{'Disponiveis: ' + (maxTablesPermitted - totalOccupiedTables)}} </span>
+        <span class="info-text occupied"> {{'Ocupadas: ' + totalOccupiedTables}} </span>
+    </div>
+  
+    <div class="info-container">
+        <span class="info-title"> Comandas </span>
+        <span class="info-text free"> {{'Disponiveis: ' + (maxIndividualPermitted - totalOccupiedIndividualChecks)}} </span>
+        <span class="info-text occupied"> {{'Ocupadas: ' + totalOccupiedIndividualChecks}} </span>
+    </div>
+
+
+</div>

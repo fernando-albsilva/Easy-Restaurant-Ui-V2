@@ -16,10 +16,21 @@
         display: flex;
         gap: 20px;
     }
+    
+    .search-fileds-container {
+        display: flex;
+        gap: 20px;
+
+        mat-icon{
+            position: relative;
+            top: 12px;
+        }
+    }
 
     button {
         height: 36px;
-
+        width: 160px;
+        
         ::ng-deep {
             .mat-button-wrapper {
                 display: flex;

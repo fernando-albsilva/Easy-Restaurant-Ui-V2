@@ -11,4 +11,44 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    .menu-title {
+        font-size: 1.2rem;
+        color: $green10;
+        font-weight: 500;
+        text-align: center;
+        height: 25px;
+        margin-bottom: 15px;
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        border-radius: 4px;
+        background-color: #303030;
+        box-sizing: border-box;
+        padding: 5px;
+
+        .info-title {
+            height: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: $gray10;
+        }
+
+        .info-text {
+            height: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: $white10;
+        }
+
+        .free {
+            color: $green10;
+        }
+
+        .occupied {
+            color: $orange10;
+        }
+    }
 }

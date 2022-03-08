@@ -8,8 +8,8 @@
         <div class="middle-content-container">
             <type-check-header-menu
                 class="type-check-menu"
-                [(tableQuantity)]="tableQuantity"
-                [(individualCheckQuantity)]="individualCheckQuantity"
+                [hasTableActive]="totalOccupiedTables > 0"
+                [hasIndividualCheckActive]="totalOccupiedIndividualChecks > 0"
                 (changeViewManagement)="handleChangeViewManagement($event)"
                 (changeFilterText)="handleFilter($event)"
             ></type-check-header-menu>
@@ -35,7 +35,13 @@
         <!-- /MIDDLE CONTENT -->
 
         <!-- RIGHT SIDE MENU -->
-        <management-right-menu></management-right-menu>
+        <management-right-menu
+            [totalOccupiedTables]="totalOccupiedTables"
+            [maxTablesPermitted]="maxTablesPermitted"
+            [totalOccupiedIndividualChecks]="totalOccupiedIndividualChecks"
+            [maxIndividualPermitted]="maxIndividualPermitted"
+        >
+        </management-right-menu>
         <!-- /RIGHT SIDE MENU -->
     </div>
 </div>

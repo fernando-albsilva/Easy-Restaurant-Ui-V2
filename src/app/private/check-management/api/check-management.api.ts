@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { WorkerFlatModel } from '../../worker/Model/woker.model';
 import { ProductModel } from '../../product/Model/product.model';
 import { ActiveInvoiceItem, InvoiceActiveCommand } from '../commands/check-management.command';
-import { ActiveInvoiceModel, ActiveTable } from '../model/check-management.model';
+import { ActiveInvoiceModel, ActiveTable, CheckManagementSettings } from '../model/check-management.model';
 
 @Injectable({
     providedIn: 'any',
@@ -64,4 +64,14 @@ export class CheckManagementApi {
 
         return this.http.delete<any>(`${this.apiUrl}/RemoveActiveInvoiceItem`, { params: params });
     };
+
+    public getCheckManagementSettings = (id: string): Observable<CheckManagementSettings> => {
+        let params = new HttpParams();
+        params = params.append('Id', id);
+        return this.http
+                    .get(this.apiUrl + `/GetCheckManagementSettings`, { params: params })
+                    .pipe(
+                        map((element) => element as CheckManagementSettings)
+                    );
+    }
 }

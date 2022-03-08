@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
@@ -8,10 +8,14 @@ import { CheckManagementHelper } from './check-management.helper';
 import { ManagementIndividualChecksComponent } from './components/management-individual-checks/management-individual-checks.component';
 import { ManagementTablesComponent } from './components/management-tables/management-tables.component';
 import {
-    ManagementFilterPayload,
-    ShowManagementType,
-} from './components/type-check-header-menu/type-check-header-menu.component';
-import { ActiveIndividualCheck, ActiveTable, CheckResult, IndividualCheckModel, TableModel } from './model/check-management.model';
+    ActiveIndividualCheck,
+    ActiveTable,
+    CheckManagementSettings,
+    CheckResult,
+    IndividualCheckModel,
+    TableModel,
+} from './model/check-management.model';
+import { ManagementFilterPayload, ShowManagementType } from './components/type-check-header-menu/type-check-header-menu.models';
 
 @Component({
     selector: 'check-management',
@@ -19,19 +23,24 @@ import { ActiveIndividualCheck, ActiveTable, CheckResult, IndividualCheckModel, 
     styleUrls: ['./check-management.component.scss'],
 })
 export class CheckManagementComponent implements OnInit {
-    public individualCheckQuantity: number = 50;
+    public maxIndividualPermitted: number = 50;
     public individualChecks: Array<IndividualCheckModel> = [];
     public showIndividualChecks: boolean = false;
     public individualCheckNumberToFilter: number | undefined;
     public individualCheckNameToFilter: string | undefined;
-    @ViewChild('managementIndividualCheckRef') managementIndividualCheckRef: ManagementIndividualChecksComponent | undefined;
+    public totalOccupiedTables: number = 0;
+    @ViewChild('managementIndividualCheckRef') managementIndividualCheckRef:
+        | ManagementIndividualChecksComponent
+        | undefined;
 
     //Related to tables
-    public tableQuantity: number = 50;
+    public maxTablesPermitted: number = 50;
     public tables: Array<TableModel> = [];
     public showTables: boolean = true;
     public tableNumberToFilter: number | undefined;
     public tableNameToFilter: string | undefined;
+    public totalOccupiedIndividualChecks: number = 0;
+    public checkManagementSettings: CheckManagementSettings = new CheckManagementSettings();
     @ViewChild('managementTablesRef') managementTablesRef: ManagementTablesComponent | undefined;
 
     private checkHelper = new CheckManagementHelper();
@@ -48,6 +57,7 @@ export class CheckManagementComponent implements OnInit {
         this.handleTablesQuantity();
         this.handleIndividualChecksQuantity();
         this.getActivesTablesAndIndividualChecks();
+        this.getCheckManagementConfig();
     }
 
     public handleChangeViewManagement = (show: ShowManagementType): void => {
@@ -66,35 +76,30 @@ export class CheckManagementComponent implements OnInit {
 
     public handleCheckResult = (checkResult: CheckResult): void => {
         if (checkResult.checkOptions.closed) {
-            if(!checkResult.table.isIndividualCheck){
+            if (!checkResult.table.isIndividualCheck) {
                 this.handleClosedTableCheck(checkResult.table);
-            }else{
+            } else {
                 this.handleClosedIndividualCheck(checkResult.table);
             }
             this._erMessagesSnackbar.openSnackBar(this._messages.checkClosedSucessfully, 'sucess');
         } else if (checkResult.checkOptions.active) {
-            if(!checkResult.table.isIndividualCheck){
+            if (!checkResult.table.isIndividualCheck) {
                 this.handleTableActive(checkResult.table);
-            }else{
+            } else {
                 this.handleIndividualCheckActive(checkResult.table);
             }
         }
     };
 
     private handleClosedTableCheck = (table: TableModel): void => {
-      
-        this._checkManagementApi
-        .closeCheck(table.invoiceId)
-        .subscribe(
+        this._checkManagementApi.closeCheck(table.invoiceId).subscribe(
             () => {},
             (err) => {
                 console.error(err);
             },
         );
-  
-        
-        const tableIndex = 
-            this.checkHelper.findTableOrIndividualCheckIndexByNumber(this.tables, table.number);
+
+        const tableIndex = this.checkHelper.findTableOrIndividualCheckIndexByNumber(this.tables, table.number);
         if (tableIndex) {
             this.tables[tableIndex] = new TableModel();
             this.tables[tableIndex].number = table.number;
@@ -102,20 +107,21 @@ export class CheckManagementComponent implements OnInit {
         } else {
             throw new Error('Can not clear table after finish because it was not found in table list');
         }
+        this.calcTotalOccupiedTablesAndIndividualChecks();
     };
-   
-    private handleClosedIndividualCheck = (individualCheck: IndividualCheckModel): void => {
-        this._checkManagementApi
-            .closeCheck(individualCheck.invoiceId)
-            .subscribe(
-                () => {},
-                (err) => {
-                    console.error(err);
-                },
-            );
 
-        const individualCheckIndex = 
-            this.checkHelper.findTableOrIndividualCheckIndexByNumber(this.individualChecks, individualCheck.number);
+    private handleClosedIndividualCheck = (individualCheck: IndividualCheckModel): void => {
+        this._checkManagementApi.closeCheck(individualCheck.invoiceId).subscribe(
+            () => {},
+            (err) => {
+                console.error(err);
+            },
+        );
+
+        const individualCheckIndex = this.checkHelper.findTableOrIndividualCheckIndexByNumber(
+            this.individualChecks,
+            individualCheck.number,
+        );
         if (individualCheckIndex) {
             this.individualChecks[individualCheckIndex] = new TableModel();
             this.individualChecks[individualCheckIndex].number = individualCheck.number;
@@ -123,6 +129,7 @@ export class CheckManagementComponent implements OnInit {
         } else {
             throw new Error('Can not clear table after finish because it was not found in table list');
         }
+        this.calcTotalOccupiedTablesAndIndividualChecks();
     };
 
     private handleTableActive = (table: TableModel) => {
@@ -135,10 +142,14 @@ export class CheckManagementComponent implements OnInit {
         if (this.tables.length > 0) {
             this.tables = this._sortService.sortByProperty(this.tables, 'number');
         }
+        this.calcTotalOccupiedTablesAndIndividualChecks();
     };
-  
+
     private handleIndividualCheckActive = (individualCheck: IndividualCheckModel) => {
-        const individualCheckIndex = this.checkHelper.findTableOrIndividualCheckIndexByNumber(this.tables, individualCheck.number);
+        const individualCheckIndex = this.checkHelper.findTableOrIndividualCheckIndexByNumber(
+            this.tables,
+            individualCheck.number,
+        );
         if (individualCheckIndex) {
             this.individualChecks[individualCheckIndex] = individualCheck;
         } else {
@@ -147,10 +158,9 @@ export class CheckManagementComponent implements OnInit {
         if (this.individualChecks.length > 0) {
             this.individualChecks = this._sortService.sortByProperty(this.individualChecks, 'number');
         }
+        this.calcTotalOccupiedTablesAndIndividualChecks();
     };
 
-    //TODO
-    //implementar filtro das mesas
     private filterTables = (payload: ManagementFilterPayload): void => {
         const isFilterByClientName = payload.nameFilterText !== '';
         const isFilterByTableNumber = payload.numberFilterText !== undefined;
@@ -168,8 +178,6 @@ export class CheckManagementComponent implements OnInit {
         this.tableNameToFilter = text;
     };
 
-    //TODO
-    //implementar filtro das comandas
     private filterIndividualChecks = (payload: ManagementFilterPayload): void => {
         const isFilterByClientName = payload.nameFilterText !== '';
         const isFilterByTableNumber = payload.numberFilterText !== undefined;
@@ -189,16 +197,16 @@ export class CheckManagementComponent implements OnInit {
 
     private handleTablesQuantity() {
         this.tables = [];
-        for (let index = 1; index <= this.tableQuantity; index++) {
+        for (let index = 1; index <= this.maxTablesPermitted; index++) {
             let table = new TableModel(index);
             table.number = index;
             this.tables.push(table);
         }
     }
-    
+
     private handleIndividualChecksQuantity() {
         this.individualChecks = [];
-        for (let index = 1; index <= this.individualCheckQuantity; index++) {
+        for (let index = 1; index <= this.maxIndividualPermitted; index++) {
             let individualCheck = new IndividualCheckModel(index);
             individualCheck.number = index;
             this.individualChecks.push(individualCheck);
@@ -209,6 +217,7 @@ export class CheckManagementComponent implements OnInit {
         this._checkManagementApi.getActiveTablesAndIndividualChecksNumber().subscribe(
             (result) => {
                 this.tagActiveChecks(result);
+                this.calcTotalOccupiedTablesAndIndividualChecks();
             },
             (err) => {
                 console.log(err);
@@ -228,10 +237,30 @@ export class CheckManagementComponent implements OnInit {
             }
         });
 
-        this.fillActiveTablesAndIndividualChecksBasicInfo(activeTables,individualChecks);
+        this.fillActiveTablesAndIndividualChecksBasicInfo(activeTables, individualChecks);
     };
 
-    private fillActiveTablesAndIndividualChecksBasicInfo = (activeTables: Array<ActiveTable>,activeIndividualChecks: Array<ActiveTable>): void => {
+    private calcTotalOccupiedTablesAndIndividualChecks = (): void => {
+        this.totalOccupiedIndividualChecks = 0;
+        this.totalOccupiedTables = 0;
+
+        this.tables.forEach((table) => {
+            if (table.isActive) {
+                this.totalOccupiedTables++;
+            }
+        });
+
+        this.individualChecks.forEach((individualCheck) => {
+            if (individualCheck.isActive) {
+                this.totalOccupiedIndividualChecks++;
+            }
+        });
+    };
+
+    private fillActiveTablesAndIndividualChecksBasicInfo = (
+        activeTables: Array<ActiveTable>,
+        activeIndividualChecks: Array<ActiveTable>,
+    ): void => {
         this.tables.forEach((table) => {
             const activeTable = activeTables.find((activeTable) => {
                 return activeTable.tableNumber === table.number;
@@ -240,12 +269,12 @@ export class CheckManagementComponent implements OnInit {
             if (activeTable) {
                 table.isActive = true;
                 table.invoiceId = activeTable.id;
-                if(activeTable.clientName){
+                if (activeTable.clientName) {
                     table.clientName = activeTable.clientName;
                 }
             }
         });
-      
+
         this.individualChecks.forEach((individualCheck) => {
             const activeIndividualCheck = activeIndividualChecks.find((activeIndividualCheck) => {
                 return activeIndividualCheck.individualCheckNumber === individualCheck.number;
@@ -254,10 +283,36 @@ export class CheckManagementComponent implements OnInit {
             if (activeIndividualCheck) {
                 individualCheck.isActive = true;
                 individualCheck.invoiceId = activeIndividualCheck.id;
-                if(activeIndividualCheck.clientName){
+                if (activeIndividualCheck.clientName) {
                     individualCheck.clientName = activeIndividualCheck.clientName;
                 }
             }
         });
-    };
+    }
+
+    private getCheckManagementConfig = (): void => {
+        const config = localStorage.getItem('check_management_config');
+        const user = localStorage.getItem('user_id');
+
+        if(config){
+            this.checkManagementSettings = JSON.parse(config);
+        }else{
+            if(user){
+                this._checkManagementApi
+                    .getCheckManagementSettings(user)
+                    .subscribe(
+                        (requestResult) => {
+                            this.checkManagementSettings = requestResult;
+                            localStorage.setItem(
+                                'check_management_config',
+                                JSON.stringify(this.checkManagementSettings)
+                            );
+                        },
+                        (error) => { throw error (error);}
+                    );
+            }
+        }
+    }
+    //TODO continuar daqui ja esta chegando a config falta passar para os componentes necessários
+
 }

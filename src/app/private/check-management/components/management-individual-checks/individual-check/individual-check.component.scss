@@ -12,16 +12,20 @@
     border-radius: $card-radius10;
 
     .table-img {
-        height: 37px;
-        width: 48px;
+        height: 30px;
+        width: 43px;
     }
 
     .individual-check-number {
         color: $green10;
+        position: relative;
+        top: 4px;
     }
 
     .individual-check-active {
         color: $orange10;
+        position: relative;
+        top: 4px;
     }
 }
 

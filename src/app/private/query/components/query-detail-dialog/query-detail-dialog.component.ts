@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MessagesKeys } from 'src/app/services/messages-keys.service';
 import { InvoiceItemModel, InvoiceModel } from '../../model/invoice.model';
 
 @Component({
@@ -13,6 +14,7 @@ export class QueryDetailDialogComponent implements OnInit {
     public displayedColumns: string[] = ['productName', 'quantity', 'unitValue', 'cost', 'total'];
 
     constructor(
+        public translateKey: MessagesKeys,
         public dialogRef: MatDialogRef<QueryDetailDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: InvoiceModel,
     ) {}

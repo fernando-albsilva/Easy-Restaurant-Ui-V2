@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogService } from 'src/app/services/dialog.service';
+import { ErMessages } from 'src/app/services/er-messages.service';
 import { MessagesKeys } from 'src/app/services/messages-keys.service';
+import { CheckManagementSettingDialogPayload } from '../../model/check-management.model';
+import { CheckManagementSettingsDialogComponent } from './check-management-settings-dialog/check-management-settings-dialog.component';
+import { ManagementFilterPayload, ShowManagementType } from './type-check-header-menu.models';
 
 @Component({
     selector: 'type-check-header-menu',
@@ -7,8 +13,8 @@ import { MessagesKeys } from 'src/app/services/messages-keys.service';
     styleUrls: ['./type-check-header-menu.component.scss'],
 })
 export class TypeChekHeaderMenu {
-    public tableDefaultQuantity: number = 45;
-    public individualCheckDefaultQuantity: number = 45;
+    public tableDefaultQuantity: number = 50;
+    public individualCheckDefaultQuantity: number = 50;
 
     public nameFilterText: string = '';
     public numberFilterText: number | undefined;
@@ -16,30 +22,18 @@ export class TypeChekHeaderMenu {
     @Input() public tableManagement: boolean = true;
     @Input() public hasTableActive: boolean = false;
     @Input() public hasIndividualCheckActive: boolean = false;
-    @Output() public changeViewManagement: EventEmitter<ShowManagementType> = new EventEmitter<ShowManagementType>();
-
-    @Input() public tableQuantity: number = this.tableDefaultQuantity;
-    @Output() public tableQuantityChange: EventEmitter<number> = new EventEmitter<number>();
-
-    @Input() public individualCheckQuantity: number = this.individualCheckDefaultQuantity;
-    @Output() public individualCheckQuantityChange: EventEmitter<number> = new EventEmitter<number>();
-
+    
+    @Output() public changeViewManagement: EventEmitter<ShowManagementType> = 
+        new EventEmitter<ShowManagementType>();
     @Output() public changeFilterText: EventEmitter<ManagementFilterPayload> =
         new EventEmitter<ManagementFilterPayload>();
 
-    constructor(public messages: MessagesKeys) {}
-
-    public handleTableQuantityChange = (value: string): void => {
-        if (value) {
-            this.tableQuantityChange.emit(Number(value));
-        }
-    };
-
-    public handleIndividualCheckQuantityChange = (value: string): void => {
-        if (value) {
-            this.individualCheckQuantityChange.emit(Number(value));
-        }
-    };
+    constructor(
+        public messages: MessagesKeys,
+        public dialog: MatDialog,
+        private dialogService: DialogService,
+        private erMessagesSnackbar: ErMessages,
+        ) {}
 
     public handleShowManagementTypeChange = (showTable: boolean, showIndividualCheck: boolean): void => {
         if (showTable) {
@@ -68,63 +62,34 @@ export class TypeChekHeaderMenu {
             this.changeFilterText.emit(payload);
         }
     };
-}
 
-export class ShowManagementType {
-    private _showTable: boolean = false;
-    private _showIndividualCheck: boolean = false;
+    public openSettingDialog = () => {
+        const dialogRef = 
+            this.createDialog(
+                new CheckManagementSettingDialogPayload(this.hasTableActive, this.hasIndividualCheckActive)
+            );
 
-    constructor(showTable: boolean = false, showIndividualCheck = false) {
-        this.showTable = showTable;
-        this.showIndividualCheck = showIndividualCheck;
+        // dialogRef.afterClosed().subscribe(
+        //     (response: DialogCreateUpdatePayloadModel) => {
+        //     const canSave = response && response.actionSave;
+        //     if (canSave) {
+        //         this.handleProductCreation(response.data);
+        //     }
+        // });
     }
 
-    public set showTable(value: boolean) {
-        this._showTable = value;
-        this._showIndividualCheck = !value;
-    }
+    
+    private createDialog = (dialogData?: CheckManagementSettingDialogPayload) => {
+        const height = '500px';
+        const width = '500px';
 
-    public get showTable() {
-        return this._showTable;
-    }
-
-    public set showIndividualCheck(value: boolean) {
-        this._showIndividualCheck = value;
-        this._showTable = !value;
-    }
-
-    public get showIndividualCheck() {
-        return this._showIndividualCheck;
-    }
-}
-
-export class ManagementFilterPayload {
-    private _nameFilterText: string = '';
-    private _numberFilterText: number | undefined;
-
-    constructor(nameFilterText: string, numberfilterText: number | undefined) {
-        if (nameFilterText !== '') {
-            this.nameFilterText = nameFilterText;
+        if (dialogData) {
+            const dialogRef = this.dialogService.createDialog(CheckManagementSettingsDialogComponent, height, width, dialogData);
+            return dialogRef;
         } else {
-            this.numberFilterText = numberfilterText;
+            const dialogRef = this.dialogService.createDialog(CheckManagementSettingsDialogComponent, height, width);
+            return dialogRef;
         }
-    }
+    };
 
-    public set nameFilterText(value: string) {
-        this._nameFilterText = value;
-        this._numberFilterText = undefined;
-    }
-
-    public get nameFilterText() {
-        return this._nameFilterText;
-    }
-
-    public set numberFilterText(value: number | undefined) {
-        this._numberFilterText = value;
-        this._nameFilterText = '';
-    }
-
-    public get numberFilterText() {
-        return this._numberFilterText;
-    }
 }

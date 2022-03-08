@@ -134,3 +134,26 @@ export class ActiveInvoiceItemModel {
     quantity: number = 0;
     product: ProductActiveInvoiceModel = new ProductActiveInvoiceModel();
 }
+
+export class CheckManagementSettingDialogPayload {
+    public hasTableActive: boolean | undefined;
+    public hasIndividualCheckActive: boolean | undefined;
+
+    constructor(hasTableActive?: boolean, hasIndividualCheckActive?: boolean){
+        if(hasTableActive){
+            this.hasTableActive = hasTableActive; 
+        }
+        if(hasIndividualCheckActive){
+            this.hasIndividualCheckActive = hasIndividualCheckActive; 
+        }
+    }
+}
+
+export class CheckManagementSettings {
+    public totalTables: number | undefined;
+    public totalIndivudlaChecks: number | undefined;
+    public sideMenuAvailableTables: boolean | undefined;
+    public sideMenuAvailableIndividualChecks: boolean | undefined;
+
+    constructor() {}
+}

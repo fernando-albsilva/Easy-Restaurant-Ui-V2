@@ -15,6 +15,7 @@ import { IndividualCheckComponent } from './components/management-individual-che
 import { CheckProductList } from './components/edit-table-dialog/check-product-list/check-product-list.component';
 import { EditTableDialog } from './components/edit-table-dialog/edit-table-dialog.component';
 import { ManagementIndividualChecksComponent } from './components/management-individual-checks/management-individual-checks.component';
+import { CheckManagementSettingsDialogComponent } from './components/type-check-header-menu/check-management-settings-dialog/check-management-settings-dialog.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { ManagementIndividualChecksComponent } from './components/management-ind
         IndividualCheckComponent,
         EditTableDialog,
         CheckProductList,
+        CheckManagementSettingsDialogComponent,
     ],
     imports: [
         HttpClientModule,

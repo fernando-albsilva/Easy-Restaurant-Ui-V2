@@ -33,13 +33,17 @@ export class MessagesKeys {
     
     //Related to detail
     public readonly detail: string = 'Detalhar';
+   
+    //Related to configuration
+    public readonly configuration: string = 'Configuração';
 
     //Related to close
     public readonly close: string = 'Fechar';
     public readonly closeCheck: string = 'Finalizar conta';
 
     //Related to produtc
-    public readonly product: string = 'Product';
+    public readonly product: string = 'Produto';
+    public readonly products: string = 'Produtos';
 
     //Related to employee
     public readonly employee: string = 'Funcionário';
@@ -159,8 +163,13 @@ export class MessagesKeys {
     public readonly qtd: string = 'Qtd';
     public readonly und: string = 'Und';
     
-    //Related to invoice
+    //Related to invoice / revenue / expense / balance
     public readonly checkClosedSucessfully: string = 'Conta fechada com sucesso';
+    public readonly invoiceInfo: string = 'Informações da fatura';
+    public readonly revenue: string = 'Receita';
+    public readonly revenuePlural: string = 'Receitas';
+    public readonly expense: string = 'Despesa';
+    public readonly balance: string = 'Saldo';
    
     //Related to confirm
     public readonly confirm: string = 'Confirmar';
@@ -181,6 +190,13 @@ export class MessagesKeys {
     
     // Related to item duration
     public readonly query: string = 'Consulta';
-
-
+    
+    // Related to item editCheckManagementSettings
+    public readonly editCheckManagementSettings: string = 'Editar opções da tela de gerenciamento';
+    
+    // Related to item total tables
+    public readonly totalTables: string = 'Quantidade de mesas';
+    
+    // Related to item total individual checks
+    public readonly totalIndividualChecks: string = 'Quantidade de comandas';
 }
