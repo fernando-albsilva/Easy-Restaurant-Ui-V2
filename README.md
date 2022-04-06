@@ -40,10 +40,11 @@ Para executar o projeto para desenvolvimento siga estas etapas:
 
 Windows:
 
-    * Entre no diretório onde baixou o projeto da API e procure o arquivo Run.sql em \ERapi\Banco\Run.sql
-    * Abra o arquivo em sua ferramenta de preferencia e rode o script para criar o banco
-    * Apos isso será necessario modificar o arquivo SqlConnectionFactory.cs que fica em \Application\DataBaseConnection
-    * Após aberto o arquivo SqlConnectionFactory deverá ser modificado o retorno do método GetConnectionString() com a sua conexão do banco de dados
+* Entre no diretório onde baixou o projeto da API e procure o arquivo Run.sql em \ERapi\Banco\Run.sql
+* Abra o arquivo em sua ferramenta de preferencia e rode o script para criar o banco
+* Apos isso será necessario modificar o arquivo SqlConnectionFactory.cs que fica em \Application\DataBaseConnection
+* Após aberto o arquivo SqlConnectionFactory deverá ser modificado o retorno do método GetConnectionString() com a sua conexão do banco de dados 
+    
 ```
  public class SqlConnectionFactory : ISqlConnectionFactory
     {
@@ -57,6 +58,25 @@ Windows:
         }
     }
 ```
+
+* Após o ajuste da string de conexão com o banco deverá fazer a build com a IDE escolhida e sua api estará executando
+* Com o banco criado e a API executando é preciso fazer o download desse projeto que é onde se encontra a UI
+* Após ter feito o download navega até o diretorio raiz da aplicação e rode os commandos:
+
+* Comando para instalar as dependencias necessarias
+
+```
+npm install
+```
+
+* Comando para subir a aplicação , a flag "-o" irá abrir uma nova guia no seu navegador com a aplicação rodando
+    
+    * Mais informações em: https://angular.io/cli/serve
+ 
+``` 
+ng serve -o
+```
+
 
 ## ☕ Usando <nome_do_projeto>
 
