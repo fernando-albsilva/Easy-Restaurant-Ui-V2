@@ -1,4 +1,4 @@
-# Nome do projeto
+# Easy Restaurant User Interface
 
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
@@ -25,23 +25,37 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
-<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
-* Você instalou a versão mais recente de `<linguagem / dependência / requeridos>`
-* Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
-* Você leu `<guia / link / documentação_relacionada_ao_projeto>`.
 
-## 🚀 Instalando <nome_do_projeto>
+* Istalar o Microsoft® SQL Server® 2012 Service Pack 3 (SP3) Express https://www.microsoft.com/pt-BR/download/details.aspx?id=50003
+* Instalar o SQL Server Management Studio (SSMS)  https://docs.microsoft.com/pt-br/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15
+* Baixar a API do projeto em https://github.com/fernando-albsilva/ER.Api
+* Baixar a Ide de preferência, exemplos:
+    * Rider https://www.jetbrains.com/pt-br/rider/
+    * Visual Studio Community https://visualstudio.microsoft.com/pt-br/vs/community/
+    * Visual Studio Code https://code.visualstudio.com/
 
-Para instalar o <nome_do_projeto>, siga estas etapas:
+## 🚀 Executando Easy Restaurant
 
-Linux e macOS:
-```
-<comando_de_instalação>
-```
+Para executar o projeto para desenvolvimento siga estas etapas:
 
 Windows:
+
+    * Entre no diretório onde baixou o projeto da API e procure o arquivo Run.sql em \ERapi\Banco\Run.sql
+    * Abra o arquivo em sua ferramenta de preferencia e rode o script para criar o banco
+    * Apos isso será necessario modificar o arquivo SqlConnectionFactory.cs que fica em \Application\DataBaseConnection
+    * Após aberto o arquivo SqlConnectionFactory deverá ser modificado o retorno do método GetConnectionString() com a sua conexão do banco de dados
 ```
-<comando_de_instalação>
+ public class SqlConnectionFactory : ISqlConnectionFactory
+    {
+
+        public string GetConnectionString()
+        {  
+            return "Data Source=(localdb)\\MSSQLLocalDB;" +
+                  "Initial Catalog=ER;" +
+                  "User id=sa;" +
+                  "Password=123456;";
+        }
+    }
 ```
 
 ## ☕ Usando <nome_do_projeto>
