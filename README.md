@@ -82,7 +82,7 @@ ng serve -o
 Para contribuir com Easy Restaurant, siga estas etapas:
 
 1. Bifurque este repositório para o front-end.
-2. 1. Bifurque o repositório da API para o back-end em: https://github.com/fernando-albsilva/ER.Api.
+2. Bifurque o repositório da API para o back-end em: https://github.com/fernando-albsilva/ER.Api.
 3. Crie um branch: `git checkout -b <nome_branch>`.
 4. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
 5. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
