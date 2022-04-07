@@ -1,6 +1,10 @@
 # Easy Restaurant User Interface
 
-<img src="https://github.com/fernando-albsilva/Easy-Restaurant-Assets/blob/master/images/home.png" alt="exemplo imagem">
+<!-- <img src="https://github.com/fernando-albsilva/Easy-Restaurant-Assets/blob/master/images/home.png" alt="exemplo imagem"> -->
+
+<div style="display: flex; align-items: center; justify-content: center; back-ground-color: black; border-radius: 100px; height: 200px; width: 200px;">
+    <span> EASY </span>
+</div>
 
 ### Ajustes e melhorias
 
