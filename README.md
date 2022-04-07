@@ -1,6 +1,6 @@
 # Easy Restaurant User Interface
 
-<img src="https://github.com/fernando-albsilva/Easy-Restaurant-Assets/blob/master/images/login.png" alt="exemplo imagem">
+<img src="https://github.com/fernando-albsilva/Easy-Restaurant-Assets/blob/master/images/home.png" alt="exemplo imagem">
 
 ### Ajustes e melhorias
 
