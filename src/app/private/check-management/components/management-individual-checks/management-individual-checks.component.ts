@@ -17,7 +17,6 @@ export class ManagementIndividualChecksComponent {
     }
     @Input() set nameToFilter(nameToFilter: string | undefined) {
         this.filterIndividualCheckByName(nameToFilter);
-        console.log("chamei input");
     }
 
     @Output() checkResult = new EventEmitter<CheckResult>();
@@ -55,7 +54,7 @@ export class ManagementIndividualChecksComponent {
     private filterIndividualCheckByName = (nameToFilter: string | undefined): void => {
         this.individualChecks = this.individualChecks.map((individualCheck) => {
             if (nameToFilter !== undefined) {
-                const individualCheckHasFilterName = 
+                const individualCheckHasFilterName =
                 individualCheck.clientName.toString().includes(nameToFilter.toString());
                 if (individualCheckHasFilterName) {
                     individualCheck.shouldHideByFilter = false;

@@ -20,8 +20,6 @@ export class QueryDetailDialogComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        console.log('dialogo');
-        console.log(this.data);
         this.calcTotalValue();
         if (this.data.invoiceItems) {
             this.invoiceItems = this.data.invoiceItems;

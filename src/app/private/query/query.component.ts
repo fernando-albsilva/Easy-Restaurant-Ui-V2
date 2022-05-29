@@ -10,7 +10,7 @@ import { InvoiceFlatModel, InvoiceModel } from './model/invoice.model';
   styleUrls: ['./query.component.scss']
 })
 export class QueryComponent implements OnInit {
-  
+
   public readonly erPageListContext: string = 'invoice';
   public readonly erPageListOperationsPermited: Array<string> = ['detail'];
 
@@ -31,7 +31,6 @@ export class QueryComponent implements OnInit {
   }
 
   public detailSelectedInvoice = (id: string): void => {
-    console.log(id);
     this.queryApi
       .getInvoiceById(id)
       .subscribe(
@@ -53,14 +52,14 @@ export class QueryComponent implements OnInit {
     const width = '1000px';
 
     if (dialogData) {
-        const dialogRef = 
+        const dialogRef =
           this.dialogService
             .createDialog(QueryDetailDialogComponent,height,width,dialogData);
 
         return dialogRef;
     } else {
 
-        const dialogRef = 
+        const dialogRef =
         this.dialogService
           .createDialog(QueryDetailDialogComponent, height, width, dialogData);
         return dialogRef;

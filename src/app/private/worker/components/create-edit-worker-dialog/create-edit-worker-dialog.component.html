@@ -106,7 +106,7 @@
         </mat-form-field>
 
         <!-- Input worker type -->
-        <mat-form-field class="input" color="accent" appearance="standard">
+        <mat-form-field *ngIf="worker?.function?.id !== null" class="input" color="accent" appearance="standard">
             <mat-label>{{ messages.type }}</mat-label>
             <mat-select [(ngModel)]="worker.function.id" name="workerType">
                 <mat-option *ngFor="let function of workerFunctions" [value]="function.id">

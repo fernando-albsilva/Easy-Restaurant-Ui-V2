@@ -4,13 +4,17 @@
   <img src="https://github.com/fernando-albsilva/Easy-Restaurant-Assets/blob/master/images/logotipo.png">
 </p>
 
-### Ajustes e melhorias
+[//]: # (### Ajustes e melhorias)
 
-O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
+[//]: # ()
+[//]: # (O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:)
 
-- [ ] Correção de pequenos bugs
-- [ ] Automação para instalação
-- [ ] Finalização de testes
+[//]: # ()
+[//]: # (- [ ] Correção de pequenos bugs)
+
+[//]: # (- [ ] Automação para instalação)
+
+[//]: # (- [ ] Finalização de testes)
 
 ## 💻 Pré-requisitos
 

@@ -17,7 +17,6 @@ export class ManagementTablesComponent {
     }
     @Input() set nameToFilter(nameToFilter: string | undefined) {
         this.filterTableByName(nameToFilter);
-        console.log("chamei input");
     }
 
     @Output() checkResult = new EventEmitter<CheckResult>();
@@ -37,11 +36,11 @@ export class ManagementTablesComponent {
             return table;
         });
     };
-    
+
     private filterTableByName = (nameToFilter: string | undefined): void => {
         this.tables = this.tables.map((table) => {
             if (nameToFilter !== undefined) {
-                const tableHasFilterName = 
+                const tableHasFilterName =
                     table.clientName.toString().includes(nameToFilter.toString());
                 if (tableHasFilterName) {
                     table.shouldHideByFilter = false;
